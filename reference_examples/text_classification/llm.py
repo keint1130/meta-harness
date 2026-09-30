@@ -299,8 +299,10 @@ class LLM:
         temperature: float | None = None,
         max_tokens: int = 16384,
         max_workers: int = 32,
+        reasoning_effort: str | None = None,
     ):
         self.model = model
+        self.reasoning_effort = reasoning_effort
         self.is_gpt_oss = "gpt-oss" in model.lower()
 
         if temperature is not None:
@@ -319,7 +321,17 @@ class LLM:
             "max_tokens": self.max_tokens,
         }
 
+        # GPT-6 defaults to reasoning enabled; sampling temperature is only
+        # supported with explicit reasoning_effort="none" (Sol/Luna).
+        if model.split("/")[-1].startswith("gpt-6") and reasoning_effort != "none":
+            if temperature is not None:
+                logger.warning("Omitting temperature for %s with reasoning enabled", model)
+            self.temperature = None
+            self._model_kwargs.pop("temperature", None)
+
         self._system_prompt = "Reasoning: medium" if self.is_gpt_oss else None
+        if reasoning_effort is not None:
+            self._model_kwargs["reasoning_effort"] = reasoning_effort
 
         if api_base is None and max_workers > 4:
             max_workers = 4
@@ -388,6 +400,8 @@ class LLM:
             calls = self.total_calls
         return {
             "model": self.model,
+            "reasoning_effort": self.reasoning_effort,
+            "temperature": self.temperature,
             "calls": calls,
             "input_tokens": self.total_input_tokens,
             "output_tokens": self.total_output_tokens,

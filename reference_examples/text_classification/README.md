@@ -21,18 +21,22 @@ Run one memory system on one dataset:
 
 ```bash
 RUN=logs/manual
-OUT="$RUN/Symptom2Disease/fewshot_all/gpt-oss-120b"
+OUT="$RUN/Symptom2Disease/fewshot_all/gpt-6-luna"
 mkdir -p "$OUT"
 PYTHONPATH=.. uv run python -m text_classification.inner_loop \
   --memory fewshot_all \
   --dataset Symptom2Disease \
-  --model openrouter/openai/gpt-oss-120b \
+  --model openai/gpt-6-luna \
   --val-output "$OUT/val.json" \
   --save-memory "$OUT/memory.json"
 uv run python benchmark.py --logs-dir "$RUN" --results
 ```
 
-By default this uses the model in `config.yaml` (`openrouter/openai/gpt-oss-120b`). To target another provider or any OpenAI-compatible endpoint, override `--model` and optionally `--api-base`.
+This pilot uses `openai/gpt-6-luna` from `config.yaml` and requires
+`OPENAI_API_KEY`. The outer-loop proposer uses the authenticated Codex CLI;
+run `codex login` before starting an evolution run. To target another provider
+or any OpenAI-compatible endpoint, override `--model` and optionally
+`--api-base`.
 
 Print the benchmark summary:
 
@@ -60,12 +64,34 @@ PYTHONPATH=.. uv run python -m unittest discover -s tests -v
 
 ## Layout Notes
 
+The `proposer` section in `config.yaml` selects the outer-loop Codex model and
+reasoning effort (pilot defaults: `gpt-6-sol`, `high`). The `models` section
+selects the inner-loop solver separately. Each proposer invocation records its
+requested `model` and `reasoning_effort`, token usage, duration and exit code in
+`logs/<run-name>/codex_sessions/<timestamp>_iter<N>/meta.json`.
+These fields record the requested settings, not a resolved model snapshot.
+
+Each entry in `models` can specify `reasoning_effort` (pilot: `medium`).
+LiteLLM is pinned to 1.101.0 for GPT-6 request support. For GPT-6 with reasoning
+enabled (including an unspecified effort), temperature is omitted from requests.
+To use temperature 0, explicitly set `reasoning_effort: none` for Sol/Luna.
+The evaluator reads the entry matching the selected model and forwards the value
+to LiteLLM. A direct `inner_loop` invocation can override it with
+`--reasoning-effort`. The value is recorded in evaluation JSON and training-log
+metadata; it also participates in the response cache key. Omitting it leaves the
+provider default unchanged. Use a new run name when changing model settings,
+because completed benchmark result files are reused within a run.
+
 - `agents/`: the kept baselines plus the write target for generated candidates.
 - `.claude/skills/meta-harness/SKILL.md`: main proposer prior used by `meta_harness.py`.
 
 ## Runtime And Cost
 
-The release default uses OpenRouter (`openrouter/openai/gpt-oss-120b`). If you want a different provider or your own OpenAI-compatible endpoint, pass `--model` and optionally `--api-base`, or change `config.yaml`. The paper experiments used a local `vllm` deployment of `gpt-oss-120b`, MXFP4 quantized, with `max-model-len=32768`. API-backed runs may differ in quality from that setup and may be better.
+This pilot targets OpenAI (`openai/gpt-6-luna`). If you want a different
+provider or your own OpenAI-compatible endpoint, pass `--model` and optionally
+`--api-base`, or change `config.yaml`. The paper experiments used a local
+`vllm` deployment of `gpt-oss-120b`, MXFP4 quantized, with
+`max-model-len=32768`. API-backed runs may differ in quality from that setup.
 
 ## Release Notes
 

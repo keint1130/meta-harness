@@ -527,6 +527,11 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=cfg["inner_loop"]["seed"])
     parser.add_argument("--model", default=None, help="Model to use (overrides config)")
     parser.add_argument(
+        "--reasoning-effort", default=None,
+        choices=["none", "low", "medium", "high", "xhigh", "max"],
+        help="Solver reasoning effort (overrides the selected model configuration)",
+    )
+    parser.add_argument(
         "--api-base", default=None, help="API base URL (overrides config)"
     )
     parser.add_argument(
@@ -645,17 +650,27 @@ if __name__ == "__main__":
         raise ValueError(
             "No model specified. Use --model or set 'models' in config.yaml"
         )
+    model_cfg = next(
+        (entry for entry in cfg.get("models", []) if entry["model"] == model), {}
+    )
+    reasoning_effort = (
+        args.reasoning_effort if args.reasoning_effort is not None
+        else model_cfg.get("reasoning_effort")
+    )
     # Cloud models (gemini/, openrouter/) don't use api_base
     _is_cloud = model.startswith(("gemini/", "openrouter/"))
     if args.api_base:
         api_base = args.api_base
     elif _is_cloud:
         api_base = None
-    elif cfg.get("models"):
-        api_base = cfg["models"][0].get("api_base")
+    elif model_cfg:
+        api_base = model_cfg.get("api_base")
     else:
         api_base = None
-    llm = LLM(model=model, api_base=api_base, temperature=args.temperature)
+    llm = LLM(
+        model=model, api_base=api_base, temperature=args.temperature,
+        reasoning_effort=reasoning_effort,
+    )
     memory = load_memory_system(path=args.memory, llm=llm)
     memory_name = Path(args.memory).stem
 
@@ -672,6 +687,7 @@ if __name__ == "__main__":
         memory=memory_name,
         model=model,
         seed=args.seed,
+        reasoning_effort=reasoning_effort,
         mode=args.mode,
         num_epochs=args.num_epochs if args.mode == "offline" else None,
         start_time=datetime.now().isoformat(),
@@ -800,6 +816,7 @@ if __name__ == "__main__":
             "dataset": args.dataset,
             "memory": args.memory,
             "model": model,
+            "reasoning_effort": reasoning_effort,
             "seed": args.seed,
             "mode": args.mode,
             "num_epochs": args.num_epochs if args.mode == "offline" else None,

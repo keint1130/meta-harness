@@ -1,0 +1,13 @@
+{
+  "model": "gpt-6-sol",
+  "reasoning_effort": "high",
+  "session_id": "",
+  "exit_code": 1,
+  "duration_seconds": 0.1,
+  "token_usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "stderr": "Error loading config.toml: model_providers contains reserved built-in provider IDs: `openai`. Built-in providers cannot be overridden. Rename your custom provider (for example, `openai-custom`).\nin `model_providers`\n\n"
+}

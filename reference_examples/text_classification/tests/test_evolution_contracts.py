@@ -19,7 +19,7 @@ from text_classification.data.api import _with_context
 
 def _args(**overrides):
     values = {
-        "model": "openrouter/openai/gpt-oss-120b",
+        "model": "openai/gpt-6-luna",
         "run_name": "test-run",
         "fresh": False,
         "skip_baseline": True,
@@ -100,7 +100,7 @@ class HeldOutIsolationTests(unittest.TestCase):
                             meta_harness.RESULTS_DIR,
                             dataset,
                             system,
-                            "gpt-oss-120b",
+                            "gpt-6-luna",
                             42,
                         )
                         result_dir.mkdir(parents=True, exist_ok=True)
@@ -166,7 +166,7 @@ class HeldOutIsolationTests(unittest.TestCase):
                             meta_harness.RESULTS_DIR,
                             dataset,
                             system,
-                            "gpt-oss-120b",
+                            "gpt-6-luna",
                             42,
                         )
                         result_dir.mkdir(parents=True, exist_ok=True)
@@ -186,6 +186,24 @@ class HeldOutIsolationTests(unittest.TestCase):
             state = json.loads((run_dir / "finalized.json").read_text())
 
         self.assertEqual(state["status"], "in_progress")
+
+
+class EvolutionSummaryTests(unittest.TestCase):
+    def test_delta_uses_frontier_from_start_of_iteration(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            summary = Path(tmp) / "evolution_summary.jsonl"
+            with patch.object(meta_harness, "EVOLUTION_SUMMARY", summary):
+                meta_harness.update_evolution_summary(
+                    iteration=1,
+                    candidates=[{"name": "candidate", "axis": "retrieval"}],
+                    val_scores={"candidate": 90.0},
+                    best_val=80.0,
+                )
+
+            row = json.loads(summary.read_text())
+
+        self.assertEqual(row["delta"], 10.0)
+        self.assertEqual(row["outcome"], "90.0% (+10.0)")
 
 
 if __name__ == "__main__":

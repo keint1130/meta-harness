@@ -1,0 +1,13 @@
+{
+  "model": "gpt-6-sol",
+  "reasoning_effort": "high",
+  "session_id": "",
+  "exit_code": 2,
+  "duration_seconds": 1.73,
+  "token_usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "stderr": "error: the argument '--sandbox <SANDBOX_MODE>' cannot be used with '--approve-for-me'\n\nUsage: codex exec [OPTIONS] [PROMPT]\n       codex exec [OPTIONS] <COMMAND> [ARGS]\n\nFor more information, try '--help'.\n"
+}

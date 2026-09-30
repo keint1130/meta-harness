@@ -1,0 +1,44 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "contrastive_retrieval",
+      "file": "agents/contrastive_retrieval.py",
+      "hypothesis": "On the configured validation split, IDF-weighted retrieval with label-diverse MMR selection will exceed fewshot_all's 80% accuracy using at most five demonstrations.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": [
+        "contrastive_retrieval",
+        "idf_weighting",
+        "label_diversity",
+        "query_adaptive_selection"
+      ]
+    },
+    {
+      "name": "class_evidence_profiles",
+      "file": "agents/class_evidence_profiles.py",
+      "hypothesis": "On the configured validation split, replacing raw demonstrations with learned class evidence profiles will reach at least 80% accuracy while reducing injected context length by at least 30%.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": [
+        "class_prototypes",
+        "discriminative_cues",
+        "compressed_memory",
+        "incremental_sufficient_statistics"
+      ]
+    },
+    {
+      "name": "hypothesis_grouped",
+      "file": "agents/hypothesis_grouped.py",
+      "hypothesis": "On the configured validation split, grouping all labeled cases by label and prompting explicit support-versus-conflict comparison will exceed 80% accuracy while keeping injected context at or below fewshot_all's 8400 characters.",
+      "axis": "exploration",
+      "base_system": "fewshot_all",
+      "components": [
+        "label_grouped_prompt",
+        "hypothesis_testing",
+        "counterevidence_review",
+        "structured_demonstrations"
+      ]
+    }
+  ]
+}

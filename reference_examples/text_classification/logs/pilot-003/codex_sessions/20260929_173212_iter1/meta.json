@@ -1,0 +1,13 @@
+{
+  "model": "gpt-6-sol",
+  "reasoning_effort": "high",
+  "session_id": "01a0ee38-f8f4-7021-9bdf-80e219f85dbb",
+  "exit_code": 1,
+  "duration_seconds": 26.91,
+  "token_usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "stderr": ""
+}

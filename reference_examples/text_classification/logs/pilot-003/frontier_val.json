@@ -1,0 +1,19 @@
+{
+  "Symptom2Disease": {
+    "best_system": "contrastive_retrieval",
+    "accuracy": 90.0,
+    "ctx_len": 1236.0
+  },
+  "_pareto": [
+    {
+      "system": "contrastive_retrieval",
+      "val_accuracy": 90.0,
+      "ctx_len": 1236
+    },
+    {
+      "system": "no_memory",
+      "val_accuracy": 40.0,
+      "ctx_len": 191
+    }
+  ]
+}

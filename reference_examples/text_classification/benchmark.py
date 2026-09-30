@@ -15,7 +15,7 @@ import yaml
 def load_config() -> dict:
     """Load config from config.yaml."""
     config_path = Path(__file__).parent / "config.yaml"
-    with open(config_path) as f:
+    with open(config_path, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
@@ -92,6 +92,7 @@ async def _run_with_retries(
                 *cmd,
                 stdout=f,
                 stderr=asyncio.subprocess.STDOUT,
+                env=_worker_environment(),
             )
             try:
                 code = await asyncio.wait_for(proc.wait(), timeout=timeout)
@@ -293,12 +294,17 @@ def compute_pareto_frontier(
     return sorted(pareto, key=lambda x: (-x[1], x[2]))
 
 
+def _worker_environment() -> dict[str, str]:
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(Path(__file__).resolve().parent.parent)
+    env["PYTHONUTF8"] = "1"
+    return env
+
+
 def _inner_loop_command() -> list[str]:
     """Return a cwd-independent command prefix for inner-loop workers."""
     project_dir = Path(__file__).resolve().parent
     return [
-        "env",
-        f"PYTHONPATH={project_dir.parent}",
         "uv",
         "run",
         "--project",

@@ -1,0 +1,29 @@
+{
+  "Symptom2Disease": {
+    "no_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "hypothesis_grouped": {
+      "accuracy": 0.9,
+      "memory_context_chars": 8377.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.8,
+      "memory_context_chars": 8400.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_retrieval": {
+      "accuracy": 0.9,
+      "memory_context_chars": 1236.0,
+      "model": "gpt-6-luna"
+    },
+    "class_evidence_profiles": {
+      "accuracy": 0.6,
+      "memory_context_chars": 1930.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

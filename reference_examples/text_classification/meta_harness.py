@@ -1,7 +1,7 @@
 """Autonomous evolution loop for memory systems.
 
 Validation-only during evolution. Test evaluation requires explicit finalization.
-Uses claude_wrapper + meta-harness skill to propose new memory systems.
+Uses codex_wrapper + meta-harness skill to propose new memory systems.
 
     uv run python meta_harness.py --iterations 20 --fresh
     uv run python meta_harness.py --iterations 10 --run-name my-run
@@ -20,7 +20,7 @@ from pathlib import Path
 
 import yaml
 
-import claude_wrapper
+import codex_wrapper
 from benchmark import get_model_short_name, load_results
 
 EVOLVE_DIR = Path(__file__).parent
@@ -108,7 +108,9 @@ def run_cmd(cmd, timeout=7200, cwd=None):
     """Wraps subprocess.run; returns CompletedProcess with returncode=124 on timeout."""
     try:
         return subprocess.run(
-            cmd, cwd=cwd, timeout=timeout, capture_output=True, text=True
+            cmd, cwd=cwd, timeout=timeout, capture_output=True, text=True,
+            encoding="utf-8", errors="replace",
+            env={**os.environ, "PYTHONUTF8": "1"},
         )
     except subprocess.TimeoutExpired:
         return subprocess.CompletedProcess(
@@ -161,25 +163,19 @@ def count_iterations_from_summary():
     return max_iter
 
 
-def propose_claude(task_prompt, iteration, timeout=2400):
+def propose_codex(task_prompt, iteration, proposer, timeout=2400):
     """Returns True if candidates were produced (pending_eval.json exists)."""
-    os.environ.pop("CLAUDECODE", None)
-    # Strip API key so claude CLI uses subscription auth (avoids rate limits)
-    saved_key = os.environ.pop("ANTHROPIC_API_KEY", None)
-    result = claude_wrapper.run(
+    result = codex_wrapper.run(
         prompt=task_prompt,
-        model="opus",
+        model=proposer["model"],
         allowed_tools=PROPOSER_ALLOWED_TOOLS,
         skills=[str(EVOLVE_DIR / ".claude/skills/meta-harness")],
         cwd=str(EVOLVE_DIR),
-        log_dir=str(LOGS_DIR / "claude_sessions"),
+        log_dir=str(LOGS_DIR / "codex_sessions"),
         name=f"iter{iteration}",
         timeout_seconds=timeout,
-        effort="max",
+        effort=proposer["reasoning_effort"],
     )
-    # Restore API key
-    if saved_key:
-        os.environ["ANTHROPIC_API_KEY"] = saved_key
     if result.exit_code != 0:
         print(f"  {_red('proposer failed')} exit={result.exit_code}")
         if result.stderr:
@@ -198,6 +194,8 @@ def validate_candidates(candidates):
             [
                 "uv",
                 "run",
+                "--project",
+                str(EVOLVE_DIR),
                 "python",
                 "-c",
                 f"from text_classification.agents.{name} import *; print('OK')",
@@ -219,15 +217,12 @@ def update_evolution_summary(
     iteration,
     candidates,
     val_scores,
+    best_val,
     propose_time=None,
     bench_time=None,
     wall_time=None,
 ):
     """Append one JSONL row per candidate to evolution_summary.jsonl."""
-    frontier = json.loads(FRONTIER_VAL.read_text()) if FRONTIER_VAL.exists() else {}
-    pareto = frontier.get("_pareto", [])
-    best_val = pareto[0].get("val_accuracy", 0) if pareto else 0
-
     with open(EVOLUTION_SUMMARY, "a") as f:
         for i, c in enumerate(candidates):
             name = c["name"]
@@ -361,7 +356,7 @@ def run_evolve(args):
     global LOGS_DIR, PENDING_EVAL, FRONTIER_VAL, EVOLUTION_SUMMARY
     global RESULTS_DIR, FINALIZED
 
-    with open(CONFIG_PATH) as f:
+    with open(CONFIG_PATH, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
     datasets = cfg["datasets"]
 
@@ -421,7 +416,14 @@ def run_evolve(args):
             result = run_benchmark(["--memory", bl])
             elapsed = time.time() - t0
             if result.returncode != 0:
-                print(f"    {_red('FAIL')} {bl}: {result.stderr[:200]}")
+                failure_log = LOGS_DIR / f"baseline_{bl}_failure.log"
+                failure_log.write_text(
+                    (result.stdout or "") + "\n" + (result.stderr or ""),
+                    encoding="utf-8",
+                )
+                print(f"    {_red('FAIL')} {bl}: {result.stderr[-2000:]}")
+                print(f"Full error: {failure_log}")
+                raise SystemExit(1)
             else:
                 print(f"    {_green('OK')} ({_elapsed(elapsed)})")
 
@@ -470,7 +472,9 @@ def run_evolve(args):
         # Propose
         propose_start = time.time()
         print(f"  {_ts()} {_cyan('proposing')} new candidates...", flush=True)
-        ok = propose_claude(task_prompt, iteration, timeout=args.propose_timeout)
+        ok = propose_codex(
+            task_prompt, iteration, cfg["proposer"], timeout=args.propose_timeout
+        )
         propose_time = time.time() - propose_start
 
         if not ok:
@@ -496,7 +500,11 @@ def run_evolve(args):
                 f"  {_red('0 valid')} out of {len(candidates)} candidates, skipping iteration"
             )
             update_evolution_summary(
-                iteration, candidates, {}, propose_time=propose_time
+                iteration,
+                candidates,
+                {},
+                best_val,
+                propose_time=propose_time,
             )
             continue
         print(
@@ -554,6 +562,7 @@ def run_evolve(args):
             iteration,
             valid_candidates,
             val_scores,
+            best_val,
             propose_time=propose_time,
             bench_time=bench_time,
             wall_time=wall_time,
@@ -582,7 +591,7 @@ def run_evolve(args):
 def main():
     parser = argparse.ArgumentParser(description="Evolution loop for memory systems")
     parser.add_argument("--iterations", type=int, default=20)
-    with open(CONFIG_PATH) as f:
+    with open(CONFIG_PATH, encoding="utf-8") as f:
         _cfg = yaml.safe_load(f)
     _default_model = _cfg["models"][0]["model"] if _cfg.get("models") else None
     parser.add_argument(

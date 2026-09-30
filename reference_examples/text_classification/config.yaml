@@ -1,26 +1,32 @@
 # Dataset split sizes — full datasets
 dataset:
-  num_train: 200
-  num_val: 50
-  num_test: 100
-  overrides:
+  num_train: 50
+  num_val: 10
+  num_test: 25
+  overrides: {}
     # MCE tasks: use full official splits
-    USPTO:                     {num_train: 50, num_val: 30, num_test: 100}
-    Symptom2Disease:           {num_train: 200, num_val: 50, num_test: 212}
-    LawBench:                  {num_train: 200, num_val: 50, num_test: 100}
+    # USPTO:                     {num_train: 50, num_val: 30, num_test: 100}
+    # Symptom2Disease:           {num_train: 200, num_val: 50, num_test: 212}
+    # LawBench:                  {num_train: 200, num_val: 50, num_test: 100}
 
 # Inner loop settings
 inner_loop:
   mode: offline      # "online" or "offline"
   num_epochs: 1      # For offline mode: 1 epoch for local server speed (was 5)
-  temperature: 0.0   # LLM temperature (null = model default)
+  temperature: 0.0   # GPT-6: sent only with reasoning_effort: none; otherwise omitted
   eval_interval: 0   # 0 = no intermediate evals
   batch_size: 1
   seed: 42
 
+# Outer-loop Codex proposer (separate from the solver below)
+proposer:
+  model: gpt-6-luna
+  reasoning_effort: high
+
 # Models to test
 models:
-  - model: openrouter/openai/gpt-oss-120b
+  - model: openai/gpt-6-luna
+    reasoning_effort: medium
   # To use a custom OpenAI-compatible endpoint instead, switch to e.g.:
   # - model: gpt-oss-120b
   #   api_base: https://your-api-host/v1
@@ -32,9 +38,9 @@ benchmark:
 
 # Datasets to test
 datasets:
-  - USPTO
+  # - USPTO
   - Symptom2Disease
-  - LawBench
+  # - LawBench
 
 # Memory systems to test
 memory_systems:

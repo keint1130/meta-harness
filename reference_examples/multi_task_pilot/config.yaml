@@ -1,0 +1,53 @@
+seed: 42
+
+model:
+  name: openai/gpt-6-luna
+  reasoning_effort: medium
+
+proposer:
+  model: gpt-6-luna
+  reasoning_effort: high
+
+optimization:
+  iterations: 1
+  proposer_timeout_seconds: 2400
+
+splits:
+  dev: 30
+  test: 50
+
+datasets:
+  livecodebench:
+    source: livecodebench/code_generation_lite
+    config: v6
+    revision: 0fe84c3912ea0c4d4a78037083943e8f0c4dd505
+    language: python
+  popqa:
+    source: aialt/RetrievalQA
+    base_source: akariasai/PopQA
+    config: null
+    split: train
+    revision: a6ad065f05fccdecc1f2974ff471929a39966d2f
+    source_filter:
+      data_source: popqa
+    retrieval: contriever
+  math500:
+    source: HuggingFaceH4/MATH-500
+    config: default
+    split: test
+    revision: 6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be
+    source_filter:
+      level: 5
+
+budgets:
+  max_llm_calls: 3
+  max_python_calls: 2
+  max_retrieve_calls: 2
+  max_retrieved_documents: 5
+
+docker:
+  image: python:3.13-alpine
+  timeout_seconds: 10
+  memory: 256m
+  cpus: 1.0
+  pids_limit: 64

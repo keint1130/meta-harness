@@ -1,0 +1,32 @@
+{
+  "status": "final",
+  "split": "test",
+  "model": {
+    "name": "openai/gpt-6-luna",
+    "reasoning_effort": "medium"
+  },
+  "harness": "baseline",
+  "reason_shared_harness_evaluated_once": "All sanitized track frontiers were byte-identical to baseline.",
+  "family_results": {
+    "coding": {"correct": 34, "total": 50, "accuracy": 0.68},
+    "retrieval": {"correct": 29, "total": 50, "accuracy": 0.58},
+    "math": {"correct": 49, "total": 50, "accuracy": 0.98}
+  },
+  "macro_average": 0.7466666666666667,
+  "source_runs": [
+    "final-heldout-baseline",
+    "final-heldout-timeout-retry"
+  ],
+  "timeout_correction": {
+    "task_id": "test/precalculus/1202.json",
+    "original_outcome": "API connection timeout after 600 seconds",
+    "retry_count": 1,
+    "retry_correct": true
+  },
+  "recorded_successful_usage": {
+    "prompt_tokens": 129363,
+    "completion_tokens": 153487,
+    "total_tokens": 282850
+  },
+  "usage_note": "Provider usage, if any, from the timed-out request was unavailable and is not included."
+}

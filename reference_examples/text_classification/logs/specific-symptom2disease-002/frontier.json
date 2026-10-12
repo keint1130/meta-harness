@@ -1,0 +1,29 @@
+{
+  "Symptom2Disease": {
+    "best_system": "pairwise_error_rules",
+    "accuracy": 82.0,
+    "ctx_len": 1469.0
+  },
+  "_pareto": [
+    {
+      "system": "pairwise_error_rules",
+      "test_accuracy": 82.0,
+      "ctx_len": 1469
+    },
+    {
+      "system": "correction_episode_memory",
+      "test_accuracy": 80.0,
+      "ctx_len": 1202
+    },
+    {
+      "system": "error_correction_memory",
+      "test_accuracy": 72.0,
+      "ctx_len": 481
+    },
+    {
+      "system": "no_memory",
+      "test_accuracy": 61.0,
+      "ctx_len": 191
+    }
+  ]
+}

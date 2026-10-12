@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.4,
+  "correct": 12,
+  "total": 30,
+  "dataset": "USPTO",
+  "memory": "agents/forward_roundtrip_check.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T19:10:31.432867",
+  "runtime_seconds": 96.37,
+  "memory_context_chars": 676,
+  "llm_calls": 120,
+  "llm_input_tokens": 25057,
+  "llm_output_tokens": 63825,
+  "llm_total_tokens": 88882
+}

@@ -1,0 +1,34 @@
+{
+  "Symptom2Disease": {
+    "best_system": "pairwise_error_rules",
+    "accuracy": 86.66666666666667,
+    "ctx_len": 1474.0
+  },
+  "_pareto": [
+    {
+      "system": "pairwise_error_rules",
+      "val_accuracy": 86.7,
+      "ctx_len": 1474
+    },
+    {
+      "system": "correction_episode_memory",
+      "val_accuracy": 83.3,
+      "ctx_len": 1216
+    },
+    {
+      "system": "symptom_bundle_profiles",
+      "val_accuracy": 76.7,
+      "ctx_len": 1174
+    },
+    {
+      "system": "error_correction_memory",
+      "val_accuracy": 63.3,
+      "ctx_len": 481
+    },
+    {
+      "system": "no_memory",
+      "val_accuracy": 50.0,
+      "ctx_len": 191
+    }
+  ]
+}

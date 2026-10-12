@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.7,
+  "correct": 21,
+  "total": 30,
+  "dataset": "Symptom2Disease",
+  "memory": "agents/bayesian_label_router.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T12:58:36.934023",
+  "runtime_seconds": 6.36,
+  "memory_context_chars": 728,
+  "llm_calls": 60,
+  "llm_input_tokens": 11083,
+  "llm_output_tokens": 6016,
+  "llm_total_tokens": 17099
+}

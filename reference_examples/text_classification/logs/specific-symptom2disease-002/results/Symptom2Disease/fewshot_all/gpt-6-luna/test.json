@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.8,
+  "correct": 80,
+  "total": 100,
+  "dataset": "Symptom2Disease",
+  "memory": "agents/fewshot_all.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T21:02:47.480628",
+  "runtime_seconds": 15.35,
+  "memory_context_chars": 8088,
+  "llm_calls": 100,
+  "llm_input_tokens": 214407,
+  "llm_output_tokens": 15663,
+  "llm_total_tokens": 230070
+}

@@ -1,0 +1,41 @@
+{
+  "iteration": 6,
+  "candidates": [
+    {
+      "name": "sectioned_case_memory",
+      "file": "agents/sectioned_case_memory.py",
+      "hypothesis": "Separating event facts from conclusion and procedural material will improve aggregate accuracy over broad neighbor retrieval while using less context, because close factual analogies will be easier to compare.",
+      "axis": "exploitation",
+      "base_system": "coverage_neighbor_memory",
+      "components": [
+        "fact_and_conclusion_section_representation",
+        "section_weighted_similarity_retrieval",
+        "compact_structured_demonstrations"
+      ]
+    },
+    {
+      "name": "answer_bundle_retrieval",
+      "file": "agents/answer_bundle_retrieval.py",
+      "hypothesis": "Selecting demonstrations for diversity of joint answer bundles will improve aggregate accuracy over label-diverse demonstrations, especially when a correct output has multiple components.",
+      "axis": "exploration",
+      "base_system": "label_balanced_demos",
+      "components": [
+        "ground_truth_answer_bundle_representation",
+        "bundle_novelty_selection",
+        "multi_component_completeness_prompt"
+      ]
+    },
+    {
+      "name": "answer_inventory_check",
+      "file": "agents/answer_inventory_check.py",
+      "hypothesis": "A frequency-ranked inventory of answer components from nearby verified examples will improve aggregate accuracy over a second-pass answer check by prompting completeness checks without discarding case-level evidence.",
+      "axis": "exploitation",
+      "base_system": "two_pass_label_check",
+      "components": [
+        "retrieved_component_inventory",
+        "case_provenance_preservation",
+        "supported_component_completeness_check"
+      ]
+    }
+  ]
+}

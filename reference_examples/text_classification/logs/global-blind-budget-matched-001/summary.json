@@ -1,0 +1,83 @@
+{
+  "USPTO": {
+    "retrieval_diverse": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1119.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3005.0,
+      "model": "gpt-6-luna"
+    },
+    "correction_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 375.0,
+      "model": "gpt-6-luna"
+    },
+    "class_cue_profiles": {
+      "accuracy": 0.0,
+      "memory_context_chars": 2493.0,
+      "model": "gpt-6-luna"
+    }
+  },
+  "Symptom2Disease": {
+    "retrieval_diverse": {
+      "accuracy": 0.8,
+      "memory_context_chars": 1081.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.7,
+      "memory_context_chars": 2766.0,
+      "model": "gpt-6-luna"
+    },
+    "correction_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 375.0,
+      "model": "gpt-6-luna"
+    },
+    "class_cue_profiles": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1381.0,
+      "model": "gpt-6-luna"
+    }
+  },
+  "LawBench": {
+    "retrieval_diverse": {
+      "accuracy": 0.5,
+      "memory_context_chars": 2763.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.0,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.5,
+      "memory_context_chars": 7221.0,
+      "model": "gpt-6-luna"
+    },
+    "correction_memory": {
+      "accuracy": 0.1,
+      "memory_context_chars": 375.0,
+      "model": "gpt-6-luna"
+    },
+    "class_cue_profiles": {
+      "accuracy": 0.0,
+      "memory_context_chars": 1807.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

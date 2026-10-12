@@ -1,0 +1,81 @@
+{
+  "USPTO": {
+    "utility_gated_retrieval": {
+      "accuracy": 0.4,
+      "memory_context_chars": 521.0,
+      "model": "gpt-6-luna"
+    },
+    "sparse_retrieval_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 1016.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "instruction_contract_recall": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 917.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 8496.0,
+      "model": "gpt-6-luna"
+    },
+    "exact_input_answer_cache": {
+      "accuracy": 0.5,
+      "memory_context_chars": 213.0,
+      "model": "gpt-6-luna"
+    },
+    "draft_audit_pass": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 1086.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_failure_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 340.0,
+      "model": "gpt-6-luna"
+    },
+    "context_routed_prototypes": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 899.0,
+      "model": "gpt-6-luna"
+    },
+    "contextual_label_prior": {
+      "accuracy": 0.4,
+      "memory_context_chars": 70.0,
+      "model": "gpt-6-luna"
+    },
+    "compact_contract_tail": {
+      "accuracy": 0.3333333333333333,
+      "memory_context_chars": 290.0,
+      "model": "gpt-6-luna"
+    }
+  },
+  "LawBench": {
+    "structured_input_cache": {
+      "accuracy": 0.03333333333333333,
+      "memory_context_chars": 213.0,
+      "model": "gpt-6-luna"
+    },
+    "rare_feature_retrieval": {
+      "accuracy": 0.36666666666666664,
+      "memory_context_chars": 2649.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.03333333333333333,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.5666666666666667,
+      "memory_context_chars": 21573.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

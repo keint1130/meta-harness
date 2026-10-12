@@ -1,0 +1,29 @@
+{
+  "Symptom2Disease": {
+    "pairwise_contrast_memory": {
+      "accuracy": 0.6333333333333333,
+      "memory_context_chars": 980.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.8,
+      "memory_context_chars": 8088.0,
+      "model": "gpt-6-luna"
+    },
+    "boundary_pair_memory": {
+      "accuracy": 0.7666666666666667,
+      "memory_context_chars": 1965.0,
+      "model": "gpt-6-luna"
+    },
+    "bayesian_label_router": {
+      "accuracy": 0.7,
+      "memory_context_chars": 728.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

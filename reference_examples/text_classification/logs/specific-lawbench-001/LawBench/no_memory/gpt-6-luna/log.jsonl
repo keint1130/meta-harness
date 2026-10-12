@@ -1,0 +1,53 @@
+{"type": "meta", "t": 0.0, "dataset": "LawBench", "memory": "no_memory", "model": "openai/gpt-6-luna", "seed": 42, "reasoning_effort": "medium", "mode": "offline", "num_epochs": 1, "start_time": "2026-10-05T13:58:51.678813"}
+{"type": "train_batch", "t": 0.0, "step": 0, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "checkpoint", "t": 0.01, "step": 0, "memory_state": "{}"}
+{"type": "train_batch", "t": 0.01, "step": 1, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 2, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 3, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 4, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 5, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 6, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 7, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 8, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 9, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 10, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 11, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 12, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 13, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 14, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 15, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 16, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 17, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 18, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 19, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 20, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.02, "step": 21, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 22, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 23, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 24, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 25, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 26, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 27, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 28, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 29, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 30, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 31, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 32, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 33, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.03, "step": 34, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 35, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 36, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 37, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 38, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 39, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 40, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 41, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 42, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 43, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 44, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 45, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 46, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.04, "step": 47, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "checkpoint", "t": 0.04, "step": 47, "memory_state": "{}"}
+{"type": "val_epoch", "t": 17.98, "epoch": 0, "val_acc": 0.0333, "val_correct": 1, "val_total": 30}
+{"type": "done", "t": 18.12, "train_acc": 0.0, "train_correct": 0, "train_total": 48, "val_acc": 0.0333, "test_acc": null, "runtime_seconds": 18.11, "memory_context_chars": 191, "llm_calls": 60, "llm_input_tokens": 18715, "llm_output_tokens": 13320}

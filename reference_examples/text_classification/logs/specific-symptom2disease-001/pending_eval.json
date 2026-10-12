@@ -1,0 +1,29 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "pairwise_contrast_memory",
+      "file": "agents/pairwise_contrast_memory.py",
+      "hypothesis": "Query-matched, pair-specific log-odds cues will exceed the current 80% validation frontier while injecting less than 8,088 characters of memory context.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": ["pairwise_discrimination", "query_matched_cues", "compressed_memory"]
+    },
+    {
+      "name": "boundary_pair_memory",
+      "file": "agents/boundary_pair_memory.py",
+      "hypothesis": "Retrieving query-relevant examples that were most similar across different labels will exceed the current 80% validation frontier by making decision boundaries explicit, with fewer than 8,088 context characters.",
+      "axis": "exploration",
+      "base_system": "fewshot_all",
+      "components": ["hard_negative_pairs", "cross_label_boundaries", "query_time_retrieval"]
+    },
+    {
+      "name": "bayesian_label_router",
+      "file": "agents/bayesian_label_router.py",
+      "hypothesis": "A smoothed lexical Bayes ranking with query-specific evidence will exceed the current 80% validation frontier by focusing the model on its strongest label candidates.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": ["multinomial_bayes", "candidate_routing", "query_evidence"]
+    }
+  ]
+}

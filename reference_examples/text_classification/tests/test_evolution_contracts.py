@@ -206,5 +206,121 @@ class EvolutionSummaryTests(unittest.TestCase):
         self.assertEqual(row["outcome"], "90.0% (+10.0)")
 
 
+class DatasetBlindOptimizationTests(unittest.TestCase):
+    def test_blind_view_exposes_only_aggregate_state(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agents = root / "agents"
+            run_dir = root / "logs" / "blind-run"
+            agents.mkdir()
+            run_dir.mkdir(parents=True)
+            for filename in meta_harness.BASELINE_FILES:
+                (agents / filename).write_text("# baseline\n", encoding="utf-8")
+            for filename in ("__init__.py", "llm.py", "memory_system.py"):
+                (root / filename).write_text("# interface\n", encoding="utf-8")
+            (run_dir / "frontier_val.json").write_text(
+                json.dumps(
+                    {
+                        "SecretDataset": {"best_system": "base", "accuracy": 75},
+                        "_pareto": [
+                            {"system": "base", "val_accuracy": 75, "ctx_len": 10}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (run_dir / "evolution_summary.jsonl").write_text(
+                json.dumps(
+                    {
+                        "iteration": 1,
+                        "system": "prior",
+                        "avg_val": 70,
+                        "hypothesis": "SecretDataset-specific observation",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (agents / "prior.py").write_text("# prior\n", encoding="utf-8")
+            trace_dir = run_dir / "SecretDataset" / "base" / "model"
+            trace_dir.mkdir(parents=True)
+            (trace_dir / "log.jsonl").write_text(
+                "\n".join(
+                    [
+                        json.dumps(
+                            {
+                                "type": "meta",
+                                "dataset": "SecretDataset",
+                                "memory": "base",
+                            }
+                        ),
+                        json.dumps(
+                            {
+                                "type": "val_step",
+                                "input": "a medical-looking problem",
+                                "pred": "answer-a",
+                                "tgt": "answer-b",
+                                "ok": False,
+                                "prompt_len": 30,
+                                "context_len": 10,
+                                "prompt_text": "context plus a medical-looking problem",
+                            }
+                        ),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with (
+                patch.object(meta_harness, "EVOLVE_DIR", root),
+                patch.object(meta_harness, "AGENTS_DIR", agents),
+                patch.object(meta_harness, "LOGS_DIR", run_dir),
+                patch.object(
+                    meta_harness, "FRONTIER_VAL", run_dir / "frontier_val.json"
+                ),
+                patch.object(
+                    meta_harness,
+                    "EVOLUTION_SUMMARY",
+                    run_dir / "evolution_summary.jsonl",
+                ),
+                patch.object(
+                    meta_harness, "PROPOSER_VIEW", run_dir / "proposer_view"
+                ),
+            ):
+                view_dir, pending = meta_harness.prepare_dataset_blind_view(3)
+
+            state_text = (view_dir / "optimizer_state.json").read_text(
+                encoding="utf-8"
+            )
+            state = json.loads(state_text)
+            traces_text = (view_dir / "anonymous_traces.jsonl").read_text(
+                encoding="utf-8"
+            )
+            prior_copied = (view_dir / "agents" / "prior.py").exists()
+            pending_exists = pending.exists()
+
+        self.assertEqual(state["task_count"], 3)
+        self.assertEqual(state["pareto"][0]["avg_val"], 75)
+        self.assertNotIn("SecretDataset", state_text)
+        self.assertNotIn("hypothesis", state["history"][0])
+        self.assertIn("a medical-looking problem", traces_text)
+        self.assertNotIn("SecretDataset", traces_text)
+        self.assertNotIn('"dataset"', traces_text)
+        self.assertTrue(prior_copied)
+        self.assertFalse(pending_exists)
+
+    def test_blind_prompt_does_not_point_to_raw_run_state(self) -> None:
+        prompt = meta_harness.render_task_prompt(
+            2, 3, dataset_blind=True, view_dir=Path("view")
+        )
+
+        self.assertIn("anonymous tasks", prompt)
+        self.assertIn("optimizer_state.json", prompt)
+        self.assertIn("anonymous_traces.jsonl", prompt)
+        self.assertNotIn("frontier_val.json", prompt)
+        self.assertNotIn("config.yaml", prompt)
+
+
 if __name__ == "__main__":
     unittest.main()

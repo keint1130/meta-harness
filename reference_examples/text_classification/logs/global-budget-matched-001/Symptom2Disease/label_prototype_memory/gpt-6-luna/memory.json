@@ -1,0 +1,52 @@
+{
+  "profiles": {
+    "typhoid": {
+      "profile": "A labeled typhoid example describes several days of vomiting and diarrhea, difficulty staying hydrated, mild fever, and stomach pain. Another describes several days of very watery, foul-smelling diarrhea with a severe headache and nausea.",
+      "support": 2
+    },
+    "psoriasis": {
+      "profile": "Psoriasis can cause dry, flaky, or peeling red patches that may be itchy or painful, often on the knees and elbows. It may also occur with joint pain.",
+      "support": 2
+    },
+    "fungal infection": {
+      "profile": "Fungal infection may be described as itchy skin spots that are red, bumpy, or a different color than surrounding skin. The person may also mention small, ball-like bumps.",
+      "support": 1
+    },
+    "dengue": {
+      "profile": "Dengue: an example presentation includes substantial joint pain that makes walking difficult, along with appetite loss, weakness, and nausea. Another example includes widespread itchy rashes, loss of appetite, pronounced fatigue, and a general feeling that something is wrong.",
+      "support": 2
+    },
+    "impetigo": {
+      "profile": "Impetigo is associated here with painful sores near the nose, fever for several days, and discomfort.",
+      "support": 1
+    },
+    "common cold": {
+      "profile": "Common cold may involve frequent sneezing, mucus in the nose and throat, a sore throat, fatigue, and swollen neck glands.",
+      "support": 1
+    },
+    "cervical spondylosis": {
+      "profile": "Cervical spondylosis was the correct label in examples involving neck pain with lightheadedness or difficulty standing steadily. Another example included neck pain alongside limb weakness, disorientation, and feeling weak on the feet.",
+      "support": 2
+    },
+    "migraine": {
+      "profile": "Migraine is supported by long-standing, severe, usually one-sided headaches accompanied by nausea or vomiting and sensitivity to light and sound.",
+      "support": 1
+    },
+    "hypertension": {
+      "profile": "For hypertension, an example symptom cluster includes trouble concentrating or focusing, dizziness, headache, and chest pain.",
+      "support": 1
+    },
+    "bronchial asthma": {
+      "profile": "Bronchial asthma is associated in this example with frequent coughing, difficulty breathing, and coughing up abundant mucus; fatigue and fever are also reported.",
+      "support": 1
+    },
+    "varicose veins": {
+      "profile": "Varicose veins: an example described a worsening rash on the legs and difficulty running.",
+      "support": 1
+    },
+    "chicken pox": {
+      "profile": "Chicken pox: widespread red, itchy bumps with fever and headache; loss of appetite may also occur.",
+      "support": 1
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "profiles": {
+    "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.COC(=O)[C@@H]([NH3+])c1ccccc1C": {
+      "profile": "In this Protections example, an N-Boc amino-acid methyl ester becomes the protonated free amine, with di-tert-butyl dicarbonate as a coproduct. The methyl ester, aryl substituent, and stereochemistry are retained.",
+      "support": 1
+    },
+    "C#Cc1ccccc1.Clc1ncncc1I": {
+      "profile": "For this C–C bond formation example, the heteroaryl–alkynyl bond is cleaved: the phenylacetylene fragment becomes terminal, and iodine replaces the former alkynyl substituent on the chloro-diazine ring.",
+      "support": 1
+    },
+    "O=C(NCC(=O)N1CCN(C(=O)c2ccccc2C(F)(F)F)CC1)c1ccc(-c2ccccc2OCc2ccccc2)cc1": {
+      "profile": "In the labeled example, a phenolic OH is converted to an O-benzyl ether (O–CH₂–phenyl), with the rest of the scaffold retained.",
+      "support": 1
+    },
+    "COc1cc([N+](=O)[O-])ccc1Oc1ccc(Cl)c(Cl)c1": {
+      "profile": "For the methoxy-substituted aryl–dichlorophenoxy scaffold shown here, the output has a nitro group where the input has an amino group, despite the reduction label.",
+      "support": 1
+    },
+    "Cc1c(-c2ccc(=O)n(Cc3cccc(F)c3F)c2)c2cc(F)ccc2n1CC(=O)O": {
+      "profile": "Example (labeled Reductions): the N–CH₂CH₂OH substituent maps to N–CH₂C(=O)OH, while the rest of the scaffold is unchanged.",
+      "support": 1
+    },
+    "CCOC(=O)CN1C(=O)[C@@H](NC(=O)OC(C)(C)C)C[C@H]1C": {
+      "profile": "In this Deprotections example, the N-linked acetic acid side chain is converted to an ethyl ester (–NCH₂CO₂H → –NCH₂CO₂Et), while the Boc group and ring stereochemistry are retained.",
+      "support": 1
+    },
+    "Cc1ccc(Cl)cc1NN.Cl.O=C1CCNCC1": {
+      "profile": "For heterocycle formation, a chloro/methyl-substituted fused cyclic amine hydrochloride can correspond to a substituted arylhydrazine and 4-piperidone, with chloride retained.",
+      "support": 1
+    },
+    "OCC12CC3CC(CC(C3)C1)C2": {
+      "profile": "In this Oxidations example, the aldehyde attached to the polycyclic cage becomes a primary alcohol; the cage remains unchanged.",
+      "support": 1
+    },
+    "CC(=O)CCC(=O)c1cc(Br)ccc1OCc1ccc(F)cc1.COC(=O)c1cc(N)ccc1NC(C)=O": {
+      "profile": "For this heterocycle-formation example, the substituted pyrrole corresponds to a ring-opened 1,4-diketone bearing the brominated, benzyloxy-fluorophenyl group. The aryl–pyrrole N bond is replaced by an amino group on the methyl ester/acetanilide fragment, with the N-acetyl group retained.",
+      "support": 1
+    },
+    "Cc1c(-c2ccccc2)nc2cc(Cl)ccc2c1C(=O)N[C@@H](C)C1CCCCC1.O=C1CCC(=O)N1Br": {
+      "profile": "In this FGA example, the quinoline aryl–CH₂Br group becomes aryl–CH₃, and N-bromosuccinimide appears as a separate product. The chlorophenyl-substituted quinoline carboxamide and chiral cyclohexylethyl amide are retained.",
+      "support": 1
+    },
+    "C[C@H]1C[C@@H](c2ccncc2NC(=O)c2ccc(F)c(-c3c(F)cccc3F)n2)C[C@@H](NC(=O)OC(C)(C)C)[C@H]1N=[N+]=[N-]": {
+      "profile": "For this FGI example, the ring-bound primary amine is converted to an azide (N=[N+]=[N−]); the remaining scaffold and stereochemistry are retained.",
+      "support": 1
+    },
+    "CC1CCCN1.O=C(NC1C2CC3CC(C2)CC1C3)c1cnn(-c2ccccc2)c1Cl": {
+      "profile": "For heteroatom alkylation/arylation, an N-linked cyclic amine may be released as a separate neutral amine, with its heteroaryl attachment replaced by Cl. Preserve the remaining amide and heteroaryl substituents.",
+      "support": 1
+    },
+    "C/C=C\\P(=O)(OC)OC.O=C1CCC(=O)N1Br": {
+      "profile": "For an FGA example, a dimethyl P-bound alkenyl bromide gives a methyl-substituted alkenyl phosphonate with defined alkene stereochemistry; the output also includes N-bromosuccinimide as a separate component.",
+      "support": 1
+    },
+    "CN(Cc1cccc(C(=O)O)c1)C(=O)OC(C)(C)C.O=C1CNc2ccccc2N1": {
+      "profile": "In this example, cleavage of an aryl carboxamide gives the benzoic acid and the corresponding cyclic urea as separate products; the Boc-protected tertiary amine remains intact.",
+      "support": 1
+    },
+    "CI.COc1cc2c(cc1OC)-c1cc(=O)[nH]c(=O)n1CC2": {
+      "profile": "Heteroatom alkylation/arylation example: an N-methyl cyclic imide is shown as the [nH] heterocycle plus disconnected CI (methyl iodide).",
+      "support": 1
+    },
+    "COc1ccc2cc(CNCc3ccc(C(F)(F)F)cc3)c(-c3ccsc3)nc2c1": {
+      "profile": "In the deprotection-labeled example, an aryl OH is converted to OMe while the rest of the scaffold is unchanged.",
+      "support": 1
+    }
+  }
+}

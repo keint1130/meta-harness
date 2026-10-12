@@ -1,0 +1,13 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "high",
+  "session_id": "01a12fde-6a33-7ad0-b50c-d5dd8f749bf5",
+  "exit_code": 0,
+  "duration_seconds": 115.02,
+  "token_usage": {
+    "input_tokens": 417120,
+    "cached_input_tokens": 373248,
+    "output_tokens": 9398
+  },
+  "stderr": "Reading additional input from stdin...\n"
+}

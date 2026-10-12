@@ -1,0 +1,24 @@
+{
+  "USPTO": {
+    "best_system": "no_memory",
+    "accuracy": 53.333333333333336,
+    "ctx_len": 191.0
+  },
+  "_pareto": [
+    {
+      "system": "no_memory",
+      "val_accuracy": 53.3,
+      "ctx_len": 191
+    },
+    {
+      "system": "answer_vote_then_resolve",
+      "val_accuracy": 50.0,
+      "ctx_len": 125
+    },
+    {
+      "system": "contextual_label_prior",
+      "val_accuracy": 40.0,
+      "ctx_len": 70
+    }
+  ]
+}

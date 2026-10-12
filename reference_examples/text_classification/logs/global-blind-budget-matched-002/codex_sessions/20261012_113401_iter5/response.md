@@ -1,0 +1,3 @@
+Created three task agnostic candidates and [pending_eval.json](C:/Users/keinf/vscode/MoHarness/meta-harness/reference_examples/text_classification/logs/global-blind-budget-matched-002/proposer_view/text_classification/pending_eval.json) for iteration 5. All three passed `py_compile`, and the manifest is valid JSON. No benchmarks were run.
+
+CANDIDATES: schema_signature_retrieval, target_profile_memory, query_excerpt_memory

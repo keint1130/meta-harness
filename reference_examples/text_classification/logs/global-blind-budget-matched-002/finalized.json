@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-12T21:31:53.310742",
+  "systems": [
+    "error_contrast_memory",
+    "fewshot_all",
+    "instruction_anchored_memory",
+    "no_memory",
+    "problem_span_memory",
+    "query_diverse_retrieval",
+    "query_excerpt_memory",
+    "similarity_gated_correction_memory"
+  ],
+  "completed_at": "2026-10-12T21:43:13.872122"
+}

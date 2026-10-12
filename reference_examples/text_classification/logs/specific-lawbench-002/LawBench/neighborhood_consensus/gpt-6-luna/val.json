@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.36666666666666664,
+  "correct": 11,
+  "total": 30,
+  "dataset": "LawBench",
+  "memory": "agents/neighborhood_consensus.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T19:48:00.099474",
+  "runtime_seconds": 18.84,
+  "memory_context_chars": 3734,
+  "llm_calls": 60,
+  "llm_input_tokens": 93512,
+  "llm_output_tokens": 8942,
+  "llm_total_tokens": 102454
+}

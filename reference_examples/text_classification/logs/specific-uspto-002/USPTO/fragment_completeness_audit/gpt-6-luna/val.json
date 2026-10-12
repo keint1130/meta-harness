@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.43333333333333335,
+  "correct": 13,
+  "total": 30,
+  "dataset": "USPTO",
+  "memory": "agents/fragment_completeness_audit.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T19:11:44.804953",
+  "runtime_seconds": 62.81,
+  "memory_context_chars": 1307,
+  "llm_calls": 120,
+  "llm_input_tokens": 29830,
+  "llm_output_tokens": 73400,
+  "llm_total_tokens": 103230
+}

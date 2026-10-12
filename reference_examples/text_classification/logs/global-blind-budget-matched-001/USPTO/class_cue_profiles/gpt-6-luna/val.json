@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.0,
+  "correct": 0,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/class_cue_profiles.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T17:20:57.384426",
+  "runtime_seconds": 14.23,
+  "memory_context_chars": 2493,
+  "llm_calls": 20,
+  "llm_input_tokens": 14630,
+  "llm_output_tokens": 6266,
+  "llm_total_tokens": 20896
+}

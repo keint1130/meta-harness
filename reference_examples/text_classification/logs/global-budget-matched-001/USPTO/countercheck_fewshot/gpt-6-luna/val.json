@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.7,
+  "correct": 7,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/countercheck_fewshot.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T14:26:09.849644",
+  "runtime_seconds": 77.57,
+  "memory_context_chars": 4331,
+  "llm_calls": 40,
+  "llm_input_tokens": 39033,
+  "llm_output_tokens": 29426,
+  "llm_total_tokens": 68459
+}

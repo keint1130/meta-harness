@@ -1,0 +1,68 @@
+{
+  "cards": [
+    {
+      "card": "In this Protections example, the N-Boc methyl ester COC(=O)[C@@H](NC(=O)OC(C)(C)C)c1ccccc1C maps to di-tert-butyl dicarbonate plus the corresponding [NH3+] ester, COC(=O)[C@@H]([NH3+])c1ccccc1C. The methyl ester, stereochemistry, and o-methylphenyl group are retained.",
+      "target": "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.COC(=O)[C@@H]([NH3+])c1ccccc1C"
+    },
+    {
+      "card": "For the C–C bond-formation example, the input Clc1ncncc1C#Cc1ccccc1 is disconnected at the heteroaryl–alkyne C–C bond. The correct output is phenylacetylene (C#Cc1ccccc1) plus the iodinated chloro-diazine (Clc1ncncc1I).",
+      "target": "C#Cc1ccccc1.Clc1ncncc1I"
+    },
+    {
+      "card": "The input contains a phenolic –OH, while the correct output has –OCH₂Ph at that position; the rest of the scaffold is unchanged. Despite the “Deprotections” context label, preserve this specific O-benzylation transformation.",
+      "target": "O=C(NCC(=O)N1CCN(C(=O)c2ccccc2C(F)(F)F)CC1)c1ccc(-c2ccccc2OCc2ccccc2)cc1"
+    },
+    {
+      "card": "Despite the context label “Reductions,” the correct output converts the aryl –NH₂ in COc1cc(N)ccc1Oc1ccc(Cl)c(Cl)c1 to –[N⁺](=O)[O⁻]. The methoxy group, diaryl ether linkage, and both chlorines are retained.",
+      "target": "COc1cc([N+](=O)[O-])ccc1Oc1ccc(Cl)c(Cl)c1"
+    },
+    {
+      "card": "The input has an N–CH₂CH₂OH substituent; the correct output has N–CH₂CO₂H instead. The other shown scaffold features are retained. Despite the stated reaction context “Reductions,” this specific change is alcohol-to-carboxylic-acid oxidation.",
+      "target": "Cc1c(-c2ccc(=O)n(Cc3cccc(F)c3F)c2)c2cc(F)ccc2n1CC(=O)O"
+    },
+    {
+      "card": "Input has an N-CH₂-COOH substituent and a Boc-protected amine. The output converts the acid to N-CH₂-COOCH₂CH₃ while retaining the Boc group and ring stereochemistry; do not remove Boc despite the “Deprotections” context.",
+      "target": "CCOC(=O)CN1C(=O)[C@@H](NC(=O)OC(C)(C)C)C[C@H]1C"
+    },
+    {
+      "card": "For the methyl- and chloro-substituted fused [nH] heterocycle with a saturated N-containing ring and .Cl, the target is Cc1ccc(Cl)cc1NN.Cl.O=C1CCNCC1: the substituted arylhydrazine, chloride, and piperidone.",
+      "target": "Cc1ccc(Cl)cc1NN.Cl.O=C1CCNCC1"
+    },
+    {
+      "card": "Despite the context label “Oxidations,” the example converts the aldehyde (O=CH–cage) to a primary alcohol (HOCH₂–cage), preserving the cage connectivity. Output: OCC12CC3CC(CC(C3)C1)C2",
+      "target": "OCC12CC3CC(CC(C3)C1)C2"
+    },
+    {
+      "card": "The N-aryl, methyl-substituted pyrrole gives a ring-opened 1,4-diketone, CC(=O)CCC(=O)Ar, plus the benzoate with the pyrrole N-attachment restored as NH₂. Retain Ar’s Br and benzyloxy-F substituents, and retain the benzoate’s CO₂Me and NHAc groups. Although the context says heterocycle formation, the specified products show pyrrole cleavage.",
+      "target": "CC(=O)CCC(=O)c1cc(Br)ccc1OCc1ccc(F)cc1.COC(=O)c1cc(N)ccc1NC(C)=O"
+    },
+    {
+      "card": "The aryl–CH2Br substituent becomes aryl–CH3. The phenyl/chloro azaarene, amide, and stereodefined cyclohexylethyl group are retained; the output also includes N-bromosuccinimide.",
+      "target": "Cc1c(-c2ccccc2)nc2cc(Cl)ccc2c1C(=O)N[C@@H](C)C1CCCCC1.O=C1CCC(=O)N1Br"
+    },
+    {
+      "card": "FGI evidence: the substrate’s terminal ring-bound primary amine, [C@H]1N, becomes an azide, [C@H]1N=[N+]=[N-]. The rest of the scaffold and its specified stereochemistry remain unchanged.",
+      "target": "C[C@H]1C[C@@H](c2ccncc2NC(=O)c2ccc(F)c(-c3c(F)cccc3F)n2)C[C@@H](NC(=O)OC(C)(C)C)[C@H]1N=[N+]=[N-]"
+    },
+    {
+      "card": "Heteroatom arylation disconnection: the input’s pyrazole–N(pyrrolidine) bond is separated, giving CC1CCCN1 and the chlorinated pyrazole carboxamide. Preserve the pyrazole N-phenyl group and cage amide; the pyrazole carbon formerly bonded to pyrrolidine bears Cl in the product.",
+      "target": "CC1CCCN1.O=C(NC1C2CC3CC(C2)CC1C3)c1cnn(-c2ccccc2)c1Cl"
+    },
+    {
+      "card": "FGA example: the input is a dimethyl phosphate bearing an alkene and an allylic bromide (P–CH=CH–CH₂Br). The correct output is the rearranged alkene phosphate, C/C=C\\P(=O)(OC)OC, together with N-bromosuccinimide, O=C1CCC(=O)N1Br.",
+      "target": "C/C=C\\P(=O)(OC)OC.O=C1CCC(=O)N1Br"
+    },
+    {
+      "card": "The aryl–C(=O)–N(cyclic urea) bond is cleaved: the aryl carbonyl becomes –C(=O)OH, while the Boc-protected N-methyl benzyl substituent remains intact. The detached ring fragment is O=C1CNc2ccccc2N1; do not remove the Boc group.",
+      "target": "CN(Cc1cccc(C(=O)O)c1)C(=O)OC(C)(C)C.O=C1CNc2ccccc2N1"
+    },
+    {
+      "card": "Input contains an N-methyl cyclic imide; the correct output replaces n(C) with [nH] and includes CI as a separate component. Preserve the methoxy groups and fused-ring framework.",
+      "target": "CI.COc1cc2c(cc1OC)-c1cc(=O)[nH]c(=O)n1CC2"
+    },
+    {
+      "card": "The input has a phenolic OH, while the correct output has OCH₃ at that position; the rest of the structure is unchanged. This is methylation, despite the “Deprotections” context label.",
+      "target": "COc1ccc2cc(CNCc3ccc(C(F)(F)F)cc3)c(-c3ccsc3)nc2c1"
+    }
+  ]
+}

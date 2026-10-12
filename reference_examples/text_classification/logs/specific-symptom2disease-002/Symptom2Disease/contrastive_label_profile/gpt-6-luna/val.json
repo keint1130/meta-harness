@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.8,
+  "correct": 24,
+  "total": 30,
+  "dataset": "Symptom2Disease",
+  "memory": "agents/contrastive_label_profile.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T19:29:47.277888",
+  "runtime_seconds": 11.47,
+  "memory_context_chars": 2441,
+  "llm_calls": 60,
+  "llm_input_tokens": 21409,
+  "llm_output_tokens": 4906,
+  "llm_total_tokens": 26315
+}

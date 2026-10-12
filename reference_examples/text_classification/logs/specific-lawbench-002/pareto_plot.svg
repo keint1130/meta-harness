@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="760" viewBox="0 0 1420 760" role="img" aria-labelledby="plot-title plot-desc">
+<title id="plot-title">Harness accuracy–context trade-off · specific-lawbench-002</title>
+<desc id="plot-desc">Accuracy versus memory context characters for all methods. The red connected points form the Pareto frontier.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.tick{font-size:13px;fill:#526070}.axis-title{font-size:15px;font-weight:600}.method{font-size:13px}.small{font-size:12px;fill:#667085}</style>
+<text x="105" y="42" font-size="24" font-weight="600">Harness accuracy–context trade-off · specific-lawbench-002</text>
+<text x="105" y="68" class="small">Datasets: LawBench · Higher accuracy and lower context are better</text>
+<rect x="105" y="105" width="835" height="560" fill="none" stroke="#9aa4b2" stroke-width="1"/>
+<line x1="105" y1="665.00" x2="940" y2="665.00" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="669.00" text-anchor="end" class="tick">0</text>
+<line x1="105" y1="487.41" x2="940" y2="487.41" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="491.41" text-anchor="end" class="tick">20</text>
+<line x1="105" y1="309.82" x2="940" y2="309.82" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="313.82" text-anchor="end" class="tick">40</text>
+<line x1="105" y1="132.23" x2="940" y2="132.23" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="136.23" text-anchor="end" class="tick">60</text>
+<line x1="169.57" y1="105" x2="169.57" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="169.57" y="689" text-anchor="middle" class="tick">200</text>
+<line x1="308.80" y1="105" x2="308.80" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="308.80" y="689" text-anchor="middle" class="tick">500</text>
+<line x1="414.32" y1="105" x2="414.32" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="414.32" y="689" text-anchor="middle" class="tick">1,000</text>
+<line x1="519.91" y1="105" x2="519.91" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="519.91" y="689" text-anchor="middle" class="tick">2,000</text>
+<line x1="659.56" y1="105" x2="659.56" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="659.56" y="689" text-anchor="middle" class="tick">5,000</text>
+<line x1="765.21" y1="105" x2="765.21" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="765.21" y="689" text-anchor="middle" class="tick">10,000</text>
+<line x1="870.87" y1="105" x2="870.87" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="870.87" y="689" text-anchor="middle" class="tick">20,000</text>
+<text x="522.50" y="727" text-anchor="middle" class="axis-title">Memory context (characters, log scale)</text>
+<text x="28" y="385.00" text-anchor="middle" transform="rotate(-90 28 385.00)" class="axis-title">Accuracy (%)</text>
+<path d="M 162.59 635.40 L 326.05 369.02 L 522.78 280.22 L 626.91 221.03 L 719.15 191.43 L 882.41 161.83" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="744.31" cy="191.43" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>answer_bundle_retrieval: 53.3% accuracy, 8,719 context chars, iteration 6</title></circle>
+<text x="755.31" y="182.43" font-size="12" font-weight="600">P2</text>
+<circle cx="699.87" cy="369.02" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>answer_inventory_check: 33.3% accuracy, 6,514 context chars, iteration 6</title></circle>
+<text x="710.87" y="360.02" font-size="12" font-weight="600">P16</text>
+<circle cx="719.25" cy="250.62" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>bm25_retrieval: 46.7% accuracy, 7,397 context chars, iteration 1</title></circle>
+<text x="730.25" y="241.62" font-size="12" font-weight="600">P6</text>
+<circle cx="721.80" cy="250.62" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>content_debiased_retrieval: 46.7% accuracy, 7,522 context chars, iteration 2</title></circle>
+<text x="732.80" y="241.62" font-size="12" font-weight="600">P7</text>
+<circle cx="483.61" cy="369.02" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>contrastive_replay: 33.3% accuracy, 1,576 context chars, iteration 1</title></circle>
+<text x="494.61" y="360.02" font-size="12" font-weight="600">P15</text>
+<circle cx="719.15" cy="191.43" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>coverage_neighbor_memory: 53.3% accuracy, 7,392 context chars, iteration 3</title></circle>
+<circle cx="719.15" cy="191.43" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="730.15" y="182.43" font-size="12" font-weight="600">P1</text>
+<circle cx="626.91" cy="221.03" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>decisive_fact_cards: 50.0% accuracy, 4,036 context chars, iteration 5</title></circle>
+<circle cx="626.91" cy="221.03" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="637.91" y="212.03" font-size="12" font-weight="600">P4</text>
+<circle cx="669.58" cy="250.62" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>deduplicated_case_memory: 46.7% accuracy, 5,340 context chars, iteration 4</title></circle>
+<text x="680.58" y="241.62" font-size="12" font-weight="600">P5</text>
+<circle cx="711.04" cy="339.42" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>fact_focus_retrieval: 36.7% accuracy, 7,009 context chars, iteration 5</title></circle>
+<text x="722.04" y="330.42" font-size="12" font-weight="600">P13</text>
+<polygon points="882.41,154.83 889.41,161.83 882.41,168.83 875.41,161.83" fill="#64748b" stroke="#ffffff" stroke-width="1.5"><title>fewshot_all: 56.7% accuracy, 21,573 context chars</title></polygon>
+<circle cx="882.41" cy="161.83" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="893.41" y="152.83" font-size="12" font-weight="600">B1</text>
+<circle cx="788.31" cy="191.43" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>label_balanced_demos: 53.3% accuracy, 11,636 context chars, iteration 4</title></circle>
+<text x="799.31" y="182.43" font-size="12" font-weight="600">P3</text>
+<circle cx="636.60" cy="398.62" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>label_prototypes: 30.0% accuracy, 4,301 context chars, iteration 1</title></circle>
+<text x="647.60" y="389.62" font-size="12" font-weight="600">P17</text>
+<circle cx="522.78" cy="280.22" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>matched_excerpt_memory: 43.3% accuracy, 2,038 context chars, iteration 2</title></circle>
+<circle cx="522.78" cy="280.22" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="533.78" y="271.22" font-size="12" font-weight="600">P9</text>
+<circle cx="615.06" cy="339.42" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>neighborhood_consensus: 36.7% accuracy, 3,734 context chars, iteration 4</title></circle>
+<text x="626.06" y="330.42" font-size="12" font-weight="600">P12</text>
+<polygon points="162.59,628.40 169.59,635.40 162.59,642.40 155.59,635.40" fill="#64748b" stroke="#ffffff" stroke-width="1.5"><title>no_memory: 3.3% accuracy, 191 context chars</title></polygon>
+<circle cx="162.59" cy="635.40" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="173.59" y="626.40" font-size="12" font-weight="600">B2</text>
+<circle cx="326.05" cy="369.02" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>reviewed_feedback_memory: 33.3% accuracy, 560 context chars, iteration 3</title></circle>
+<circle cx="326.05" cy="369.02" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="337.05" y="360.02" font-size="12" font-weight="600">P14</text>
+<circle cx="746.07" cy="250.62" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>sectioned_case_memory: 46.7% accuracy, 8,820 context chars, iteration 6</title></circle>
+<text x="757.07" y="241.62" font-size="12" font-weight="600">P8</text>
+<circle cx="469.76" cy="487.41" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>sparse_label_evidence: 20.0% accuracy, 1,439 context chars, iteration 3</title></circle>
+<text x="480.76" y="478.41" font-size="12" font-weight="600">P18</text>
+<circle cx="633.34" cy="309.82" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>two_pass_label_check: 40.0% accuracy, 4,210 context chars, iteration 5</title></circle>
+<text x="644.34" y="300.82" font-size="12" font-weight="600">P10</text>
+<circle cx="589.47" cy="339.42" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>verified_boundary_pairs: 36.7% accuracy, 3,157 context chars, iteration 2</title></circle>
+<text x="600.47" y="330.42" font-size="12" font-weight="600">P11</text>
+<text x="982" y="105" font-size="16" font-weight="600">Methods</text>
+<text x="982" y="129" class="small">Red ring = Pareto-optimal</text>
+<text x="982" y="148" class="small"><tspan fill="#2563eb">● Iteration 1</tspan>  <tspan fill="#16a34a">● Iteration 2</tspan>  <tspan fill="#9333ea">● Iteration 3</tspan>  <tspan fill="#ea580c">● Iteration 4</tspan>  <tspan fill="#0891b2">● Iteration 5</tspan>  <tspan fill="#db2777">● Iteration 6</tspan></text>
+<text x="982" y="177" class="method" fill="#64748b" font-weight="600">◆ B1  fewshot_all</text>
+<text x="1395" y="177" text-anchor="end" class="small">56.7% · 21,573 ch</text>
+<text x="982" y="202" class="method" fill="#64748b" font-weight="600">◆ B2  no_memory</text>
+<text x="1395" y="202" text-anchor="end" class="small">3.3% · 191 ch</text>
+<text x="982" y="227" class="method" fill="#9333ea" font-weight="600">● P1  coverage_neighbor_memory  [iter 3]</text>
+<text x="1395" y="227" text-anchor="end" class="small">53.3% · 7,392 ch</text>
+<text x="982" y="252" class="method" fill="#db2777" font-weight="400">● P2  answer_bundle_retrieval  [iter 6]</text>
+<text x="1395" y="252" text-anchor="end" class="small">53.3% · 8,719 ch</text>
+<text x="982" y="277" class="method" fill="#ea580c" font-weight="400">● P3  label_balanced_demos  [iter 4]</text>
+<text x="1395" y="277" text-anchor="end" class="small">53.3% · 11,636 ch</text>
+<text x="982" y="302" class="method" fill="#0891b2" font-weight="600">● P4  decisive_fact_cards  [iter 5]</text>
+<text x="1395" y="302" text-anchor="end" class="small">50.0% · 4,036 ch</text>
+<text x="982" y="327" class="method" fill="#ea580c" font-weight="400">● P5  deduplicated_case_memory  [iter 4]</text>
+<text x="1395" y="327" text-anchor="end" class="small">46.7% · 5,340 ch</text>
+<text x="982" y="352" class="method" fill="#2563eb" font-weight="400">● P6  bm25_retrieval  [iter 1]</text>
+<text x="1395" y="352" text-anchor="end" class="small">46.7% · 7,397 ch</text>
+<text x="982" y="377" class="method" fill="#16a34a" font-weight="400">● P7  content_debiased_retrieval  [iter 2]</text>
+<text x="1395" y="377" text-anchor="end" class="small">46.7% · 7,522 ch</text>
+<text x="982" y="402" class="method" fill="#db2777" font-weight="400">● P8  sectioned_case_memory  [iter 6]</text>
+<text x="1395" y="402" text-anchor="end" class="small">46.7% · 8,820 ch</text>
+<text x="982" y="427" class="method" fill="#16a34a" font-weight="600">● P9  matched_excerpt_memory  [iter 2]</text>
+<text x="1395" y="427" text-anchor="end" class="small">43.3% · 2,038 ch</text>
+<text x="982" y="452" class="method" fill="#0891b2" font-weight="400">● P10  two_pass_label_check  [iter 5]</text>
+<text x="1395" y="452" text-anchor="end" class="small">40.0% · 4,210 ch</text>
+<text x="982" y="477" class="method" fill="#16a34a" font-weight="400">● P11  verified_boundary_pairs  [iter 2]</text>
+<text x="1395" y="477" text-anchor="end" class="small">36.7% · 3,157 ch</text>
+<text x="982" y="502" class="method" fill="#ea580c" font-weight="400">● P12  neighborhood_consensus  [iter 4]</text>
+<text x="1395" y="502" text-anchor="end" class="small">36.7% · 3,734 ch</text>
+<text x="982" y="527" class="method" fill="#0891b2" font-weight="400">● P13  fact_focus_retrieval  [iter 5]</text>
+<text x="1395" y="527" text-anchor="end" class="small">36.7% · 7,009 ch</text>
+<text x="982" y="552" class="method" fill="#9333ea" font-weight="600">● P14  reviewed_feedback_memory  [iter 3]</text>
+<text x="1395" y="552" text-anchor="end" class="small">33.3% · 560 ch</text>
+<text x="982" y="577" class="method" fill="#2563eb" font-weight="400">● P15  contrastive_replay  [iter 1]</text>
+<text x="1395" y="577" text-anchor="end" class="small">33.3% · 1,576 ch</text>
+<text x="982" y="602" class="method" fill="#db2777" font-weight="400">● P16  answer_inventory_check  [iter 6]</text>
+<text x="1395" y="602" text-anchor="end" class="small">33.3% · 6,514 ch</text>
+<text x="982" y="627" class="method" fill="#2563eb" font-weight="400">● P17  label_prototypes  [iter 1]</text>
+<text x="1395" y="627" text-anchor="end" class="small">30.0% · 4,301 ch</text>
+<text x="982" y="652" class="method" fill="#9333ea" font-weight="400">● P18  sparse_label_evidence  [iter 3]</text>
+<text x="1395" y="652" text-anchor="end" class="small">20.0% · 1,439 ch</text>
+</svg>

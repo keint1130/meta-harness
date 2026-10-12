@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.6,
+  "correct": 6,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/contrastive_boundary_memory.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T18:17:31.405977",
+  "runtime_seconds": 33.48,
+  "memory_context_chars": 2163,
+  "llm_calls": 20,
+  "llm_input_tokens": 11634,
+  "llm_output_tokens": 14393,
+  "llm_total_tokens": 26027
+}

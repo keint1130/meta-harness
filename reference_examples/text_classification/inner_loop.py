@@ -188,6 +188,17 @@ def _run_offline_loop(
                     val_correct=val_result["correct"],
                     val_total=val_result["total"],
                 )
+                for prediction in val_result["predictions"]:
+                    logger.log(
+                        "val_step",
+                        input=prediction["input"],
+                        pred=prediction["prediction"],
+                        tgt=prediction["target"],
+                        ok=prediction["was_correct"],
+                        prompt_len=prediction["prompt_len"],
+                        context_len=prediction["context_len"],
+                        prompt_text=prediction["prompt_text"],
+                    )
             print(
                 f"  epoch {epoch}: val={val_acc:.1%} ({val_result['correct']}/{val_result['total']})",
                 flush=True,
@@ -446,6 +457,7 @@ def evaluate_memory(
         raw = check_answer(pred, ex["target"], **_get_eval_kwargs(ex))
         ok, metrics = _unpack_eval_result(raw)
         result = {
+            "input": ex["input"],
             "prediction": pred,
             "target": ex["target"],
             "was_correct": ok,

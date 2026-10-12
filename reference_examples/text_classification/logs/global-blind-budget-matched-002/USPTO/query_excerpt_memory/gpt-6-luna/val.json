@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.7,
+  "correct": 7,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/query_excerpt_memory.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T20:36:51.170991",
+  "runtime_seconds": 34.1,
+  "memory_context_chars": 1520,
+  "llm_calls": 20,
+  "llm_input_tokens": 8946,
+  "llm_output_tokens": 11961,
+  "llm_total_tokens": 20907
+}

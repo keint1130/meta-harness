@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.46,
+  "correct": 46,
+  "total": 100,
+  "dataset": "LawBench",
+  "memory": "agents/problem_span_memory.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T21:37:34.636250",
+  "runtime_seconds": 36.3,
+  "memory_context_chars": 3268,
+  "llm_calls": 100,
+  "llm_input_tokens": 263153,
+  "llm_output_tokens": 33360,
+  "llm_total_tokens": 296513
+}

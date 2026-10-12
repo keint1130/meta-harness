@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.8333333333333334,
+  "correct": 25,
+  "total": 30,
+  "dataset": "Symptom2Disease",
+  "memory": "agents/phrase_coverage_memory.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T19:29:25.368831",
+  "runtime_seconds": 9.55,
+  "memory_context_chars": 1707,
+  "llm_calls": 60,
+  "llm_input_tokens": 16650,
+  "llm_output_tokens": 3971,
+  "llm_total_tokens": 20621
+}

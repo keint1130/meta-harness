@@ -1,0 +1,43 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "correction_ledger",
+      "file": "agents/correction_ledger.py",
+      "hypothesis": "On the configured validation split, using only the six most recent failed cases as correction records will exceed no_memory's 53.3% accuracy while injecting less context than fewshot_all.",
+      "axis": "exploration",
+      "base_system": "no_memory",
+      "components": [
+        "error_only_learning",
+        "recency_priority",
+        "corrected_case_prompt",
+        "bounded_failure_memory"
+      ]
+    },
+    {
+      "name": "scaffold_memory",
+      "file": "agents/scaffold_memory.py",
+      "hypothesis": "Factoring exact shared input prefixes and suffixes out of demonstrations will exceed fewshot_all's 46.7% accuracy while cutting its demonstration context by at least 20%.",
+      "axis": "exploitation",
+      "base_system": "no_memory",
+      "components": [
+        "lossless_scaffold_factoring",
+        "shared_prefix_suffix",
+        "compact_mapping_memory"
+      ]
+    },
+    {
+      "name": "lesson_window_memory",
+      "file": "agents/lesson_window_memory.py",
+      "hypothesis": "LLM-authored lessons distilled from each eight feedback records, combined with four recent examples, will exceed no_memory's 53.3% accuracy while using less context than fewshot_all.",
+      "axis": "exploration",
+      "base_system": "no_memory",
+      "components": [
+        "llm_lesson_distillation",
+        "feedback_windows",
+        "recent_case_buffer",
+        "error_aware_learning"
+      ]
+    }
+  ]
+}

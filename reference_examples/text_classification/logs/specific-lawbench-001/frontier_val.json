@@ -1,0 +1,29 @@
+{
+  "LawBench": {
+    "best_system": "salient_sentence_memory",
+    "accuracy": 60.0,
+    "ctx_len": 17157.0
+  },
+  "_pareto": [
+    {
+      "system": "salient_sentence_memory",
+      "val_accuracy": 60.0,
+      "ctx_len": 17157
+    },
+    {
+      "system": "char_ngram_case_retrieval",
+      "val_accuracy": 46.7,
+      "ctx_len": 2936
+    },
+    {
+      "system": "graph_walk_memory",
+      "val_accuracy": 43.3,
+      "ctx_len": 2753
+    },
+    {
+      "system": "no_memory",
+      "val_accuracy": 3.3,
+      "ctx_len": 191
+    }
+  ]
+}

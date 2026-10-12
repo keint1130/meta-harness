@@ -44,6 +44,17 @@ Print the benchmark summary:
 uv run python benchmark.py --results
 ```
 
+Plot accuracy against memory-context size and highlight the Pareto frontier:
+
+```bash
+uv run python plot_pareto.py --run-name specific-uspto-002
+```
+
+The SVG is written to `logs/<run-name>/pareto_plot.svg`. For a multi-dataset
+run, the plot uses the unweighted macro-average across datasets. Use repeated
+`--dataset` arguments to select a subset, and `--x-scale linear` if a linear
+x-axis is preferable to the default log scale.
+
 Evolution uses validation results only. Finalize a named run explicitly after
 selection is complete:
 
@@ -70,6 +81,15 @@ selects the inner-loop solver separately. Each proposer invocation records its
 requested `model` and `reasoning_effort`, token usage, duration and exit code in
 `logs/<run-name>/codex_sessions/<timestamp>_iter<N>/meta.json`.
 These fields record the requested settings, not a resolved model snapshot.
+
+Set `proposer.dataset_blind: true` to optimize one shared harness using only the
+unweighted macro-average validation score. In this mode the proposer runs in an
+isolated view containing reusable agent source plus `optimizer_state.json`; it
+does not receive dataset names, task boundaries, or per-dataset scores. It does
+receive shuffled problem-level traces in `anonymous_traces.jsonl`, so it can
+study inputs, prompts, predictions, labels, and errors and may infer task
+structure from their contents. Set it to `false` to retain the original
+dataset-aware workflow. Use a new run name when changing this setting.
 
 Each entry in `models` can specify `reasoning_effort` (pilot: `medium`).
 LiteLLM is pinned to 1.101.0 for GPT-6 request support. For GPT-6 with reasoning

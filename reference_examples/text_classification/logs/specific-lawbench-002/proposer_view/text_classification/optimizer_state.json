@@ -1,0 +1,309 @@
+{
+  "mode": "dataset_blind",
+  "task_count": 1,
+  "objective": "unweighted macro-average validation accuracy",
+  "systems": [
+    {
+      "system": "bm25_retrieval",
+      "avg_val": 46.7,
+      "avg_context_chars": 7397
+    },
+    {
+      "system": "content_debiased_retrieval",
+      "avg_val": 46.7,
+      "avg_context_chars": 7522
+    },
+    {
+      "system": "contrastive_replay",
+      "avg_val": 33.3,
+      "avg_context_chars": 1576
+    },
+    {
+      "system": "coverage_neighbor_memory",
+      "avg_val": 53.3,
+      "avg_context_chars": 7392
+    },
+    {
+      "system": "decisive_fact_cards",
+      "avg_val": 50.0,
+      "avg_context_chars": 4036
+    },
+    {
+      "system": "deduplicated_case_memory",
+      "avg_val": 46.7,
+      "avg_context_chars": 5340
+    },
+    {
+      "system": "fact_focus_retrieval",
+      "avg_val": 36.7,
+      "avg_context_chars": 7009
+    },
+    {
+      "system": "fewshot_all",
+      "avg_val": 56.7,
+      "avg_context_chars": 21573
+    },
+    {
+      "system": "label_balanced_demos",
+      "avg_val": 53.3,
+      "avg_context_chars": 11636
+    },
+    {
+      "system": "label_prototypes",
+      "avg_val": 30.0,
+      "avg_context_chars": 4301
+    },
+    {
+      "system": "matched_excerpt_memory",
+      "avg_val": 43.3,
+      "avg_context_chars": 2038
+    },
+    {
+      "system": "neighborhood_consensus",
+      "avg_val": 36.7,
+      "avg_context_chars": 3734
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 3.3,
+      "avg_context_chars": 191
+    },
+    {
+      "system": "reviewed_feedback_memory",
+      "avg_val": 33.3,
+      "avg_context_chars": 560
+    },
+    {
+      "system": "sparse_label_evidence",
+      "avg_val": 20.0,
+      "avg_context_chars": 1439
+    },
+    {
+      "system": "two_pass_label_check",
+      "avg_val": 40.0,
+      "avg_context_chars": 4210
+    },
+    {
+      "system": "verified_boundary_pairs",
+      "avg_val": 36.7,
+      "avg_context_chars": 3157
+    }
+  ],
+  "pareto": [
+    {
+      "system": "fewshot_all",
+      "avg_val": 56.7,
+      "avg_context_chars": 21573
+    },
+    {
+      "system": "coverage_neighbor_memory",
+      "avg_val": 53.3,
+      "avg_context_chars": 7392
+    },
+    {
+      "system": "decisive_fact_cards",
+      "avg_val": 50.0,
+      "avg_context_chars": 4036
+    },
+    {
+      "system": "matched_excerpt_memory",
+      "avg_val": 43.3,
+      "avg_context_chars": 2038
+    },
+    {
+      "system": "reviewed_feedback_memory",
+      "avg_val": 33.3,
+      "avg_context_chars": 560
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 3.3,
+      "avg_context_chars": 191
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "system": "bm25_retrieval",
+      "avg_val": 46.7,
+      "axis": "exploitation",
+      "delta": -10.0,
+      "outcome": "46.7% (-10.0)",
+      "components": [
+        "character_ngram_bm25",
+        "fixed_budget_retrieval"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "contrastive_replay",
+      "avg_val": 33.3,
+      "axis": "exploitation",
+      "delta": -23.4,
+      "outcome": "33.3% (-23.4)",
+      "components": [
+        "similarity_gated_error_replay",
+        "corrective_contrast_pairs"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "label_prototypes",
+      "avg_val": 30.0,
+      "axis": "exploitation",
+      "delta": -26.7,
+      "outcome": "30.0% (-26.7)",
+      "components": [
+        "label_centroid_profiles",
+        "query_supported_answer_inventory"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "content_debiased_retrieval",
+      "avg_val": 46.7,
+      "axis": "exploitation",
+      "delta": -10.0,
+      "outcome": "46.7% (-10.0)",
+      "components": [
+        "document-frequency boilerplate discounting",
+        "query-conditioned full-example retrieval"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "verified_boundary_pairs",
+      "avg_val": 36.7,
+      "axis": "exploration",
+      "delta": -20.0,
+      "outcome": "36.7% (-20.0)",
+      "components": [
+        "ground-truth-only contrast pairs",
+        "query-conditioned boundary selection"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "matched_excerpt_memory",
+      "avg_val": 43.3,
+      "axis": "exploration",
+      "delta": -13.4,
+      "outcome": "43.3% (-13.4)",
+      "components": [
+        "sentence-fragment memory representation",
+        "source-level rarity-weighted excerpt retrieval"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "coverage_neighbor_memory",
+      "avg_val": 53.3,
+      "axis": "exploitation",
+      "delta": -3.4,
+      "outcome": "53.3% (-3.4)",
+      "components": [
+        "relevance_diversity_selection",
+        "budgeted_output_coverage"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "sparse_label_evidence",
+      "avg_val": 20.0,
+      "axis": "exploration",
+      "delta": -36.7,
+      "outcome": "20.0% (-36.7)",
+      "components": [
+        "smoothed_feature_label_likelihoods",
+        "contrastive_log_odds_cards"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "reviewed_feedback_memory",
+      "avg_val": 33.3,
+      "axis": "exploitation",
+      "delta": -23.4,
+      "outcome": "33.3% (-23.4)",
+      "components": [
+        "draft_then_verification",
+        "query_matched_error_signals"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "label_balanced_demos",
+      "avg_val": 53.3,
+      "axis": "exploitation",
+      "delta": -3.4,
+      "outcome": "53.3% (-3.4)",
+      "components": [
+        "query_ranked_demonstrations",
+        "target_diversity_bonus",
+        "fixed_context_budget"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "deduplicated_case_memory",
+      "avg_val": 46.7,
+      "axis": "exploration",
+      "delta": -10.0,
+      "outcome": "46.7% (-10.0)",
+      "components": [
+        "normalized_case_deduplication",
+        "rarity_weighted_case_retrieval",
+        "representative_case_cards"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "neighborhood_consensus",
+      "avg_val": 36.7,
+      "axis": "exploration",
+      "delta": -20.0,
+      "outcome": "36.7% (-20.0)",
+      "components": [
+        "similarity_weighted_answer_consensus",
+        "closest_case_demonstrations",
+        "consensus_as_secondary_evidence"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "fact_focus_retrieval",
+      "avg_val": 36.7,
+      "axis": "exploitation",
+      "delta": -20.0,
+      "outcome": "36.7% (-20.0)",
+      "components": [
+        "case-fact-region extraction",
+        "query-term and target-diverse greedy retrieval"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "decisive_fact_cards",
+      "avg_val": 50.0,
+      "axis": "exploration",
+      "delta": -6.7,
+      "outcome": "50.0% (-6.7)",
+      "components": [
+        "operative-sentence salience scoring",
+        "compact source-level evidence cards"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "two_pass_label_check",
+      "avg_val": 40.0,
+      "axis": "exploitation",
+      "delta": -16.7,
+      "outcome": "40.0% (-16.7)",
+      "components": [
+        "query-ranked demonstrations",
+        "two-pass answer-set verification"
+      ]
+    }
+  ]
+}

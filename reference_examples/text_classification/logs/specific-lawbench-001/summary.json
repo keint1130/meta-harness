@@ -1,0 +1,29 @@
+{
+  "LawBench": {
+    "salient_sentence_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 17157.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.03333333333333333,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "graph_walk_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 2753.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.5666666666666667,
+      "memory_context_chars": 21573.0,
+      "model": "gpt-6-luna"
+    },
+    "char_ngram_case_retrieval": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 2936.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

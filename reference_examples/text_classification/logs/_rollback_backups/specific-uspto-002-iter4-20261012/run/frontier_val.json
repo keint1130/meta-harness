@@ -1,0 +1,24 @@
+{
+  "LawBench": {
+    "best_system": "fewshot_all",
+    "accuracy": 56.666666666666664,
+    "ctx_len": 21573.0
+  },
+  "_pareto": [
+    {
+      "system": "draft_audit_pass",
+      "val_accuracy": 53.3,
+      "ctx_len": 1086
+    },
+    {
+      "system": "exact_input_answer_cache",
+      "val_accuracy": 50.0,
+      "ctx_len": 213
+    },
+    {
+      "system": "contextual_label_prior",
+      "val_accuracy": 40.0,
+      "ctx_len": 70
+    }
+  ]
+}

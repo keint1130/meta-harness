@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-12T21:01:31.688152",
+  "systems": [
+    "correction_episode_memory",
+    "error_correction_memory",
+    "fewshot_all",
+    "no_memory",
+    "pairwise_error_rules",
+    "symptom_bundle_profiles"
+  ],
+  "completed_at": "2026-10-12T21:04:08.252219"
+}

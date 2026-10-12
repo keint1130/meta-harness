@@ -1,0 +1,30 @@
+{
+  "mode": "dataset_blind",
+  "task_count": 3,
+  "objective": "unweighted macro-average validation accuracy",
+  "systems": [
+    {
+      "system": "fewshot_all",
+      "avg_val": 63.3,
+      "avg_context_chars": 4331
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 33.3,
+      "avg_context_chars": 191
+    }
+  ],
+  "pareto": [
+    {
+      "system": "fewshot_all",
+      "avg_val": 63.3,
+      "avg_context_chars": 4330
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 33.3,
+      "avg_context_chars": 191
+    }
+  ],
+  "history": []
+}

@@ -1,0 +1,41 @@
+{
+  "iteration": 6,
+  "candidates": [
+    {
+      "name": "closed_set_retrieval",
+      "file": "agents/closed_set_retrieval.py",
+      "hypothesis": "If some errors reflect qualified or wrapped answers despite an allowed label appearing in the response, retrieving nearby examples and canonicalizing against labels listed in the current prompt will improve on ambiguity_budgeted_retrieval with only a small context increase.",
+      "axis": "exploitation",
+      "base_system": "ambiguity_budgeted_retrieval",
+      "components": [
+        "label-set extraction from the current prompt",
+        "response canonicalization",
+        "label-capped lexical retrieval"
+      ]
+    },
+    {
+      "name": "contrastive_label_cards",
+      "file": "agents/contrastive_label_cards.py",
+      "hypothesis": "If reusable label-specific cues are more informative than a single representative example, smoothed query-matched cue-enrichment cards will improve on class_signature_memory while reducing its aggregate context length.",
+      "axis": "representation",
+      "base_system": "class_signature_memory",
+      "components": [
+        "smoothed within-label cue enrichment",
+        "query-conditioned label cards",
+        "one verified exemplar per matching label"
+      ]
+    },
+    {
+      "name": "correction_episode_memory",
+      "file": "agents/correction_episode_memory.py",
+      "hypothesis": "If learned mistakes help mainly as local contrasts, retrieving a few distinct similar error-correction episodes together with positive verified anchors will improve on pairwise_error_rules without broadening its rule context.",
+      "axis": "feedback",
+      "base_system": "pairwise_error_rules",
+      "components": [
+        "similarity-retrieved correction episodes",
+        "deduplication by normalized confusion pair",
+        "balanced positive verified anchors"
+      ]
+    }
+  ]
+}

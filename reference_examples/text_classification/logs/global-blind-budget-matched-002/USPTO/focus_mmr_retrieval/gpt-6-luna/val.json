@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.7,
+  "correct": 7,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/focus_mmr_retrieval.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T18:16:51.638662",
+  "runtime_seconds": 37.44,
+  "memory_context_chars": 1994,
+  "llm_calls": 20,
+  "llm_input_tokens": 11111,
+  "llm_output_tokens": 12111,
+  "llm_total_tokens": 23222
+}

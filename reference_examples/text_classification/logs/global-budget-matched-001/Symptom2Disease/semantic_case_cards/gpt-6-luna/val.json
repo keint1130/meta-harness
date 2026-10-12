@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.8,
+  "correct": 8,
+  "total": 10,
+  "dataset": "Symptom2Disease",
+  "memory": "agents/semantic_case_cards.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T14:26:57.874212",
+  "runtime_seconds": 38.47,
+  "memory_context_chars": 3063,
+  "llm_calls": 36,
+  "llm_input_tokens": 10205,
+  "llm_output_tokens": 3561,
+  "llm_total_tokens": 13766
+}

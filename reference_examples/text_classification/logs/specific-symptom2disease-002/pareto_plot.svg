@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="760" viewBox="0 0 1420 760" role="img" aria-labelledby="plot-title plot-desc">
+<title id="plot-title">Harness accuracy–context trade-off · specific-symptom2disease-002</title>
+<desc id="plot-desc">Accuracy versus memory context characters for all methods. The red connected points form the Pareto frontier.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.tick{font-size:13px;fill:#526070}.axis-title{font-size:15px;font-weight:600}.method{font-size:13px}.small{font-size:12px;fill:#667085}</style>
+<text x="105" y="42" font-size="24" font-weight="600">Harness accuracy–context trade-off · specific-symptom2disease-002</text>
+<text x="105" y="68" class="small">Datasets: Symptom2Disease · Higher accuracy and lower context are better</text>
+<rect x="105" y="105" width="835" height="560" fill="none" stroke="#9aa4b2" stroke-width="1"/>
+<line x1="105" y1="610.81" x2="940" y2="610.81" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="614.81" text-anchor="end" class="tick">50</text>
+<line x1="105" y1="487.64" x2="940" y2="487.64" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="491.64" text-anchor="end" class="tick">60</text>
+<line x1="105" y1="364.47" x2="940" y2="364.47" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="368.47" text-anchor="end" class="tick">70</text>
+<line x1="105" y1="241.30" x2="940" y2="241.30" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="245.30" text-anchor="end" class="tick">80</text>
+<line x1="105" y1="118.14" x2="940" y2="118.14" stroke="#e4e7ec" stroke-width="1"/>
+<text x="93" y="122.14" text-anchor="end" class="tick">90</text>
+<line x1="171.40" y1="105" x2="171.40" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="171.40" y="689" text-anchor="middle" class="tick">200</text>
+<line x1="347.15" y1="105" x2="347.15" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="347.15" y="689" text-anchor="middle" class="tick">500</text>
+<line x1="480.33" y1="105" x2="480.33" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="480.33" y="689" text-anchor="middle" class="tick">1,000</text>
+<line x1="613.62" y1="105" x2="613.62" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="613.62" y="689" text-anchor="middle" class="tick">2,000</text>
+<line x1="789.88" y1="105" x2="789.88" y2="665" stroke="#eef0f3" stroke-width="1"/>
+<text x="789.88" y="689" text-anchor="middle" class="tick">5,000</text>
+<text x="522.50" y="727" text-anchor="middle" class="axis-title">Memory context (characters, log scale)</text>
+<text x="28" y="385.00" text-anchor="middle" transform="rotate(-90 28 385.00)" class="axis-title">Accuracy (%)</text>
+<path d="M 162.59 610.81 L 339.71 446.58 L 511.17 282.36 L 517.93 200.25 L 554.93 159.19" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="523.08" cy="200.25" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>ambiguity_budgeted_retrieval: 83.3% accuracy, 1,249 context chars, iteration 5</title></circle>
+<text x="534.08" y="191.25" font-size="12" font-weight="600">P3</text>
+<circle cx="813.84" cy="282.36" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>class_signature_memory: 76.7% accuracy, 5,663 context chars, iteration 1</title></circle>
+<text x="824.84" y="273.36" font-size="12" font-weight="600">P16</text>
+<circle cx="547.08" cy="282.36" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>closed_set_retrieval: 76.7% accuracy, 1,415 context chars, iteration 6</title></circle>
+<text x="558.08" y="273.36" font-size="12" font-weight="600">P14</text>
+<circle cx="534.87" cy="241.30" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>conjunction_confusion_rules: 80.0% accuracy, 1,328 context chars, iteration 5</title></circle>
+<text x="545.87" y="232.30" font-size="12" font-weight="600">P9</text>
+<circle cx="643.49" cy="282.36" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>contrastive_anchor_memory: 76.7% accuracy, 2,336 context chars, iteration 3</title></circle>
+<text x="654.49" y="273.36" font-size="12" font-weight="600">P15</text>
+<circle cx="641.67" cy="200.25" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>contrastive_label_cards: 83.3% accuracy, 2,314 context chars, iteration 6</title></circle>
+<text x="652.67" y="191.25" font-size="12" font-weight="600">P8</text>
+<circle cx="651.95" cy="241.30" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>contrastive_label_profile: 80.0% accuracy, 2,441 context chars, iteration 4</title></circle>
+<text x="662.95" y="232.30" font-size="12" font-weight="600">P11</text>
+<circle cx="517.93" cy="200.25" r="6.5" fill="#db2777" stroke="#ffffff" stroke-width="1.5"><title>correction_episode_memory: 83.3% accuracy, 1,216 context chars, iteration 6</title></circle>
+<circle cx="517.93" cy="200.25" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="528.93" y="191.25" font-size="12" font-weight="600">P2</text>
+<circle cx="577.09" cy="200.25" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>cue_conditioned_correction: 83.3% accuracy, 1,654 context chars, iteration 3</title></circle>
+<text x="588.09" y="191.25" font-size="12" font-weight="600">P4</text>
+<circle cx="339.71" cy="446.58" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>error_correction_memory: 63.3% accuracy, 481 context chars, iteration 1</title></circle>
+<circle cx="339.71" cy="446.58" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="350.71" y="437.58" font-size="12" font-weight="600">P18</text>
+<polygon points="882.41,234.30 889.41,241.30 882.41,248.30 875.41,241.30" fill="#64748b" stroke="#ffffff" stroke-width="1.5"><title>fewshot_all: 80.0% accuracy, 8,088 context chars</title></polygon>
+<text x="893.41" y="232.30" font-size="12" font-weight="600">B1</text>
+<circle cx="636.79" cy="200.25" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>hybrid_diverse_retrieval: 83.3% accuracy, 2,256 context chars, iteration 2</title></circle>
+<text x="647.79" y="191.25" font-size="12" font-weight="600">P7</text>
+<circle cx="634.47" cy="200.25" r="6.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"><title>idf_retrieval_memory: 83.3% accuracy, 2,229 context chars, iteration 1</title></circle>
+<text x="645.47" y="191.25" font-size="12" font-weight="600">P6</text>
+<circle cx="659.97" cy="241.30" r="6.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"><title>label_balanced_kernel: 80.0% accuracy, 2,545 context chars, iteration 3</title></circle>
+<text x="670.97" y="232.30" font-size="12" font-weight="600">P12</text>
+<circle cx="665.63" cy="364.47" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>label_likelihood_profiles: 70.0% accuracy, 2,621 context chars, iteration 2</title></circle>
+<text x="676.63" y="355.47" font-size="12" font-weight="600">P17</text>
+<polygon points="162.59,603.81 169.59,610.81 162.59,617.81 155.59,610.81" fill="#64748b" stroke="#ffffff" stroke-width="1.5"><title>no_memory: 50.0% accuracy, 191 context chars</title></polygon>
+<circle cx="162.59" cy="610.81" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="173.59" y="601.81" font-size="12" font-weight="600">B2</text>
+<circle cx="535.02" cy="241.30" r="6.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"><title>outcome_contrast_memory: 80.0% accuracy, 1,329 context chars, iteration 2</title></circle>
+<text x="546.02" y="232.30" font-size="12" font-weight="600">P10</text>
+<circle cx="554.93" cy="159.19" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>pairwise_error_rules: 86.7% accuracy, 1,474 context chars, iteration 4</title></circle>
+<circle cx="554.93" cy="159.19" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="565.93" y="150.19" font-size="12" font-weight="600">P1</text>
+<circle cx="583.15" cy="200.25" r="6.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"><title>phrase_coverage_memory: 83.3% accuracy, 1,707 context chars, iteration 4</title></circle>
+<text x="594.15" y="191.25" font-size="12" font-weight="600">P5</text>
+<circle cx="511.17" cy="282.36" r="6.5" fill="#0891b2" stroke="#ffffff" stroke-width="1.5"><title>symptom_bundle_profiles: 76.7% accuracy, 1,174 context chars, iteration 5</title></circle>
+<circle cx="511.17" cy="282.36" r="10" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="522.17" y="273.36" font-size="12" font-weight="600">P13</text>
+<text x="982" y="105" font-size="16" font-weight="600">Methods</text>
+<text x="982" y="129" class="small">Red ring = Pareto-optimal</text>
+<text x="982" y="148" class="small"><tspan fill="#2563eb">● Iteration 1</tspan>  <tspan fill="#16a34a">● Iteration 2</tspan>  <tspan fill="#9333ea">● Iteration 3</tspan>  <tspan fill="#ea580c">● Iteration 4</tspan>  <tspan fill="#0891b2">● Iteration 5</tspan>  <tspan fill="#db2777">● Iteration 6</tspan></text>
+<text x="982" y="177" class="method" fill="#64748b" font-weight="400">◆ B1  fewshot_all</text>
+<text x="1395" y="177" text-anchor="end" class="small">80.0% · 8,088 ch</text>
+<text x="982" y="202" class="method" fill="#64748b" font-weight="600">◆ B2  no_memory</text>
+<text x="1395" y="202" text-anchor="end" class="small">50.0% · 191 ch</text>
+<text x="982" y="227" class="method" fill="#ea580c" font-weight="600">● P1  pairwise_error_rules  [iter 4]</text>
+<text x="1395" y="227" text-anchor="end" class="small">86.7% · 1,474 ch</text>
+<text x="982" y="252" class="method" fill="#db2777" font-weight="600">● P2  correction_episode_memory  [iter 6]</text>
+<text x="1395" y="252" text-anchor="end" class="small">83.3% · 1,216 ch</text>
+<text x="982" y="277" class="method" fill="#0891b2" font-weight="400">● P3  ambiguity_budgeted_retrieval  [iter 5]</text>
+<text x="1395" y="277" text-anchor="end" class="small">83.3% · 1,249 ch</text>
+<text x="982" y="302" class="method" fill="#9333ea" font-weight="400">● P4  cue_conditioned_correction  [iter 3]</text>
+<text x="1395" y="302" text-anchor="end" class="small">83.3% · 1,654 ch</text>
+<text x="982" y="327" class="method" fill="#ea580c" font-weight="400">● P5  phrase_coverage_memory  [iter 4]</text>
+<text x="1395" y="327" text-anchor="end" class="small">83.3% · 1,707 ch</text>
+<text x="982" y="352" class="method" fill="#2563eb" font-weight="400">● P6  idf_retrieval_memory  [iter 1]</text>
+<text x="1395" y="352" text-anchor="end" class="small">83.3% · 2,229 ch</text>
+<text x="982" y="377" class="method" fill="#16a34a" font-weight="400">● P7  hybrid_diverse_retrieval  [iter 2]</text>
+<text x="1395" y="377" text-anchor="end" class="small">83.3% · 2,256 ch</text>
+<text x="982" y="402" class="method" fill="#db2777" font-weight="400">● P8  contrastive_label_cards  [iter 6]</text>
+<text x="1395" y="402" text-anchor="end" class="small">83.3% · 2,314 ch</text>
+<text x="982" y="427" class="method" fill="#0891b2" font-weight="400">● P9  conjunction_confusion_rules  [iter 5]</text>
+<text x="1395" y="427" text-anchor="end" class="small">80.0% · 1,328 ch</text>
+<text x="982" y="452" class="method" fill="#16a34a" font-weight="400">● P10  outcome_contrast_memory  [iter 2]</text>
+<text x="1395" y="452" text-anchor="end" class="small">80.0% · 1,329 ch</text>
+<text x="982" y="477" class="method" fill="#ea580c" font-weight="400">● P11  contrastive_label_profile  [iter 4]</text>
+<text x="1395" y="477" text-anchor="end" class="small">80.0% · 2,441 ch</text>
+<text x="982" y="502" class="method" fill="#9333ea" font-weight="400">● P12  label_balanced_kernel  [iter 3]</text>
+<text x="1395" y="502" text-anchor="end" class="small">80.0% · 2,545 ch</text>
+<text x="982" y="527" class="method" fill="#0891b2" font-weight="600">● P13  symptom_bundle_profiles  [iter 5]</text>
+<text x="1395" y="527" text-anchor="end" class="small">76.7% · 1,174 ch</text>
+<text x="982" y="552" class="method" fill="#db2777" font-weight="400">● P14  closed_set_retrieval  [iter 6]</text>
+<text x="1395" y="552" text-anchor="end" class="small">76.7% · 1,415 ch</text>
+<text x="982" y="577" class="method" fill="#9333ea" font-weight="400">● P15  contrastive_anchor_memory  [iter 3]</text>
+<text x="1395" y="577" text-anchor="end" class="small">76.7% · 2,336 ch</text>
+<text x="982" y="602" class="method" fill="#2563eb" font-weight="400">● P16  class_signature_memory  [iter 1]</text>
+<text x="1395" y="602" text-anchor="end" class="small">76.7% · 5,663 ch</text>
+<text x="982" y="627" class="method" fill="#16a34a" font-weight="400">● P17  label_likelihood_profiles  [iter 2]</text>
+<text x="1395" y="627" text-anchor="end" class="small">70.0% · 2,621 ch</text>
+<text x="982" y="652" class="method" fill="#2563eb" font-weight="600">● P18  error_correction_memory  [iter 1]</text>
+<text x="1395" y="652" text-anchor="end" class="small">63.3% · 481 ch</text>
+</svg>

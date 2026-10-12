@@ -1,0 +1,29 @@
+{
+  "lessons": [
+    "Do not infer the transformation’s direction from the reaction-type label alone: the examples tagged “Reductions” show oxidation-like changes, so compare the structures directly.",
+    "Use the reaction type to identify the localized structural change, preserve unaffected parts of the molecule, and include any coproducts shown as separate components.",
+    "Treat the reaction-type label as a broad cue, not a literal prediction of the bond change; infer the transformation from the substrate and include any disconnected coproducts shown by the reaction pattern.",
+    "Use the stated reaction class to guide the retrosynthetic change and preserve unrelated scaffold features; these records contain no incorrect attempts to reveal finer distinctions.",
+    "Treat the reaction label as context, not a complete recipe: identify the substrate’s specific transformation, preserve unrelated structure, and account for any coproducts shown.",
+    "Use the reaction context to identify the targeted bond or functional group, preserve unrelated parts of the molecule, and include any fragments released as separate products."
+  ],
+  "pending": [],
+  "recent": [
+    {
+      "input": "Context: The reaction type is Functional group interconversion (FGI).\nInput: CC(C)(C)c1cc(C=NO)c(O)c(-c2ccc(C(F)(F)F)nc2)c1\nAnswer: ",
+      "target": "CC(C)(C)c1cc(C=O)c(O)c(-c2ccc(C(F)(F)F)nc2)c1.NO"
+    },
+    {
+      "input": "Context: The reaction type is Acylation and related processes.\nInput: Cc1nc(NC(=O)CCCCC2CCSS2)sc1CCO[N+](=O)[O-]\nAnswer: ",
+      "target": "Cc1nc(N)sc1CCO[N+](=O)[O-].O=C(O)CCCCC1CCSS1"
+    },
+    {
+      "input": "Context: The reaction type is Protections.\nInput: CC(C)(C)OC(=O)N1Cc2ccc([N+](=O)[O-])cc2C1=O\nAnswer: ",
+      "target": "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=C1NCc2ccc([N+](=O)[O-])cc21"
+    },
+    {
+      "input": "Context: The reaction type is Oxidations.\nInput: COc1cccc(Nc2c(C(N)=O)cnc3c(C)cc(S(=O)(=O)c4cccc(C(=O)Nc5ccc(-c6ccc(C=O)cc6)cc5)c4)cc23)c1\nAnswer: ",
+      "target": "COc1cccc(Nc2c(C(N)=O)cnc3c(C)cc(S(=O)(=O)c4cccc(C(=O)Nc5ccc(-c6ccc(CO)cc6)cc5)c4)cc23)c1"
+    }
+  ]
+}

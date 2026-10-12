@@ -1,0 +1,316 @@
+{
+  "mode": "dataset_blind",
+  "task_count": 1,
+  "objective": "unweighted macro-average validation accuracy",
+  "systems": [
+    {
+      "system": "ambiguity_budgeted_retrieval",
+      "avg_val": 83.3,
+      "avg_context_chars": 1249
+    },
+    {
+      "system": "class_signature_memory",
+      "avg_val": 76.7,
+      "avg_context_chars": 5663
+    },
+    {
+      "system": "conjunction_confusion_rules",
+      "avg_val": 80.0,
+      "avg_context_chars": 1328
+    },
+    {
+      "system": "contrastive_anchor_memory",
+      "avg_val": 76.7,
+      "avg_context_chars": 2336
+    },
+    {
+      "system": "contrastive_label_profile",
+      "avg_val": 80.0,
+      "avg_context_chars": 2441
+    },
+    {
+      "system": "cue_conditioned_correction",
+      "avg_val": 83.3,
+      "avg_context_chars": 1654
+    },
+    {
+      "system": "error_correction_memory",
+      "avg_val": 63.3,
+      "avg_context_chars": 481
+    },
+    {
+      "system": "fewshot_all",
+      "avg_val": 80.0,
+      "avg_context_chars": 8088
+    },
+    {
+      "system": "hybrid_diverse_retrieval",
+      "avg_val": 83.3,
+      "avg_context_chars": 2256
+    },
+    {
+      "system": "idf_retrieval_memory",
+      "avg_val": 83.3,
+      "avg_context_chars": 2229
+    },
+    {
+      "system": "label_balanced_kernel",
+      "avg_val": 80.0,
+      "avg_context_chars": 2545
+    },
+    {
+      "system": "label_likelihood_profiles",
+      "avg_val": 70.0,
+      "avg_context_chars": 2621
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 50.0,
+      "avg_context_chars": 191
+    },
+    {
+      "system": "outcome_contrast_memory",
+      "avg_val": 80.0,
+      "avg_context_chars": 1329
+    },
+    {
+      "system": "pairwise_error_rules",
+      "avg_val": 86.7,
+      "avg_context_chars": 1474
+    },
+    {
+      "system": "phrase_coverage_memory",
+      "avg_val": 83.3,
+      "avg_context_chars": 1707
+    },
+    {
+      "system": "symptom_bundle_profiles",
+      "avg_val": 76.7,
+      "avg_context_chars": 1174
+    }
+  ],
+  "pareto": [
+    {
+      "system": "pairwise_error_rules",
+      "avg_val": 86.7,
+      "avg_context_chars": 1474
+    },
+    {
+      "system": "ambiguity_budgeted_retrieval",
+      "avg_val": 83.3,
+      "avg_context_chars": 1249
+    },
+    {
+      "system": "symptom_bundle_profiles",
+      "avg_val": 76.7,
+      "avg_context_chars": 1174
+    },
+    {
+      "system": "error_correction_memory",
+      "avg_val": 63.3,
+      "avg_context_chars": 481
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 50.0,
+      "avg_context_chars": 191
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "system": "idf_retrieval_memory",
+      "avg_val": 83.3,
+      "axis": "exploitation",
+      "delta": 3.3,
+      "outcome": "83.3% (+3.3)",
+      "components": [
+        "idf_weighted_similarity",
+        "label_diverse_top_k"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "class_signature_memory",
+      "avg_val": 76.7,
+      "axis": "representation",
+      "delta": -3.3,
+      "outcome": "76.7% (-3.3)",
+      "components": [
+        "discriminative_label_signatures",
+        "medoid_demonstrations"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "error_correction_memory",
+      "avg_val": 63.3,
+      "axis": "feedback",
+      "delta": -16.7,
+      "outcome": "63.3% (-16.7)",
+      "components": [
+        "error_only_memory",
+        "similarity_retrieved_corrections"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "hybrid_diverse_retrieval",
+      "avg_val": 83.3,
+      "axis": "exploitation",
+      "delta": 0.0,
+      "outcome": "83.3% (+0.0)",
+      "components": [
+        "cosine_bm25_hybrid_ranker",
+        "maximal_marginal_relevance",
+        "per_label_retrieval_cap"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "label_likelihood_profiles",
+      "avg_val": 70.0,
+      "axis": "representation",
+      "delta": -13.3,
+      "outcome": "70.0% (-13.3)",
+      "components": [
+        "repeated_term_log_odds",
+        "query_conditioned_label_ranking",
+        "representative_case_profiles"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "outcome_contrast_memory",
+      "avg_val": 80.0,
+      "axis": "feedback",
+      "delta": -3.3,
+      "outcome": "80.0% (-3.3)",
+      "components": [
+        "dual_polarity_outcome_memory",
+        "status_aware_similarity_retrieval",
+        "explicit_error_counterexamples"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "label_balanced_kernel",
+      "avg_val": 80.0,
+      "axis": "exploitation",
+      "delta": -3.3,
+      "outcome": "80.0% (-3.3)",
+      "components": [
+        "shared-boilerplate removal",
+        "label-aggregated kernel support",
+        "second-neighbor confirmation"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "contrastive_anchor_memory",
+      "avg_val": 76.7,
+      "axis": "representation",
+      "delta": -6.6,
+      "outcome": "76.7% (-6.6)",
+      "components": [
+        "query-conditioned contrast anchors",
+        "phrase-aware lexical similarity",
+        "per-label competing exemplars"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "cue_conditioned_correction",
+      "avg_val": 83.3,
+      "axis": "feedback",
+      "delta": 0.0,
+      "outcome": "83.3% (+0.0)",
+      "components": [
+        "error-derived discriminative cue rules",
+        "cue-conditioned correction retrieval",
+        "verified example anchors"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "phrase_coverage_memory",
+      "avg_val": 83.3,
+      "axis": "exploitation",
+      "delta": 0.0,
+      "outcome": "83.3% (+0.0)",
+      "components": [
+        "symptom-span extraction",
+        "rarity-weighted unigram and bigram retrieval",
+        "query-detail coverage selection",
+        "per-label retrieval cap"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "contrastive_label_profile",
+      "avg_val": 80.0,
+      "axis": "representation",
+      "delta": -3.3,
+      "outcome": "80.0% (-3.3)",
+      "components": [
+        "smoothed positive-versus-negative term log odds",
+        "query-conditioned cue display",
+        "label-specific verified exemplar",
+        "weak absent-cue penalty"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "pairwise_error_rules",
+      "avg_val": 86.7,
+      "axis": "feedback",
+      "delta": 3.4,
+      "outcome": "86.7% (+3.4)",
+      "components": [
+        "pair-specific confusion boundaries",
+        "direction-specific cue weighting",
+        "trigger-gated correction retrieval",
+        "label-diverse verified anchors"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "conjunction_confusion_rules",
+      "avg_val": 80.0,
+      "axis": "feedback",
+      "delta": -6.7,
+      "outcome": "80.0% (-6.7)",
+      "components": [
+        "directional error-pair learning",
+        "multi-cue conjunction gating",
+        "label-diverse verified examples"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "ambiguity_budgeted_retrieval",
+      "avg_val": 83.3,
+      "axis": "exploitation",
+      "delta": -3.4,
+      "outcome": "83.3% (-3.4)",
+      "components": [
+        "label-aggregated support margin",
+        "adaptive retrieval budget",
+        "round-robin label coverage"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "symptom_bundle_profiles",
+      "avg_val": 76.7,
+      "axis": "representation",
+      "delta": -10.0,
+      "outcome": "76.7% (-10.0)",
+      "components": [
+        "co-occurring term-pair representation",
+        "cross-label bundle specificity",
+        "query-matched representative case"
+      ]
+    }
+  ]
+}

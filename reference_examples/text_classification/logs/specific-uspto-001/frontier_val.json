@@ -1,0 +1,14 @@
+{
+  "USPTO": {
+    "best_system": "no_memory",
+    "accuracy": 53.333333333333336,
+    "ctx_len": 191.0
+  },
+  "_pareto": [
+    {
+      "system": "no_memory",
+      "val_accuracy": 53.3,
+      "ctx_len": 191
+    }
+  ]
+}

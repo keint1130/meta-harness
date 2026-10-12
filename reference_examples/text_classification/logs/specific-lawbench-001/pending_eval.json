@@ -1,0 +1,29 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "char_ngram_case_retrieval",
+      "file": "agents/char_ngram_case_retrieval.py",
+      "hypothesis": "BM25 retrieval over multilingual character n-grams will exceed the 56.7% fewshot_all validation frontier while presenting at most five labeled precedents per query.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": ["multilingual_character_bm25", "query_conditioned_retrieval", "compact_demonstrations"]
+    },
+    {
+      "name": "graph_walk_memory",
+      "file": "agents/graph_walk_memory.py",
+      "hypothesis": "Personalized random-walk scores over a case similarity graph will exceed the 56.7% fewshot_all validation frontier with at most five retrieved cases by surfacing useful indirect analogies.",
+      "axis": "exploration",
+      "base_system": "fewshot_all",
+      "components": ["case_similarity_graph", "personalized_random_walk", "indirect_case_retrieval"]
+    },
+    {
+      "name": "salient_sentence_memory",
+      "file": "agents/salient_sentence_memory.py",
+      "hypothesis": "Keeping four high-salience sentences per labeled example will match or exceed the 56.7% fewshot_all validation frontier while reducing injected memory context by at least 20%.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": ["sentence_salience_scoring", "extractive_case_summaries", "compressed_example_memory"]
+    }
+  ]
+}

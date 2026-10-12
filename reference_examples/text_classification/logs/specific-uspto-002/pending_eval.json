@@ -1,0 +1,38 @@
+{
+  "iteration": 6,
+  "candidates": [
+    {
+      "name": "reaction_center_decomposition",
+      "file": "agents/reaction_center_decomposition.py",
+      "hypothesis": "On the pooled validation set, explicitly identifying transformed regions and preserved scaffold before answer generation will outperform direct prompting on cases where the main scaffold is mostly unchanged.",
+      "axis": "prompt_structure",
+      "base_system": "no_memory",
+      "components": [
+        "structured_reaction_center_analysis",
+        "separate_answer_generation"
+      ]
+    },
+    {
+      "name": "forward_roundtrip_check",
+      "file": "agents/forward_roundtrip_check.py",
+      "hypothesis": "On the pooled validation set, checking whether the proposed precursor set can plausibly regenerate the stated product will improve accuracy over a single draft, especially when the draft uses an incorrect leaving group or functional-group precursor.",
+      "axis": "verification",
+      "base_system": "no_memory",
+      "components": [
+        "initial_retrosynthesis_draft",
+        "forward_direction_consistency_check"
+      ]
+    },
+    {
+      "name": "fragment_completeness_audit",
+      "file": "agents/fragment_completeness_audit.py",
+      "hypothesis": "On the pooled validation set, auditing product-region coverage and precursor fragment completeness will improve accuracy over a single draft on answers with multiple reactants or small required fragments.",
+      "axis": "verification",
+      "base_system": "no_memory",
+      "components": [
+        "precursor_fragment_inventory",
+        "missing_or_spurious_fragment_review"
+      ]
+    }
+  ]
+}

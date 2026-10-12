@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.7,
+  "correct": 7,
+  "total": 10,
+  "dataset": "USPTO",
+  "memory": "agents/neighborhood_consensus_memory.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T20:40:08.723621",
+  "runtime_seconds": 31.85,
+  "memory_context_chars": 2350,
+  "llm_calls": 20,
+  "llm_input_tokens": 12723,
+  "llm_output_tokens": 11492,
+  "llm_total_tokens": 24215
+}

@@ -1,0 +1,39 @@
+{
+  "LawBench": {
+    "best_system": "fewshot_all",
+    "accuracy": 56.666666666666664,
+    "ctx_len": 21573.0
+  },
+  "_pareto": [
+    {
+      "system": "fewshot_all",
+      "val_accuracy": 56.7,
+      "ctx_len": 21573
+    },
+    {
+      "system": "coverage_neighbor_memory",
+      "val_accuracy": 53.3,
+      "ctx_len": 7392
+    },
+    {
+      "system": "decisive_fact_cards",
+      "val_accuracy": 50.0,
+      "ctx_len": 4036
+    },
+    {
+      "system": "matched_excerpt_memory",
+      "val_accuracy": 43.3,
+      "ctx_len": 2038
+    },
+    {
+      "system": "reviewed_feedback_memory",
+      "val_accuracy": 33.3,
+      "ctx_len": 560
+    },
+    {
+      "system": "no_memory",
+      "val_accuracy": 3.3,
+      "ctx_len": 191
+    }
+  ]
+}

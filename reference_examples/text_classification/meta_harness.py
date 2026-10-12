@@ -9,9 +9,12 @@ Uses codex_wrapper + meta-harness skill to propose new memory systems.
 """
 
 import argparse
+import hashlib
 import json
 import os
+import re
 import signal
+import shutil
 import subprocess
 import sys
 import time
@@ -35,6 +38,7 @@ FRONTIER_VAL = LOGS_DIR / "frontier_val.json"
 EVOLUTION_SUMMARY = LOGS_DIR / "evolution_summary.jsonl"
 RESULTS_DIR = LOGS_DIR / "results"
 FINALIZED = LOGS_DIR / "finalized.json"
+PROPOSER_VIEW = LOGS_DIR / "proposer_view"
 
 PROPOSER_ALLOWED_TOOLS = [
     "Read",
@@ -135,8 +139,216 @@ def run_benchmark(args):
     )
 
 
-def render_task_prompt(iteration, num_datasets):
+def _read_evolution_history():
+    if not EVOLUTION_SUMMARY.exists():
+        return []
+    rows = []
+    for line in EVOLUTION_SUMMARY.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return rows
+
+
+def prepare_dataset_blind_view(num_datasets):
+    """Build an isolated, aggregate-only workspace for the proposer."""
+    package_dir = PROPOSER_VIEW / "text_classification"
+    view_agents = package_dir / "agents"
+    view_agents.mkdir(parents=True, exist_ok=True)
+
+    history = _read_evolution_history()
+    prior_candidates = {
+        row.get("system")
+        for row in history
+        if isinstance(row.get("system"), str)
+    }
+    allowed_files = set(BASELINE_FILES) | {
+        f"{name}.py" for name in prior_candidates
+    }
+
+    # Rebuild only the controlled agents directory. This prevents candidates from
+    # unrelated runs (and their task-specific history) entering the blind view.
+    for path in view_agents.glob("*.py"):
+        if path.name not in allowed_files:
+            path.unlink()
+    for filename in sorted(allowed_files):
+        source = AGENTS_DIR / filename
+        if source.exists():
+            shutil.copy2(source, view_agents / filename)
+
+    for filename in ("__init__.py", "llm.py", "memory_system.py"):
+        source = EVOLVE_DIR / filename
+        if source.exists():
+            shutil.copy2(source, package_dir / filename)
+
+    results = load_results(LOGS_DIR, "val.json")
+    by_system = {}
+    for (_model, _dataset, system), result in results.items():
+        if result.get("accuracy") is None:
+            continue
+        stats = by_system.setdefault(system, {"accuracies": [], "contexts": []})
+        stats["accuracies"].append(result["accuracy"] * 100)
+        stats["contexts"].append(result.get("memory_context_chars", 0))
+
+    systems = []
+    for system, stats in sorted(by_system.items()):
+        # Only expose complete macro averages, never individual task scores.
+        if len(stats["accuracies"]) != num_datasets:
+            continue
+        non_zero_contexts = [value for value in stats["contexts"] if value > 0]
+        systems.append(
+            {
+                "system": system,
+                "avg_val": round(sum(stats["accuracies"]) / num_datasets, 1),
+                "avg_context_chars": round(
+                    sum(non_zero_contexts) / len(non_zero_contexts)
+                    if non_zero_contexts
+                    else 0
+                ),
+            }
+        )
+
+    frontier = json.loads(FRONTIER_VAL.read_text(encoding="utf-8")) if FRONTIER_VAL.exists() else {}
+    pareto = [
+        {
+            "system": row.get("system"),
+            "avg_val": row.get("val_accuracy"),
+            "avg_context_chars": row.get("ctx_len", 0),
+        }
+        for row in frontier.get("_pareto", [])
+    ]
+    safe_history = [
+        {
+            key: row[key]
+            for key in (
+                "iteration",
+                "system",
+                "avg_val",
+                "axis",
+                "delta",
+                "outcome",
+                "components",
+            )
+            if key in row
+        }
+        for row in history
+    ]
+    state = {
+        "mode": "dataset_blind",
+        "task_count": num_datasets,
+        "objective": "unweighted macro-average validation accuracy",
+        "systems": systems,
+        "pareto": pareto,
+        "history": safe_history,
+    }
+    (package_dir / "optimizer_state.json").write_text(
+        json.dumps(state, indent=2), encoding="utf-8"
+    )
+    write_anonymous_traces(package_dir)
+    pending = package_dir / "pending_eval.json"
+    if pending.exists():
+        pending.unlink()
+    return package_dir, pending
+
+
+def write_anonymous_traces(package_dir):
+    """Pool validation traces without exposing task names or task boundaries."""
+    traces = []
+    for log_path in LOGS_DIR.rglob("log.jsonl"):
+        system = None
+        try:
+            lines = log_path.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        for line in lines:
+            try:
+                event = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if event.get("type") == "meta":
+                system = event.get("memory")
+                continue
+            if event.get("type") != "val_step" or not system:
+                continue
+            trace = {
+                "system": system,
+                "input": event.get("input", ""),
+                "prediction": event.get("pred"),
+                "ground_truth": event.get("tgt"),
+                "was_correct": bool(event.get("ok")),
+                "prompt_len": event.get("prompt_len", 0),
+                "context_len": event.get("context_len", 0),
+                "prompt_text": event.get("prompt_text", ""),
+            }
+            encoded = json.dumps(trace, sort_keys=True, ensure_ascii=False)
+            trace["trace_id"] = hashlib.sha256(encoded.encode("utf-8")).hexdigest()[:12]
+            traces.append(trace)
+
+    # A content-derived order mixes source tasks without recording their identity or
+    # retaining directory order, while remaining reproducible across resumes.
+    traces.sort(key=lambda row: row["trace_id"])
+    output = package_dir / "anonymous_traces.jsonl"
+    output.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in traces),
+        encoding="utf-8",
+    )
+
+
+def install_dataset_blind_candidates(view_dir, view_pending):
+    """Validate and install candidates produced inside the blind workspace."""
+    if not view_pending.exists():
+        print(f"  {_red('FAIL')} blind proposer did not write pending_eval.json")
+        return False
+    try:
+        payload = json.loads(view_pending.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"  {_red('FAIL')} invalid blind pending_eval.json: {exc}")
+        return False
+
+    candidates = payload.get("candidates", [])
+    if not candidates:
+        print(f"  {_red('FAIL')} blind proposer returned no candidates")
+        return False
+    for candidate in candidates:
+        name = candidate.get("name", "")
+        if not re.fullmatch(r"[a-z][a-z0-9_]*", name):
+            print(f"  {_red('FAIL')} invalid candidate name: {name!r}")
+            return False
+        source = view_dir / "agents" / f"{name}.py"
+        target = AGENTS_DIR / f"{name}.py"
+        if not source.is_file():
+            print(f"  {_red('FAIL')} missing candidate source: {source}")
+            return False
+        if target.exists() and target.read_bytes() != source.read_bytes():
+            print(f"  {_red('FAIL')} candidate would overwrite existing file: {target}")
+            return False
+
+    for candidate in candidates:
+        name = candidate["name"]
+        shutil.copy2(view_dir / "agents" / f"{name}.py", AGENTS_DIR / f"{name}.py")
+        candidate["file"] = f"agents/{name}.py"
+    PENDING_EVAL.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return True
+
+
+def render_task_prompt(iteration, num_datasets, dataset_blind=False, view_dir=None):
     """Build the prompt for the proposer Claude session."""
+    if dataset_blind:
+        return (
+            f"Run iteration {iteration} of dataset-blind memory-system evolution. "
+            f"The objective combines {num_datasets} anonymous tasks.\n\n"
+            "Work only inside the isolated proposer view given as your working directory. "
+            "Do not inspect parent directories or any config, data, raw evaluation logs, "
+            "reports, or per-task results outside it.\n\n"
+            "Read `optimizer_state.json` for aggregate feedback and "
+            "`anonymous_traces.jsonl` for pooled problem-level traces. Read and edit "
+            "reusable systems under `agents/`. "
+            "Write `pending_eval.json` in the working directory. Dataset identities and "
+            "per-dataset scores are intentionally unavailable."
+        )
     return (
         f"Run iteration {iteration} of the evolution loop. There are {num_datasets} datasets.\n\n"
         f"## Run directories\n"
@@ -163,14 +375,34 @@ def count_iterations_from_summary():
     return max_iter
 
 
-def propose_codex(task_prompt, iteration, proposer, timeout=2400):
+def propose_codex(
+    task_prompt,
+    iteration,
+    proposer,
+    timeout=2400,
+    dataset_blind=False,
+    num_datasets=1,
+):
     """Returns True if candidates were produced (pending_eval.json exists)."""
+    proposer_cwd = EVOLVE_DIR
+    proposer_skill = EVOLVE_DIR / ".claude/skills/meta-harness"
+    view_pending = None
+    if dataset_blind:
+        proposer_cwd, view_pending = prepare_dataset_blind_view(num_datasets)
+        proposer_skill = EVOLVE_DIR / ".claude/skills/meta-harness-blind"
+        task_prompt = render_task_prompt(
+            iteration,
+            num_datasets,
+            dataset_blind=True,
+            view_dir=proposer_cwd,
+        )
+
     result = codex_wrapper.run(
         prompt=task_prompt,
         model=proposer["model"],
         allowed_tools=PROPOSER_ALLOWED_TOOLS,
-        skills=[str(EVOLVE_DIR / ".claude/skills/meta-harness")],
-        cwd=str(EVOLVE_DIR),
+        skills=[str(proposer_skill)],
+        cwd=str(proposer_cwd),
         log_dir=str(LOGS_DIR / "codex_sessions"),
         name=f"iter{iteration}",
         timeout_seconds=timeout,
@@ -182,6 +414,8 @@ def propose_codex(task_prompt, iteration, proposer, timeout=2400):
             print(f"  {_dim(result.stderr[:500])}")
         return False
     result.show()
+    if dataset_blind:
+        return install_dataset_blind_candidates(proposer_cwd, view_pending)
     return PENDING_EVAL.exists()
 
 
@@ -354,7 +588,7 @@ def finalize_run(baselines, datasets, model_short):
 
 def run_evolve(args):
     global LOGS_DIR, PENDING_EVAL, FRONTIER_VAL, EVOLUTION_SUMMARY
-    global RESULTS_DIR, FINALIZED
+    global RESULTS_DIR, FINALIZED, PROPOSER_VIEW
 
     with open(CONFIG_PATH, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
@@ -378,11 +612,13 @@ def run_evolve(args):
     EVOLUTION_SUMMARY = LOGS_DIR / "evolution_summary.jsonl"
     RESULTS_DIR = LOGS_DIR / "results"
     FINALIZED = LOGS_DIR / "finalized.json"
+    PROPOSER_VIEW = LOGS_DIR / "proposer_view"
 
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
     AGENTS_DIR.mkdir(parents=True, exist_ok=True)
 
     baselines = cfg["memory_systems"]["baselines"]
+    dataset_blind = bool(cfg.get("proposer", {}).get("dataset_blind", False))
     if args.test:
         finalize_run(baselines, datasets, model_short)
         return
@@ -402,7 +638,8 @@ def run_evolve(args):
     print(
         f"{_ts()} {_bold('Evolution (memory systems)')}  "
         f"run={_cyan(run_name)}  model={_cyan(args.model)}  "
-        f"iters={args.iterations}  datasets={datasets}"
+        f"iters={args.iterations}  datasets={datasets}  "
+        f"optimization={'dataset-blind' if dataset_blind else 'dataset-aware'}"
     )
 
     # ── Phase 0: Baselines ─────────────────────────────────────
@@ -473,7 +710,12 @@ def run_evolve(args):
         propose_start = time.time()
         print(f"  {_ts()} {_cyan('proposing')} new candidates...", flush=True)
         ok = propose_codex(
-            task_prompt, iteration, cfg["proposer"], timeout=args.propose_timeout
+            task_prompt,
+            iteration,
+            cfg["proposer"],
+            timeout=args.propose_timeout,
+            dataset_blind=dataset_blind,
+            num_datasets=len(datasets),
         )
         propose_time = time.time() - propose_start
 

@@ -1,0 +1,41 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "label_prototype_memory",
+      "file": "agents/label_prototype_memory.py",
+      "hypothesis": "Incrementally updated per-label semantic profiles will retain label coverage, reduce mean injected memory below fewshot_all's 4,330 characters, and exceed its 63.3% mean validation accuracy; the claim fails if profiles lose useful distinctions or miss either target.",
+      "axis": "exploitation",
+      "base_system": "fewshot_all",
+      "components": [
+        "per-label-semantic-profiles",
+        "incremental-llm-learning",
+        "compressed-memory"
+      ]
+    },
+    {
+      "name": "countercheck_fewshot",
+      "file": "agents/countercheck_fewshot.py",
+      "hypothesis": "A second skeptical pass that weighs the strongest supporting and conflicting precedent will raise mean validation accuracy above fewshot_all's 63.3%; the claim fails if the audit does not correct enough first-pass errors.",
+      "axis": "exploration",
+      "base_system": "fewshot_all",
+      "components": [
+        "two-pass-prediction",
+        "support-conflict-audit",
+        "fewshot-context"
+      ]
+    },
+    {
+      "name": "semantic_case_cards",
+      "file": "agents/semantic_case_cards.py",
+      "hypothesis": "LLM-written case cards capped at 80 words will preserve decision-relevant facts, reduce mean injected memory below fewshot_all's 4,330 characters, and exceed its 63.3% mean validation accuracy; this fails if compression removes needed exceptions.",
+      "axis": "exploration",
+      "base_system": "fewshot_all",
+      "components": [
+        "per-case-semantic-compression",
+        "llm-generated-memory",
+        "labeled-precedents"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "LawBench": {
+    "verified_boundary_pairs": {
+      "accuracy": 0.36666666666666664,
+      "memory_context_chars": 3157.0,
+      "model": "gpt-6-luna"
+    },
+    "two_pass_label_check": {
+      "accuracy": 0.4,
+      "memory_context_chars": 4210.0,
+      "model": "gpt-6-luna"
+    },
+    "sparse_label_evidence": {
+      "accuracy": 0.2,
+      "memory_context_chars": 1439.0,
+      "model": "gpt-6-luna"
+    },
+    "sectioned_case_memory": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 8820.0,
+      "model": "gpt-6-luna"
+    },
+    "reviewed_feedback_memory": {
+      "accuracy": 0.3333333333333333,
+      "memory_context_chars": 560.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.03333333333333333,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "neighborhood_consensus": {
+      "accuracy": 0.36666666666666664,
+      "memory_context_chars": 3734.0,
+      "model": "gpt-6-luna"
+    },
+    "matched_excerpt_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 2038.0,
+      "model": "gpt-6-luna"
+    },
+    "label_prototypes": {
+      "accuracy": 0.3,
+      "memory_context_chars": 4301.0,
+      "model": "gpt-6-luna"
+    },
+    "label_balanced_demos": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 11636.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.5666666666666667,
+      "memory_context_chars": 21573.0,
+      "model": "gpt-6-luna"
+    },
+    "fact_focus_retrieval": {
+      "accuracy": 0.36666666666666664,
+      "memory_context_chars": 7009.0,
+      "model": "gpt-6-luna"
+    },
+    "deduplicated_case_memory": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 5340.0,
+      "model": "gpt-6-luna"
+    },
+    "decisive_fact_cards": {
+      "accuracy": 0.5,
+      "memory_context_chars": 4036.0,
+      "model": "gpt-6-luna"
+    },
+    "coverage_neighbor_memory": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 7392.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_replay": {
+      "accuracy": 0.3333333333333333,
+      "memory_context_chars": 1576.0,
+      "model": "gpt-6-luna"
+    },
+    "content_debiased_retrieval": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 7522.0,
+      "model": "gpt-6-luna"
+    },
+    "bm25_retrieval": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 7397.0,
+      "model": "gpt-6-luna"
+    },
+    "answer_inventory_check": {
+      "accuracy": 0.3333333333333333,
+      "memory_context_chars": 6514.0,
+      "model": "gpt-6-luna"
+    },
+    "answer_bundle_retrieval": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 8719.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

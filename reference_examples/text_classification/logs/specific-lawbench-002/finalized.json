@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-12T21:10:26.176469",
+  "systems": [
+    "coverage_neighbor_memory",
+    "decisive_fact_cards",
+    "fewshot_all",
+    "matched_excerpt_memory",
+    "no_memory",
+    "reviewed_feedback_memory"
+  ],
+  "completed_at": "2026-10-12T21:21:09.842489"
+}

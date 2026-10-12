@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.36666666666666664,
+  "correct": 11,
+  "total": 30,
+  "dataset": "LawBench",
+  "memory": "agents/verified_boundary_pairs.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-05T19:29:39.391179",
+  "runtime_seconds": 13.75,
+  "memory_context_chars": 3157,
+  "llm_calls": 60,
+  "llm_input_tokens": 84447,
+  "llm_output_tokens": 8570,
+  "llm_total_tokens": 93017
+}

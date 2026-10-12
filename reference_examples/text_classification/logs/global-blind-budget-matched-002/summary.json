@@ -1,0 +1,308 @@
+{
+  "USPTO": {
+    "target_profile_memory": {
+      "accuracy": 0.8,
+      "memory_context_chars": 1847.0,
+      "model": "gpt-6-luna"
+    },
+    "similarity_gated_correction_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 1619.0,
+      "model": "gpt-6-luna"
+    },
+    "shared_template_residual_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 2453.0,
+      "model": "gpt-6-luna"
+    },
+    "schema_signature_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1600.0,
+      "model": "gpt-6-luna"
+    },
+    "retrieval_weighted_examples": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1660.0,
+      "model": "gpt-6-luna"
+    },
+    "repeated_line_factoring_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3970.0,
+      "model": "gpt-6-luna"
+    },
+    "query_excerpt_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1520.0,
+      "model": "gpt-6-luna"
+    },
+    "query_diverse_retrieval": {
+      "accuracy": 0.8,
+      "memory_context_chars": 1748.0,
+      "model": "gpt-6-luna"
+    },
+    "problem_span_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 1431.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "neighborhood_consensus_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 2350.0,
+      "model": "gpt-6-luna"
+    },
+    "instruction_anchored_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 3795.0,
+      "model": "gpt-6-luna"
+    },
+    "focus_mmr_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1994.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3005.0,
+      "model": "gpt-6-luna"
+    },
+    "feedback_weighted_retrieval": {
+      "accuracy": 0.6,
+      "memory_context_chars": 1845.0,
+      "model": "gpt-6-luna"
+    },
+    "error_contrast_memory": {
+      "accuracy": 0.8,
+      "memory_context_chars": 1532.0,
+      "model": "gpt-6-luna"
+    },
+    "coverage_balanced_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 3704.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_boundary_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 2163.0,
+      "model": "gpt-6-luna"
+    },
+    "confidence_adaptive_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 2922.0,
+      "model": "gpt-6-luna"
+    },
+    "answer_contract_cues": {
+      "accuracy": 0.6,
+      "memory_context_chars": 4142.0,
+      "model": "gpt-6-luna"
+    }
+  },
+  "Symptom2Disease": {
+    "target_profile_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1562.0,
+      "model": "gpt-6-luna"
+    },
+    "similarity_gated_correction_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1389.0,
+      "model": "gpt-6-luna"
+    },
+    "shared_template_residual_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 2369.0,
+      "model": "gpt-6-luna"
+    },
+    "schema_signature_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1468.0,
+      "model": "gpt-6-luna"
+    },
+    "retrieval_weighted_examples": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1618.0,
+      "model": "gpt-6-luna"
+    },
+    "repeated_line_factoring_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3747.0,
+      "model": "gpt-6-luna"
+    },
+    "query_excerpt_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 1384.0,
+      "model": "gpt-6-luna"
+    },
+    "query_diverse_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1702.0,
+      "model": "gpt-6-luna"
+    },
+    "problem_span_memory": {
+      "accuracy": 0.8,
+      "memory_context_chars": 1691.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "neighborhood_consensus_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 2022.0,
+      "model": "gpt-6-luna"
+    },
+    "instruction_anchored_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3556.0,
+      "model": "gpt-6-luna"
+    },
+    "focus_mmr_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1900.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.7,
+      "memory_context_chars": 2766.0,
+      "model": "gpt-6-luna"
+    },
+    "feedback_weighted_retrieval": {
+      "accuracy": 0.7,
+      "memory_context_chars": 1811.0,
+      "model": "gpt-6-luna"
+    },
+    "error_contrast_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 1434.0,
+      "model": "gpt-6-luna"
+    },
+    "coverage_balanced_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 3465.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_boundary_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 2103.0,
+      "model": "gpt-6-luna"
+    },
+    "confidence_adaptive_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 2736.0,
+      "model": "gpt-6-luna"
+    },
+    "answer_contract_cues": {
+      "accuracy": 0.7,
+      "memory_context_chars": 3675.0,
+      "model": "gpt-6-luna"
+    }
+  },
+  "LawBench": {
+    "target_profile_memory": {
+      "accuracy": 0.3,
+      "memory_context_chars": 2235.0,
+      "model": "gpt-6-luna"
+    },
+    "similarity_gated_correction_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 1468.0,
+      "model": "gpt-6-luna"
+    },
+    "shared_template_residual_memory": {
+      "accuracy": 0.3,
+      "memory_context_chars": 4375.0,
+      "model": "gpt-6-luna"
+    },
+    "schema_signature_retrieval": {
+      "accuracy": 0.4,
+      "memory_context_chars": 2582.0,
+      "model": "gpt-6-luna"
+    },
+    "retrieval_weighted_examples": {
+      "accuracy": 0.4,
+      "memory_context_chars": 2919.0,
+      "model": "gpt-6-luna"
+    },
+    "repeated_line_factoring_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 8129.0,
+      "model": "gpt-6-luna"
+    },
+    "query_excerpt_memory": {
+      "accuracy": 0.5,
+      "memory_context_chars": 2121.0,
+      "model": "gpt-6-luna"
+    },
+    "query_diverse_retrieval": {
+      "accuracy": 0.4,
+      "memory_context_chars": 3037.0,
+      "model": "gpt-6-luna"
+    },
+    "problem_span_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 2999.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.0,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "neighborhood_consensus_memory": {
+      "accuracy": 0.2,
+      "memory_context_chars": 3333.0,
+      "model": "gpt-6-luna"
+    },
+    "instruction_anchored_memory": {
+      "accuracy": 0.7,
+      "memory_context_chars": 8011.0,
+      "model": "gpt-6-luna"
+    },
+    "focus_mmr_retrieval": {
+      "accuracy": 0.4,
+      "memory_context_chars": 3531.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.5,
+      "memory_context_chars": 7221.0,
+      "model": "gpt-6-luna"
+    },
+    "feedback_weighted_retrieval": {
+      "accuracy": 0.4,
+      "memory_context_chars": 3115.0,
+      "model": "gpt-6-luna"
+    },
+    "error_contrast_memory": {
+      "accuracy": 0.2,
+      "memory_context_chars": 2625.0,
+      "model": "gpt-6-luna"
+    },
+    "coverage_balanced_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 7920.0,
+      "model": "gpt-6-luna"
+    },
+    "contrastive_boundary_memory": {
+      "accuracy": 0.4,
+      "memory_context_chars": 3944.0,
+      "model": "gpt-6-luna"
+    },
+    "confidence_adaptive_memory": {
+      "accuracy": 0.6,
+      "memory_context_chars": 5807.0,
+      "model": "gpt-6-luna"
+    },
+    "answer_contract_cues": {
+      "accuracy": 0.7,
+      "memory_context_chars": 8095.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

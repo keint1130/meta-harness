@@ -1,8 +1,8 @@
 # Dataset split sizes — full datasets
 dataset:
-  num_train: 50
+  num_train: 16
   num_val: 10
-  num_test: 25
+  num_test: 100
   overrides: {}
     # MCE tasks: use full official splits
     # USPTO:                     {num_train: 50, num_val: 30, num_test: 100}
@@ -22,6 +22,7 @@ inner_loop:
 proposer:
   model: gpt-6-luna
   reasoning_effort: high
+  dataset_blind: true  # expose only macro-average feedback to the proposer
 
 # Models to test
 models:
@@ -38,9 +39,9 @@ benchmark:
 
 # Datasets to test
 datasets:
-  # - USPTO
+  - USPTO
   - Symptom2Disease
-  # - LawBench
+  - LawBench
 
 # Memory systems to test
 memory_systems:

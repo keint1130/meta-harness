@@ -1,0 +1,298 @@
+{
+  "mode": "dataset_blind",
+  "task_count": 1,
+  "objective": "unweighted macro-average validation accuracy",
+  "systems": [
+    {
+      "system": "answer_vote_then_resolve",
+      "avg_val": 50.0,
+      "avg_context_chars": 125
+    },
+    {
+      "system": "compact_contract_tail",
+      "avg_val": 33.3,
+      "avg_context_chars": 290
+    },
+    {
+      "system": "constraint_plan_then_solve",
+      "avg_val": 46.7,
+      "avg_context_chars": 928
+    },
+    {
+      "system": "context_bm25_examples",
+      "avg_val": 36.7,
+      "avg_context_chars": 709
+    },
+    {
+      "system": "context_routed_prototypes",
+      "avg_val": 46.7,
+      "avg_context_chars": 899
+    },
+    {
+      "system": "contextual_label_prior",
+      "avg_val": 40.0,
+      "avg_context_chars": 70
+    },
+    {
+      "system": "contrastive_failure_memory",
+      "avg_val": 43.3,
+      "avg_context_chars": 340
+    },
+    {
+      "system": "draft_audit_pass",
+      "avg_val": 53.3,
+      "avg_context_chars": 1086
+    },
+    {
+      "system": "exact_input_answer_cache",
+      "avg_val": 50.0,
+      "avg_context_chars": 213
+    },
+    {
+      "system": "fewshot_all",
+      "avg_val": 46.7,
+      "avg_context_chars": 8496
+    },
+    {
+      "system": "independent_answer_reconciliation",
+      "avg_val": 53.3,
+      "avg_context_chars": 1817
+    },
+    {
+      "system": "instruction_contract_recall",
+      "avg_val": 46.7,
+      "avg_context_chars": 917
+    },
+    {
+      "system": "minimal_change_framing",
+      "avg_val": 40.0,
+      "avg_context_chars": 397
+    },
+    {
+      "system": "no_memory",
+      "avg_val": 53.3,
+      "avg_context_chars": 191
+    },
+    {
+      "system": "sparse_retrieval_memory",
+      "avg_val": 43.3,
+      "avg_context_chars": 1016
+    },
+    {
+      "system": "uncertainty_gated_review",
+      "avg_val": 53.3,
+      "avg_context_chars": 981
+    },
+    {
+      "system": "utility_gated_retrieval",
+      "avg_val": 40.0,
+      "avg_context_chars": 521
+    }
+  ],
+  "pareto": [
+    {
+      "system": "no_memory",
+      "avg_val": 53.3,
+      "avg_context_chars": 191
+    },
+    {
+      "system": "answer_vote_then_resolve",
+      "avg_val": 50.0,
+      "avg_context_chars": 125
+    },
+    {
+      "system": "contextual_label_prior",
+      "avg_val": 40.0,
+      "avg_context_chars": 70
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "system": "sparse_retrieval_memory",
+      "avg_val": 43.3,
+      "axis": "retrieval",
+      "delta": -10.0,
+      "outcome": "43.3% (-10.0)",
+      "components": [
+        "variable_prompt_region_extraction",
+        "hybrid_lexical_and_character_similarity"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "contrastive_failure_memory",
+      "avg_val": 43.3,
+      "axis": "error_feedback",
+      "delta": -10.0,
+      "outcome": "43.3% (-10.0)",
+      "components": [
+        "failure_only_storage",
+        "attempt_correction_contrast",
+        "similarity_retrieval"
+      ]
+    },
+    {
+      "iteration": 1,
+      "system": "context_routed_prototypes",
+      "avg_val": 46.7,
+      "axis": "memory_representation",
+      "delta": -6.6,
+      "outcome": "46.7% (-6.6)",
+      "components": [
+        "explicit_context_routing",
+        "diversity_based_prototype_compression"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "utility_gated_retrieval",
+      "avg_val": 40.0,
+      "axis": "retrieval",
+      "delta": -13.3,
+      "outcome": "40.0% (-13.3)",
+      "components": [
+        "exact_context_filter",
+        "single_neighbor_retrieval",
+        "similarity_abstention"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "instruction_contract_recall",
+      "avg_val": 46.7,
+      "axis": "prompt_structure",
+      "delta": -6.6,
+      "outcome": "46.7% (-6.6)",
+      "components": [
+        "repeated_contract_detection",
+        "format_contract_recall",
+        "prompt_tail_emphasis"
+      ]
+    },
+    {
+      "iteration": 2,
+      "system": "contextual_label_prior",
+      "avg_val": 40.0,
+      "axis": "memory_representation",
+      "delta": -13.3,
+      "outcome": "40.0% (-13.3)",
+      "components": [
+        "context_conditioned_label_counts",
+        "confidence_gate",
+        "exemplar_free_prior"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "compact_contract_tail",
+      "avg_val": 33.3,
+      "axis": "prompt_structure",
+      "delta": -20.0,
+      "outcome": "33.3% (-20.0)",
+      "components": [
+        "preserve_original_task",
+        "compact_final_format_check"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "draft_audit_pass",
+      "avg_val": 53.3,
+      "axis": "verification",
+      "delta": 0.0,
+      "outcome": "53.3% (+0.0)",
+      "components": [
+        "initial_draft",
+        "independent_constraint_audit"
+      ]
+    },
+    {
+      "iteration": 3,
+      "system": "exact_input_answer_cache",
+      "avg_val": 50.0,
+      "axis": "retrieval",
+      "delta": -3.3,
+      "outcome": "50.0% (-3.3)",
+      "components": [
+        "normalized_exact_input_key",
+        "unambiguous_verified_answer_reuse"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "constraint_plan_then_solve",
+      "avg_val": 46.7,
+      "axis": "prompt_structure",
+      "delta": -6.6,
+      "outcome": "46.7% (-6.6)",
+      "components": [
+        "separate_constraint_extraction",
+        "original_task_authority",
+        "checklist_guided_completion"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "independent_answer_reconciliation",
+      "avg_val": 53.3,
+      "axis": "verification",
+      "delta": 0.0,
+      "outcome": "53.3% (+0.0)",
+      "components": [
+        "independent_solution_sampling",
+        "disagreement_resolution",
+        "original_constraint_audit"
+      ]
+    },
+    {
+      "iteration": 4,
+      "system": "context_bm25_examples",
+      "avg_val": 36.7,
+      "axis": "retrieval",
+      "delta": -16.6,
+      "outcome": "36.7% (-16.6)",
+      "components": [
+        "declared_context_filter",
+        "bm25_style_term_weighting",
+        "two_case_prompt_budget"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "uncertainty_gated_review",
+      "avg_val": 53.3,
+      "axis": "verification",
+      "delta": 0.0,
+      "outcome": "53.3% (+0.0)",
+      "components": [
+        "first_pass_uncertainty_gate",
+        "selective_second_solve"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "minimal_change_framing",
+      "avg_val": 40.0,
+      "axis": "prompt_structure",
+      "delta": -13.3,
+      "outcome": "40.0% (-13.3)",
+      "components": [
+        "preserve_vs_change_analysis",
+        "single_pass_answer_check"
+      ]
+    },
+    {
+      "iteration": 5,
+      "system": "answer_vote_then_resolve",
+      "avg_val": 50.0,
+      "axis": "exploitation",
+      "delta": -3.3,
+      "outcome": "50.0% (-3.3)",
+      "components": [
+        "three_attempt_exact_vote",
+        "disagreement_only_resolution"
+      ]
+    }
+  ]
+}

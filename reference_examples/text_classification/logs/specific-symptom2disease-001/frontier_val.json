@@ -1,0 +1,29 @@
+{
+  "Symptom2Disease": {
+    "best_system": "fewshot_all",
+    "accuracy": 80.0,
+    "ctx_len": 8088.0
+  },
+  "_pareto": [
+    {
+      "system": "fewshot_all",
+      "val_accuracy": 80.0,
+      "ctx_len": 8088
+    },
+    {
+      "system": "boundary_pair_memory",
+      "val_accuracy": 76.7,
+      "ctx_len": 1965
+    },
+    {
+      "system": "bayesian_label_router",
+      "val_accuracy": 70.0,
+      "ctx_len": 728
+    },
+    {
+      "system": "no_memory",
+      "val_accuracy": 50.0,
+      "ctx_len": 191
+    }
+  ]
+}

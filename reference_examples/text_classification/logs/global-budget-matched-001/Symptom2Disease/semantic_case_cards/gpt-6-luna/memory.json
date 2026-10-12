@@ -1,0 +1,68 @@
+{
+  "cards": [
+    {
+      "card": "Typhoid — Evidence provided: several days of vomiting and diarrhea, difficulty staying hydrated, mild fever, and stomach pain. These symptoms are nonspecific; no exposure history or confirmatory testing is given.",
+      "target": "typhoid"
+    },
+    {
+      "card": "Dry, flaky skin patches with peeling on the knees and elbows, alongside joint pain, support psoriasis.",
+      "target": "psoriasis"
+    },
+    {
+      "card": "Red, scaly skin patches that are itchy and painful support psoriasis.",
+      "target": "psoriasis"
+    },
+    {
+      "card": "Itchy skin spots that may be red, bumpy, or a different color from surrounding skin, with some bumps described as little balls, support the label fungal infection.",
+      "target": "fungal infection"
+    },
+    {
+      "card": "Dengue-labeled case: substantial joint pain making walking difficult, loss of appetite, marked weakness, and nausea.",
+      "target": "dengue"
+    },
+    {
+      "card": "Several days of fever followed by painful sores near the nose and discomfort supports impetigo.",
+      "target": "impetigo"
+    },
+    {
+      "card": "Dengue: evidence is a widespread itchy rash, reduced appetite, and pronounced fatigue. No fever, bleeding, pain, or test results are reported, so symptoms alone do not confirm dengue.",
+      "target": "dengue"
+    },
+    {
+      "card": "Several days of very watery, foul-smelling diarrhea with severe headache and nausea/feeling like vomiting → typhoid.",
+      "target": "typhoid"
+    },
+    {
+      "card": "Common cold: frequent sneezing, fatigue, mucus in the nose and throat, sore throat, and a swollen-feeling neck.",
+      "target": "common cold"
+    },
+    {
+      "card": "Neck pain is the input evidence supporting cervical spondylosis. Lightheadedness and trouble standing still are also reported but do not independently establish the diagnosis.",
+      "target": "cervical spondylosis"
+    },
+    {
+      "card": "Longstanding, severe one-sided headaches with nausea, vomiting, and sensitivity to light and sound support migraine.",
+      "target": "migraine"
+    },
+    {
+      "card": "Hypertension: reported trouble concentrating and focusing, dizziness, headache, and chest pain. No blood-pressure reading or diagnostic history is provided.",
+      "target": "hypertension"
+    },
+    {
+      "card": "Neck pain with limb weakness and unsteadiness (weak on feet) supports cervical spondylosis; back pain, chronic cough, and disorientation were also reported.",
+      "target": "cervical spondylosis"
+    },
+    {
+      "card": "Frequent cough with difficulty breathing and abundant mucus, accompanied by fatigue and fever; correct label: bronchial asthma.",
+      "target": "bronchial asthma"
+    },
+    {
+      "card": "Worsening rash on the legs with difficulty running → varicose veins.",
+      "target": "varicose veins"
+    },
+    {
+      "card": "Chicken pox: red, itchy bumps across the body, especially arms and legs, with headache, fever, and loss of appetite.",
+      "target": "chicken pox"
+    }
+  ]
+}

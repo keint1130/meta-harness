@@ -1,0 +1,53 @@
+{"type": "meta", "t": 0.0, "dataset": "USPTO", "memory": "lesson_window_memory", "model": "openai/gpt-6-luna", "seed": 42, "reasoning_effort": "medium", "mode": "offline", "num_epochs": 1, "start_time": "2026-10-05T12:11:31.609022"}
+{"type": "train_batch", "t": 0.01, "step": 0, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "checkpoint", "t": 0.01, "step": 0, "memory_state": "{\n  \"lessons\": [],\n  \"pending\": [\n    {\n      \"input\": \"Context: The reaction type is Protections.\\nInput: COC(=O)[C@@H](NC(=O)OC(C)(C)C)c1ccccc1C\\nAnswer: \",\n      \"prediction\": \"CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.COC(=O)[C@@H]([NH3+])c1ccccc1C\",\n      \"ground_truth\": \"CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.COC(=O)[C@@H]([NH3+])c1ccccc1C\",\n      \"was_correct\": true\n    }\n  ],\n  \"recent\": [\n    {\n      \"input\": \"Context: The reaction type is Protections.\\nInput: COC(=O)[C@@H](NC(=O)OC(C)(C)C)c1ccccc1C\\nAnswer: \",\n      \"target\": \"CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.COC(=O)[C@@H]([NH3+])c1ccccc1C\"\n    }\n  ]\n}"}
+{"type": "train_batch", "t": 0.01, "step": 1, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 2, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 3, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 4, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 5, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 0.01, "step": 6, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.62, "step": 7, "epoch": 0, "batch_size": 1, "train_ms": 6608}
+{"type": "train_batch", "t": 6.62, "step": 8, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.62, "step": 9, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.62, "step": 10, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.62, "step": 11, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.63, "step": 12, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.63, "step": 13, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 6.63, "step": 14, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 15, "epoch": 0, "batch_size": 1, "train_ms": 2959}
+{"type": "train_batch", "t": 9.59, "step": 16, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 17, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 18, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 19, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 20, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.59, "step": 21, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 9.6, "step": 22, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.05, "step": 23, "epoch": 0, "batch_size": 1, "train_ms": 3454}
+{"type": "train_batch", "t": 13.05, "step": 24, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.05, "step": 25, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.05, "step": 26, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.06, "step": 27, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.06, "step": 28, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.06, "step": 29, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 13.06, "step": 30, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.48, "step": 31, "epoch": 0, "batch_size": 1, "train_ms": 3420}
+{"type": "train_batch", "t": 16.48, "step": 32, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.48, "step": 33, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.48, "step": 34, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.48, "step": 35, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.48, "step": 36, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.49, "step": 37, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 16.49, "step": 38, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.65, "step": 39, "epoch": 0, "batch_size": 1, "train_ms": 5163}
+{"type": "train_batch", "t": 21.65, "step": 40, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.65, "step": 41, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.65, "step": 42, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.66, "step": 43, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.66, "step": 44, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.66, "step": 45, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 21.66, "step": 46, "epoch": 0, "batch_size": 1, "train_ms": 0}
+{"type": "train_batch", "t": 26.63, "step": 47, "epoch": 0, "batch_size": 1, "train_ms": 4970}
+{"type": "checkpoint", "t": 26.63, "step": 47, "memory_state": "{\n  \"lessons\": [\n    \"Do not infer the transformation\u2019s direction from the reaction-type label alone: the examples tagged \u201cReductions\u201d show oxidation-like changes, so compare the structures directly.\",\n    \"Use the reaction type to identify the localized structural change, preserve unaffected parts of the molecule, and include any coproducts shown as separate components.\",\n    \"Treat the reaction-type label as a broad cue, not a literal prediction of the bond change; infer the transformation from the substrate and include any disconnected coproducts shown by the reaction pattern.\",\n    \"Use the stated reaction class to guide the retrosynthetic change and preserve unrelated scaffold features; these records contain no incorrect attempts to reveal finer distinctions.\",\n    \"Treat the reaction label as context, not a complete recipe: identify the substrate\u2019s specific transformation, preserve unrelated structure, and account for any coproducts shown.\",\n    \"Use the reaction context to identify the targeted bond or functional group, preserve unrelated parts of the molecule, and include any fragments released as separate products.\"\n  ],\n  \"pending\": [],\n  \"recent\": [\n    {\n      \"input\": \"Context: The reaction type is Functional group interconversion (FGI).\\nInput: CC(C)(C)c1cc(C=NO)c(O)c(-c2ccc(C(F)(F)F)nc2)c1\\nAnswer: \",\n      \"target\": \"CC(C)(C)c1cc(C=O)c(O)c(-c2ccc(C(F)(F)F)nc2)c1.NO\"\n    },\n    {\n      \"input\": \"Context: The reaction type is Acylation and related processes.\\nInput: Cc1nc(NC(=O)CCCCC2CCSS2)sc1CCO[N+](=O)[O-]\\nAnswer: \",\n      \"target\": \"Cc1nc(N)sc1CCO[N+](=O)[O-].O=C(O)CCCCC1CCSS1\"\n    },\n    {\n      \"input\": \"Context: The reaction type is Protections.\\nInput: CC(C)(C)OC(=O)N1Cc2ccc([N+](=O)[O-])cc2C1=O\\nAnswer: \",\n      \"target\": \"CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=C1NCc2ccc([N+](=O)[O-])cc21\"\n    },\n    {\n      \"input\": \"Context: The reaction type is Oxidations.\\nInput: COc1cccc(Nc2c(C(N)=O)cnc3c(C)cc(S(=O)(=O)c4cccc(C(=O)Nc5ccc(-c6ccc(C=O)cc6)cc5)c4)cc23)c1\\nAnswer: \",\n      \"target\": \"COc1cccc(Nc2c(C(N)=O)cnc3c(C)cc(S(=O)(=O)c4cccc(C(=O)Nc5ccc(-c6ccc(CO)cc6)cc5)c4)cc23)c1\"\n    }\n  ]\n}"}
+{"type": "val_epoch", "t": 61.44, "epoch": 0, "val_acc": 0.4333, "val_correct": 13, "val_total": 30}
+{"type": "done", "t": 61.53, "train_acc": 0.0, "train_correct": 0, "train_total": 48, "val_acc": 0.4333, "test_acc": null, "runtime_seconds": 61.53, "memory_context_chars": 2365, "llm_calls": 66, "llm_input_tokens": 37578, "llm_output_tokens": 42187}

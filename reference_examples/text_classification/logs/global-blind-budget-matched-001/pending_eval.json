@@ -1,0 +1,38 @@
+{
+  "iteration": 1,
+  "candidates": [
+    {
+      "name": "retrieval_diverse",
+      "file": "agents/retrieval_diverse.py",
+      "hypothesis": "If relevant demonstrations account for part of fewshot_all's 63.3% aggregate accuracy, retrieving up to five label-diverse neighbors will exceed 63.3% macro accuracy while using less than its 4,331-character average context.",
+      "axis": "retrieval",
+      "base_system": "fewshot_all",
+      "components": [
+        "inverse_document_frequency_similarity",
+        "label_diverse_top_k_selection"
+      ]
+    },
+    {
+      "name": "class_cue_profiles",
+      "file": "agents/class_cue_profiles.py",
+      "hypothesis": "If labeled examples contain reusable class vocabulary, compact per-label contrastive cue profiles will exceed no_memory's 33.3% aggregate accuracy while using less average context than fewshot_all's 4,331 characters.",
+      "axis": "representation",
+      "base_system": "fewshot_all",
+      "components": [
+        "document_frequency_profiles",
+        "smoothed_contrastive_term_scoring"
+      ]
+    },
+    {
+      "name": "correction_memory",
+      "file": "agents/correction_memory.py",
+      "hypothesis": "If model errors recur on similar inputs, retrieving prior mistakes with corrected labels will exceed no_memory's 33.3% aggregate accuracy while using less average context than fewshot_all's 4,331 characters.",
+      "axis": "feedback",
+      "base_system": "no_memory",
+      "components": [
+        "bounded_error_episode_memory",
+        "similarity_retrieval_of_corrections"
+      ]
+    }
+  ]
+}

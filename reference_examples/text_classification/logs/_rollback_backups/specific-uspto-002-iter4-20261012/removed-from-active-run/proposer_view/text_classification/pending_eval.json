@@ -1,0 +1,40 @@
+{
+  "iteration": 4,
+  "candidates": [
+    {
+      "name": "structured_input_cache",
+      "file": "agents/structured_input_cache.py",
+      "hypothesis": "Extracting explicit context and problem fields for an exact fingerprint will reuse verified answers across wrapper variations and exceed the exact-input cache's 50.0% aggregate accuracy without adding prompt context; a lower aggregate score falsifies the claim.",
+      "axis": "memory_representation",
+      "base_system": "exact_input_answer_cache",
+      "components": [
+        "core_problem_field_fingerprint",
+        "conflict_aware_verified_answer_reuse"
+      ]
+    },
+    {
+      "name": "rare_feature_retrieval",
+      "file": "agents/rare_feature_retrieval.py",
+      "hypothesis": "Downweighting features repeated across stored cases and retrieving by rare-feature coverage will exceed sparse retrieval's 43.3% aggregate accuracy while keeping injected context compact; failure to improve aggregate accuracy falsifies the claim.",
+      "axis": "retrieval",
+      "base_system": "sparse_retrieval_memory",
+      "components": [
+        "corpus_frequency_weighting",
+        "rare_feature_query_coverage",
+        "small_verified_reference_set"
+      ]
+    },
+    {
+      "name": "independent_draft_adjudicator",
+      "file": "agents/independent_draft_adjudicator.py",
+      "hypothesis": "Two independently generated answers followed by input-grounded adjudication will exceed the draft-audit system's 53.3% aggregate accuracy by reducing anchoring on the first draft; failure to improve aggregate accuracy falsifies the claim.",
+      "axis": "verification",
+      "base_system": "draft_audit_pass",
+      "components": [
+        "independent_answer_generation",
+        "disagreement_sensitive_adjudication",
+        "original_input_verification"
+      ]
+    }
+  ]
+}

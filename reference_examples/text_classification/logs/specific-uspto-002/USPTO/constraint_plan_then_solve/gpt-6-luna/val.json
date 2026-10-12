@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.4666666666666667,
+  "correct": 14,
+  "total": 30,
+  "dataset": "USPTO",
+  "memory": "agents/constraint_plan_then_solve.py",
+  "model": "openai/gpt-6-luna",
+  "reasoning_effort": "medium",
+  "seed": 42,
+  "mode": "offline",
+  "num_epochs": 1,
+  "timestamp": "2026-10-12T18:58:27.008292",
+  "runtime_seconds": 49.44,
+  "memory_context_chars": 928,
+  "llm_calls": 120,
+  "llm_input_tokens": 26780,
+  "llm_output_tokens": 39029,
+  "llm_total_tokens": 65809
+}

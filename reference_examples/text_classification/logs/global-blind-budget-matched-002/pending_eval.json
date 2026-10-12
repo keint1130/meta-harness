@@ -1,0 +1,41 @@
+{
+  "iteration": 6,
+  "candidates": [
+    {
+      "name": "neighborhood_consensus_memory",
+      "file": "agents/neighborhood_consensus_memory.py",
+      "hypothesis": "Across the pooled validation traces, summarizing similarity-weighted target support among the six closest references will improve macro-average accuracy over query-diverse retrieval when nearby examples disagree, with only a modest context increase.",
+      "axis": "retrieval",
+      "base_system": "query_diverse_retrieval",
+      "components": [
+        "query_local_neighbor_retrieval",
+        "similarity_weighted_target_support",
+        "conflict_explicit_prompting"
+      ]
+    },
+    {
+      "name": "similarity_gated_correction_memory",
+      "file": "agents/similarity_gated_correction_memory.py",
+      "hypothesis": "Across the pooled validation traces, showing prior mistakes only alongside close corrected cases and relevant successes will improve macro-average accuracy over ungated error memory by reducing the influence of unrelated corrections.",
+      "axis": "learning",
+      "base_system": "error_contrast_memory",
+      "components": [
+        "feedback_labeled_case_memory",
+        "similarity_gated_correction_retrieval",
+        "nearby_success_and_error_contrast"
+      ]
+    },
+    {
+      "name": "repeated_line_factoring_memory",
+      "file": "agents/repeated_line_factoring_memory.py",
+      "hypothesis": "Across the pooled validation traces, factoring verbatim repeated lines out of reference examples will reduce injected context while retaining enough example-specific evidence to match or exceed instruction-anchored memory accuracy.",
+      "axis": "memory_representation",
+      "base_system": "instruction_anchored_memory",
+      "components": [
+        "exact_line_frequency_detection",
+        "shared_wording_factoring",
+        "problem_specific_labeled_references"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "USPTO": {
+    "scaffold_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 6969.0,
+      "model": "gpt-6-luna"
+    },
+    "no_memory": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 191.0,
+      "model": "gpt-6-luna"
+    },
+    "lesson_window_memory": {
+      "accuracy": 0.43333333333333335,
+      "memory_context_chars": 2365.0,
+      "model": "gpt-6-luna"
+    },
+    "fewshot_all": {
+      "accuracy": 0.4666666666666667,
+      "memory_context_chars": 8496.0,
+      "model": "gpt-6-luna"
+    },
+    "correction_ledger": {
+      "accuracy": 0.5333333333333333,
+      "memory_context_chars": 409.0,
+      "model": "gpt-6-luna"
+    }
+  }
+}

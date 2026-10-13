@@ -57,6 +57,11 @@ Each successful batch is checkpointed next to the requested output as
 same command again to resume from the last completed batch. The partial file is
 removed after the final result is written successfully.
 
+After deterministic grading, a lightweight LLM judge runs only for non-empty
+responses marked incorrect. Solver and judge usage are stored separately as
+`solver_*_tokens` and `judge_*_tokens`; `total_*_tokens` is their sum. Empty
+solver responses are never sent to the judge.
+
 See `domain_spec.md` for the harness boundary, evaluation protocol, and open
 budget decisions.  Do not use the final-test split during development.
 

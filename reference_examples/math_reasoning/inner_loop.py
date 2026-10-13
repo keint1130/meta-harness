@@ -77,6 +77,34 @@ def save_partial(output_path: Path, partial: dict) -> None:
     path.write_text(json.dumps(partial, indent=2), encoding="utf-8")
 
 
+def judge_prompt(problem: str, groundtruth: str, response: str) -> str:
+    return f"""Decide whether the student's final mathematical answer is equivalent to the reference answer.
+
+Allow equivalent notation, reordered finite sets, renamed arbitrary variables, labelled equalities, and logically equivalent descriptions of a solution set. Do not accept an answer merely because intermediate work matches. Judge the final answer in the context of the problem.
+
+Problem:
+{problem}
+
+Reference answer:
+{groundtruth}
+
+Student response:
+{response}
+
+Return exactly one of these and nothing else:
+\\boxed{{correct}}
+\\boxed{{incorrect}}"""
+
+
+def parse_judge_response(response: str) -> float:
+    value = response.lower().replace(" ", "")
+    if "\\boxed{incorrect}" in value:
+        return 0.0
+    if "\\boxed{correct}" in value:
+        return 1.0
+    return 0.0
+
+
 def evaluate(
     candidate_path: Path,
     split_name: str,
@@ -164,11 +192,59 @@ def evaluate(
                 "domain": row["domain"],
                 "subcategory": row["subcategory"],
                 "groundtruth": row["groundtruth"],
+                "problem": row["problem"],
                 "prompt": prompt,
                 "response": response,
+                "deterministic_score": score,
+                "judge_score": None,
+                "judge_response": None,
                 "score": score,
             }
         )
+
+    judge_cfg = config.get("judge", {})
+    judge_targets = [
+        item
+        for item in details
+        if judge_cfg.get("enabled", False)
+        and item["deterministic_score"] == 0.0
+        and item["response"].strip()
+    ]
+    judge_input_tokens = 0
+    judge_output_tokens = 0
+    if judge_targets:
+        print(
+            f"Judging {len(judge_targets)} non-empty deterministic failures with "
+            f"{judge_cfg['model']} reasoning={judge_cfg['reasoning_effort']}",
+            flush=True,
+        )
+        judge_kwargs = {
+            "max_tokens": judge_cfg["max_tokens"],
+            "reasoning_effort": judge_cfg["reasoning_effort"],
+            "cache": judge_cfg.get("cache", False),
+        }
+        judge_batch_size = int(judge_cfg.get("batch_size", judge_cfg["concurrency"]))
+        for start in range(0, len(judge_targets), judge_batch_size):
+            target_batch = judge_targets[start : start + judge_batch_size]
+            prompt_batch = [
+                judge_prompt(item["problem"], item["groundtruth"], item["response"])
+                for item in target_batch
+            ]
+            with LLM(model=judge_cfg["model"], max_concurrent=judge_cfg["concurrency"]) as judge_llm:
+                judge_raw = judge_llm.generate(prompt_batch, **judge_kwargs)
+                judge_input_tokens += judge_llm.total_input_tokens
+                judge_output_tokens += judge_llm.total_output_tokens
+            for item, raw_value in zip(target_batch, judge_raw):
+                judge_text = _response_text(raw_value)
+                item["judge_response"] = judge_text
+                item["judge_score"] = parse_judge_response(judge_text)
+                item["score"] = max(item["deterministic_score"], item["judge_score"])
+            print(
+                f"  judge [{min(start + len(target_batch), len(judge_targets)):>3}/"
+                f"{len(judge_targets)}] tokens={judge_input_tokens}in/"
+                f"{judge_output_tokens}out",
+                flush=True,
+            )
 
     domain_scores = {}
     for selected_domain in config["domains"]:
@@ -187,8 +263,12 @@ def evaluate(
         "accuracy": accuracy,
         "macro_accuracy": macro_accuracy,
         "domain_accuracy": domain_scores,
-        "total_input_tokens": input_tokens,
-        "total_output_tokens": output_tokens,
+        "solver_input_tokens": input_tokens,
+        "solver_output_tokens": output_tokens,
+        "judge_input_tokens": judge_input_tokens,
+        "judge_output_tokens": judge_output_tokens,
+        "total_input_tokens": input_tokens + judge_input_tokens,
+        "total_output_tokens": output_tokens + judge_output_tokens,
         "elapsed_seconds": round(elapsed, 1),
         "empty_responses": sum(not response.strip() for response in responses),
         "details": details,

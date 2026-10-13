@@ -26,3 +26,12 @@ proposer:
   reasoning_effort: high
   candidates_per_iteration: 3
 
+judge:
+  enabled: true
+  model: openai/gpt-6-luna
+  reasoning_effort: low
+  max_tokens: 1024
+  concurrency: 2
+  batch_size: 2
+  cache: false
+

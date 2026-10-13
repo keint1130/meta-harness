@@ -2,7 +2,14 @@ from pathlib import Path
 
 import pytest
 
-from inner_loop import iter_batches, load_candidate, load_partial, partial_path, save_partial
+from inner_loop import (
+    iter_batches,
+    load_candidate,
+    load_partial,
+    parse_judge_response,
+    partial_path,
+    save_partial,
+)
 
 
 def test_no_memory_candidate_contract():
@@ -50,4 +57,10 @@ def test_partial_result_rejects_different_run(tmp_path):
     save_partial(output, {"candidate": "x", "responses": []})
     with pytest.raises(ValueError, match="mismatch"):
         load_partial(output, {"candidate": "y"})
+
+
+def test_parse_judge_response_is_fail_closed():
+    assert parse_judge_response(r"\boxed{correct}") == 1.0
+    assert parse_judge_response(r"\boxed{incorrect}") == 0.0
+    assert parse_judge_response("probably correct") == 0.0
 

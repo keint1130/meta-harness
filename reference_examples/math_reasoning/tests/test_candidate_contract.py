@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from inner_loop import load_candidate
+from inner_loop import iter_batches, load_candidate
 
 
 def test_no_memory_candidate_contract():
@@ -18,4 +18,17 @@ def test_candidate_requires_candidate_class(tmp_path):
     path.write_text("VALUE = 1\n", encoding="utf-8")
     with pytest.raises(TypeError, match="Candidate"):
         load_candidate(path)
+
+
+def test_iter_batches_reports_bounded_work_units():
+    assert list(iter_batches(["a", "b", "c", "d", "e"], 2)) == [
+        ["a", "b"],
+        ["c", "d"],
+        ["e"],
+    ]
+
+
+def test_iter_batches_rejects_invalid_size():
+    with pytest.raises(ValueError, match="at least 1"):
+        list(iter_batches(["a"], 0))
 

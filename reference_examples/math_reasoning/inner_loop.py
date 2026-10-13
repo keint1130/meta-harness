@@ -49,6 +49,13 @@ def _response_text(value) -> str:
     return "" if value is None else str(value)
 
 
+def iter_batches(items: list[str], batch_size: int):
+    if batch_size < 1:
+        raise ValueError("progress_batch_size must be at least 1")
+    for start in range(0, len(items), batch_size):
+        yield items[start : start + batch_size]
+
+
 def evaluate(
     candidate_path: Path,
     split_name: str,
@@ -72,8 +79,26 @@ def evaluate(
     }
     if experiment.get("temperature") is not None:
         generation_kwargs["temperature"] = experiment["temperature"]
+    batch_size = int(experiment.get("progress_batch_size", experiment["concurrency"]))
+    print(
+        f"Starting {candidate_path.stem}: split={split_name} "
+        f"domain={domain or 'global'} problems={len(rows)} "
+        f"model={experiment['model']} reasoning={experiment['reasoning_effort']} "
+        f"concurrency={experiment['concurrency']}",
+        flush=True,
+    )
+    raw = []
     with LLM(model=experiment["model"], max_concurrent=experiment["concurrency"]) as llm:
-        raw = llm.generate(prompts, **generation_kwargs)
+        for prompt_batch in iter_batches(prompts, batch_size):
+            raw.extend(llm.generate(prompt_batch, **generation_kwargs))
+            completed = len(raw)
+            batch_elapsed = time.monotonic() - started
+            print(
+                f"  [{completed:>3}/{len(rows)}] "
+                f"elapsed={batch_elapsed:.1f}s "
+                f"tokens={llm.total_input_tokens}in/{llm.total_output_tokens}out",
+                flush=True,
+            )
         input_tokens = llm.total_input_tokens
         output_tokens = llm.total_output_tokens
     elapsed = time.monotonic() - started

@@ -4,6 +4,7 @@ experiment:
   reasoning_effort: medium
   max_tokens: 4096
   concurrency: 2
+  progress_batch_size: 2
   cache: false
 
 paths:

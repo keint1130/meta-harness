@@ -45,6 +45,11 @@ loads generation and symbolic grading from the sibling `math-frontier-eval`
 checkout.  This command calls the configured model and therefore requires
 `OPENAI_API_KEY`.
 
+Progress is printed after every `experiment.progress_batch_size` problems
+(default: 2), including completed problems, elapsed time, and cumulative input
+and output tokens. Keep this value at or above the configured concurrency for
+efficient parallel execution.
+
 See `domain_spec.md` for the harness boundary, evaluation protocol, and open
 budget decisions.  Do not use the final-test split during development.
 

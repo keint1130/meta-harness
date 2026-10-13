@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from inner_loop import iter_batches, load_candidate
+from inner_loop import iter_batches, load_candidate, load_partial, partial_path, save_partial
 
 
 def test_no_memory_candidate_contract():
@@ -31,4 +31,23 @@ def test_iter_batches_reports_bounded_work_units():
 def test_iter_batches_rejects_invalid_size():
     with pytest.raises(ValueError, match="at least 1"):
         list(iter_batches(["a"], 0))
+
+
+def test_partial_result_round_trip(tmp_path):
+    output = tmp_path / "result.json"
+    identity = {"candidate": "x", "problem_ids": ["p1", "p2"]}
+    initial = load_partial(output, identity)
+    assert initial["responses"] == []
+    initial["responses"] = [["answer"]]
+    initial["input_tokens"] = 10
+    save_partial(output, initial)
+    assert partial_path(output).exists()
+    assert load_partial(output, identity)["responses"] == [["answer"]]
+
+
+def test_partial_result_rejects_different_run(tmp_path):
+    output = tmp_path / "result.json"
+    save_partial(output, {"candidate": "x", "responses": []})
+    with pytest.raises(ValueError, match="mismatch"):
+        load_partial(output, {"candidate": "y"})
 

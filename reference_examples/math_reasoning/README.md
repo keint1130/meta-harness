@@ -50,6 +50,11 @@ Progress is printed after every `experiment.progress_batch_size` problems
 and output tokens. Keep this value at or above the configured concurrency for
 efficient parallel execution.
 
+Each successful batch is checkpointed next to the requested output as
+`<output>.partial.json`. If a network or API error interrupts a run, execute the
+same command again to resume from the last completed batch. The partial file is
+removed after the final result is written successfully.
+
 See `domain_spec.md` for the harness boundary, evaluation protocol, and open
 budget decisions.  Do not use the final-test split during development.
 

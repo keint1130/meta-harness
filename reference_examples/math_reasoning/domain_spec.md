@@ -9,6 +9,10 @@ problems are fixed.  Candidate harnesses may change retrieval, example
 selection, context construction, prompting, routing, generation control, and
 output processing.
 
+The solver uses `reasoning_effort: medium`.  Sampling temperature is omitted
+because GPT-6 does not accept `temperature` when reasoning effort is not
+`none`.
+
 The experiment compares four domain-specific harnesses (algebra,
 combinatorics, geometry, and number theory) with one global math harness.  The
 default smoke budget is one proposer iteration with three candidates.  A full

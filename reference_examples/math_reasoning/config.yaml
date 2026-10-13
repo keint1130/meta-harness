@@ -2,7 +2,6 @@ experiment:
   seed: 42
   model: openai/gpt-6-luna
   reasoning_effort: medium
-  temperature: 1.0
   max_tokens: 4096
   concurrency: 2
   cache: false

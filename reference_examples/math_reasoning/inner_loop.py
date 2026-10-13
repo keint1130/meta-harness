@@ -65,13 +65,15 @@ def evaluate(
 
     experiment = config["experiment"]
     started = time.monotonic()
+    generation_kwargs = {
+        "max_tokens": experiment["max_tokens"],
+        "cache": experiment["cache"],
+        "reasoning_effort": experiment["reasoning_effort"],
+    }
+    if experiment.get("temperature") is not None:
+        generation_kwargs["temperature"] = experiment["temperature"]
     with LLM(model=experiment["model"], max_concurrent=experiment["concurrency"]) as llm:
-        raw = llm.generate(
-            prompts,
-            temperature=experiment["temperature"],
-            max_tokens=experiment["max_tokens"],
-            cache=experiment["cache"],
-        )
+        raw = llm.generate(prompts, **generation_kwargs)
         input_tokens = llm.total_input_tokens
         output_tokens = llm.total_output_tokens
     elapsed = time.monotonic() - started

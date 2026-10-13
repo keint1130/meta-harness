@@ -1,0 +1,28 @@
+experiment:
+  seed: 42
+  model: openai/gpt-6-luna
+  reasoning_effort: medium
+  temperature: 1.0
+  max_tokens: 4096
+  concurrency: 2
+  cache: false
+
+paths:
+  math_eval_repo: ../../../math-frontier-eval
+
+splits:
+  search: 30
+  dev: 20
+  test: 50
+
+domains:
+  - algebra
+  - combinatorics
+  - geometry
+  - number_theory
+
+proposer:
+  model: gpt-6-luna
+  reasoning_effort: high
+  candidates_per_iteration: 3
+

@@ -1,0 +1,18 @@
+[project]
+name = "math-reasoning-meta-harness"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "llm-provider @ git+https://github.com/yoonholee/llm-provider",
+    "latex2sympy2-extended>=1.11.0",
+    "pytest>=8.0.0",
+    "pyyaml>=6.0.0",
+    "sympy>=1.14.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.uv]
+package = false

@@ -2,7 +2,7 @@ experiment:
   seed: 42
   model: openai/gpt-6-luna
   reasoning_effort: medium
-  max_tokens: 4096
+  max_tokens: 16384
   concurrency: 2
   progress_batch_size: 2
   cache: false

@@ -141,11 +141,13 @@ def evaluate(
         }
         save_partial(output_path, partial)
         completed = len(raw)
+        empty_responses = sum(not _response_text(value).strip() for value in raw)
         batch_elapsed = time.monotonic() - started
         print(
             f"  [{completed:>3}/{len(rows)}] "
             f"elapsed={batch_elapsed:.1f}s "
-            f"tokens={input_tokens}in/{output_tokens}out",
+            f"tokens={input_tokens}in/{output_tokens}out "
+            f"empty={empty_responses}",
             flush=True,
         )
     elapsed = time.monotonic() - started
@@ -188,6 +190,7 @@ def evaluate(
         "total_input_tokens": input_tokens,
         "total_output_tokens": output_tokens,
         "elapsed_seconds": round(elapsed, 1),
+        "empty_responses": sum(not response.strip() for response in responses),
         "details": details,
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)

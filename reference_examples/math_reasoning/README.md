@@ -47,7 +47,9 @@ checkout.  This command calls the configured model and therefore requires
 
 Progress is printed after every `experiment.progress_batch_size` problems
 (default: 2), including completed problems, elapsed time, and cumulative input
-and output tokens. Keep this value at or above the configured concurrency for
+and output tokens. It also reports the cumulative number of empty visible
+responses, which can indicate that reasoning consumed the completion budget.
+Keep this value at or above the configured concurrency for
 efficient parallel execution.
 
 Each successful batch is checkpointed next to the requested output as

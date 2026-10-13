@@ -9,7 +9,9 @@ problems are fixed.  Candidate harnesses may change retrieval, example
 selection, context construction, prompting, routing, generation control, and
 output processing.
 
-The solver uses `reasoning_effort: medium`.  Sampling temperature is omitted
+The solver uses `reasoning_effort: medium` and a 16,384-token completion budget
+so reasoning does not routinely consume the budget before a visible answer.
+Sampling temperature is omitted
 because GPT-6 does not accept `temperature` when reasoning effort is not
 `none`.
 

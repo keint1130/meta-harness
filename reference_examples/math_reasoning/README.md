@@ -21,10 +21,19 @@ cd reference_examples/math_reasoning
 uv run pytest -q
 ```
 
-Evaluate the no-retrieval baseline on one domain's search split:
+Run from WSL and use the existing Linux environment from `math-frontier-eval`.
+Running `python inner_loop.py` with a Windows Python environment is unsupported
+because `llm-provider` uses Linux-only modules. From the MoHarness root in
+PowerShell, evaluate the no-retrieval baseline with:
+
+```powershell
+./scripts/run_math_search_baseline.ps1 -Domain algebra
+```
+
+The equivalent command inside WSL is:
 
 ```bash
-python inner_loop.py \
+../../../math-frontier-eval/.venv-linux/bin/python inner_loop.py \
   --candidate agents/no_memory.py \
   --split search \
   --domain algebra \

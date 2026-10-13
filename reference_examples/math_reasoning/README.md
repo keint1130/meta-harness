@@ -30,6 +30,15 @@ PowerShell, evaluate the no-retrieval baseline with:
 ./scripts/run_math_search_baseline.ps1 -Domain algebra
 ```
 
+Run all four domains sequentially under a versioned run name with:
+
+```powershell
+./scripts/run_math_search_baselines.ps1
+```
+
+The default run name is `baseline-medium-16384-judge-v1`. Completed domain
+result files are skipped when the sequence is restarted.
+
 The equivalent command inside WSL is:
 
 ```bash
@@ -37,7 +46,7 @@ The equivalent command inside WSL is:
   --candidate agents/no_memory.py \
   --split search \
   --domain algebra \
-  --output logs/manual/algebra/no_memory/search.json
+  --output logs/baseline-medium-16384-judge-v1/algebra/no_memory/search.json
 ```
 
 Omit `--domain` to evaluate the global, four-domain pool.  `inner_loop.py`

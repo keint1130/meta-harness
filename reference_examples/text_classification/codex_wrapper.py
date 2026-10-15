@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import time
 from dataclasses import dataclass
@@ -60,6 +61,18 @@ def _load_skills(skills):
     return contents
 
 
+def _cli_path(path, executable):
+    """Translate a WSL mount path when invoking a Windows executable."""
+    value = str(path)
+    if not str(executable).lower().endswith(".exe"):
+        return value
+    match = re.match(r"^/mnt/([a-zA-Z])/(.*)$", value)
+    if not match:
+        return value
+    drive, tail = match.groups()
+    return f"{drive.upper()}:\\{tail.replace('/', chr(92))}"
+
+
 def build_command(prompt, model=None, cwd=None, effort=None, skills=None):
     loaded_skills = _load_skills(skills)
     if loaded_skills:
@@ -69,8 +82,9 @@ def build_command(prompt, model=None, cwd=None, effort=None, skills=None):
         )
         prompt = f"Follow these proposer instructions:\n\n{skill_text}\n\n{prompt}"
 
+    executable = os.environ.get("CODEX_CLI", "codex")
     cmd = [
-        "codex",
+        executable,
         "exec",
         "--json",
         "--ephemeral",
@@ -80,7 +94,7 @@ def build_command(prompt, model=None, cwd=None, effort=None, skills=None):
         "--approve-for-me",
     ]
     if cwd:
-        cmd.extend(["--cd", str(cwd)])
+        cmd.extend(["--cd", _cli_path(cwd, executable)])
     if model:
         cmd.extend(["--model", model])
     if effort:

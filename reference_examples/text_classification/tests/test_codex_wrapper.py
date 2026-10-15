@@ -1,5 +1,6 @@
 import json
 import unittest
+from unittest import mock
 
 import codex_wrapper
 
@@ -48,6 +49,15 @@ class CodexWrapperTests(unittest.TestCase):
         self.assertNotIn("--sandbox", cmd)
         self.assertIn("--approve-for-me", cmd)
         self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", cmd)
+
+    def test_build_command_accepts_cross_environment_cli_path(self):
+        with mock.patch.dict("os.environ", {"CODEX_CLI": "/mnt/c/codex.exe"}):
+            cmd = codex_wrapper.build_command(
+                "do work", cwd="/mnt/c/Users/test/repo"
+            )
+
+        self.assertEqual(cmd[0], "/mnt/c/codex.exe")
+        self.assertEqual(cmd[cmd.index("--cd") + 1], r"C:\Users\test\repo")
 
 
 if __name__ == "__main__":

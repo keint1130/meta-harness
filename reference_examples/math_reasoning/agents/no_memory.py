@@ -2,8 +2,9 @@
 
 
 class Candidate:
-    def __init__(self, test_problems=None):
-        self.test_problems = test_problems or []
+    def __init__(self, memory=None, task_context=None):
+        # Deliberately ignore both external memory and task identity.
+        pass
 
     def build_prompt(self, problem: str) -> str:
         return (

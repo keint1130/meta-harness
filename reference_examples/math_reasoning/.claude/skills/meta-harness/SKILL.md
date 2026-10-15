@@ -5,7 +5,8 @@ description: Propose one iteration of math harness candidates.
 
 # Math Harness Evolution
 
-Implement exactly three new candidate harnesses in `agents/`.  Each file must
+Implement exactly the number of new candidate harnesses requested by the outer
+loop, in the run-local candidate directory specified in its prompt. Each file must
 expose `Candidate(test_problems=None)` with `build_prompt(problem: str) -> str`.
 
 Read `domain_spec.md`, `config.yaml`, existing candidates, and the run files
@@ -19,7 +20,8 @@ routing, example selection, context construction, prompting, or output
 processing.  Prefer mechanism changes over numeric parameter variants.  Do not
 hardcode benchmark problem IDs, answers, or problem text.
 
-Import-check each candidate without constructing it.  Then write
+Do not modify shared files in `agents/` or files belonging to another run.
+Import-check each candidate without constructing it. Then write
 `pending_eval.json` at the path stated in the task prompt:
 
 ```json

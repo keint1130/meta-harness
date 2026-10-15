@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import sys
 import time
 from pathlib import Path
 
+from math_harness import SolvedMathMemory, instantiate_candidate
 from splits import ROOT, load_config, select_rows
 
 
@@ -63,12 +65,54 @@ def partial_path(output_path: Path) -> Path:
 def load_partial(output_path: Path, expected: dict) -> dict:
     path = partial_path(output_path)
     if not path.exists():
-        return {**expected, "responses": [], "input_tokens": 0, "output_tokens": 0}
+        return {
+            **expected,
+            "responses_by_problem_id": {},
+            "input_tokens": 0,
+            "output_tokens": 0,
+        }
     partial = json.loads(path.read_text(encoding="utf-8"))
     for key, value in expected.items():
         if partial.get(key) != value:
             raise ValueError(f"Partial result mismatch for {key}: {path}")
     return partial
+
+
+def partial_responses_by_id(partial: dict, problem_ids: list[str]) -> dict:
+    """Read current sparse checkpoints and the older prefix-list format."""
+    if "responses_by_problem_id" in partial:
+        return dict(partial["responses_by_problem_id"])
+    responses = partial.get("responses", [])
+    return {
+        problem_id: response
+        for problem_id, response in zip(problem_ids, responses)
+    }
+
+
+def load_reused_responses(
+    source: Path,
+    problem_ids: list[str],
+    regenerate_ids: set[str],
+) -> tuple[dict, int, int]:
+    result = json.loads(source.read_text(encoding="utf-8"))
+    details = result.get("details", [])
+    by_id = {item["problem_id"]: item["response"] for item in details}
+    missing = set(problem_ids).difference(by_id)
+    if missing:
+        raise ValueError(f"Reuse result is missing problem IDs: {sorted(missing)}")
+    unknown = regenerate_ids.difference(problem_ids)
+    if unknown:
+        raise ValueError(f"Unknown regenerate IDs: {sorted(unknown)}")
+    reused = {
+        problem_id: by_id[problem_id]
+        for problem_id in problem_ids
+        if problem_id not in regenerate_ids
+    }
+    return (
+        reused,
+        int(result.get("solver_input_tokens", 0)),
+        int(result.get("solver_output_tokens", 0)),
+    )
 
 
 def save_partial(output_path: Path, partial: dict) -> None:
@@ -80,7 +124,9 @@ def save_partial(output_path: Path, partial: dict) -> None:
 def judge_prompt(problem: str, groundtruth: str, response: str) -> str:
     return f"""Decide whether the student's final mathematical answer is equivalent to the reference answer.
 
-Allow equivalent notation, reordered finite sets, renamed arbitrary variables, labelled equalities, and logically equivalent descriptions of a solution set. Do not accept an answer merely because intermediate work matches. Judge the final answer in the context of the problem.
+Allow equivalent notation, reordered finite sets, renamed arbitrary variables, labelled equalities, reparameterized complete solution families, and logically equivalent descriptions of a solution set.
+
+Require the student's claimed final answer to be complete and equivalent to the reference answer. A recurrence, algorithm, unevaluated optimization, bound, or proof strategy is incorrect when the problem asks for an explicit value or closed form. A finite list is incorrect when the reference describes a larger infinite family. Do not accept an answer merely because intermediate work matches or because some listed cases are correct.
 
 Problem:
 {problem}
@@ -110,14 +156,35 @@ def evaluate(
     split_name: str,
     domain: str | None,
     output_path: Path,
+    reuse_result: Path | None = None,
+    regenerate_ids: set[str] | None = None,
+    problem_limit: int | None = None,
 ) -> dict:
     config = load_config()
     rows = select_rows(split_name, domain, config)
+    if problem_limit is not None:
+        if problem_limit < 1:
+            raise ValueError("problem_limit must be at least 1")
+        rows = rows[:problem_limit]
     LLM, verify = install_math_runtime(config)
-    candidate = load_candidate(candidate_path)(test_problems=rows)
+    memory_cfg = config.get("memory", {})
+    memory = SolvedMathMemory(
+        memory_cfg.get("repository", "yoonholee/math-corpus-combined"),
+        memory_cfg.get("split", "train"),
+        memory_cfg.get("revision"),
+    )
+    print(
+        f"Preparing {candidate_path.stem}: candidate construction and retrieval index "
+        "(the external memory corpus is loaded only if used)",
+        flush=True,
+    )
+    candidate = instantiate_candidate(
+        load_candidate(candidate_path), rows, domain=domain, memory=memory
+    )
     prompts = [candidate.build_prompt(row["problem"]) for row in rows]
     if not all(isinstance(prompt, str) and prompt.strip() for prompt in prompts):
         raise ValueError("Every build_prompt result must be a non-empty string")
+    print(f"  Prepared {len(prompts)} prompts", flush=True)
 
     experiment = config["experiment"]
     started = time.monotonic()
@@ -145,14 +212,44 @@ def evaluate(
         "problem_ids": [row["problem_id"] for row in rows],
     }
     partial = load_partial(output_path, checkpoint_identity)
-    raw = partial["responses"]
-    input_tokens = int(partial.get("input_tokens", 0))
-    output_tokens = int(partial.get("output_tokens", 0))
-    if raw:
-        print(f"  Resuming from checkpoint: {len(raw)}/{len(rows)} complete", flush=True)
+    problem_ids = checkpoint_identity["problem_ids"]
+    response_by_id = partial_responses_by_id(partial, problem_ids)
+    regenerate_ids = regenerate_ids or set()
+    migration_input_tokens = int(
+        partial.get("migration_input_tokens", partial.get("input_tokens", 0))
+    )
+    migration_output_tokens = int(
+        partial.get("migration_output_tokens", partial.get("output_tokens", 0))
+    )
+    if reuse_result:
+        reused, reused_input_tokens, reused_output_tokens = load_reused_responses(
+            reuse_result, problem_ids, regenerate_ids
+        )
+        # A newly generated checkpoint response always wins over an older result.
+        response_by_id = {**reused, **response_by_id}
+        input_tokens = reused_input_tokens
+        output_tokens = reused_output_tokens
+        print(
+            f"  Reusing {len(reused)} responses from {reuse_result}",
+            flush=True,
+        )
+    else:
+        input_tokens = int(partial.get("input_tokens", 0))
+        output_tokens = int(partial.get("output_tokens", 0))
+    if response_by_id:
+        print(
+            f"  Starting with {len(response_by_id)}/{len(rows)} completed responses",
+            flush=True,
+        )
 
-    remaining_prompts = prompts[len(raw) :]
-    for prompt_batch in iter_batches(remaining_prompts, batch_size):
+    remaining = [
+        (row["problem_id"], prompt)
+        for row, prompt in zip(rows, prompts)
+        if row["problem_id"] not in response_by_id
+    ]
+    for item_batch in iter_batches(remaining, batch_size):
+        batch_ids = [item[0] for item in item_batch]
+        prompt_batch = [item[1] for item in item_batch]
         # llm-provider's async OpenAI client cannot safely survive repeated
         # asyncio.run() calls. A fresh context per progress batch also makes a
         # transient transport failure resumable at a clean boundary.
@@ -160,16 +257,22 @@ def evaluate(
             batch_results = llm.generate(prompt_batch, **generation_kwargs)
             input_tokens += llm.total_input_tokens
             output_tokens += llm.total_output_tokens
-        raw.extend(batch_results)
+            migration_input_tokens += llm.total_input_tokens
+            migration_output_tokens += llm.total_output_tokens
+        response_by_id.update(zip(batch_ids, batch_results))
         partial = {
             **checkpoint_identity,
-            "responses": raw,
+            "responses_by_problem_id": response_by_id,
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
+            "migration_input_tokens": migration_input_tokens,
+            "migration_output_tokens": migration_output_tokens,
         }
         save_partial(output_path, partial)
-        completed = len(raw)
-        empty_responses = sum(not _response_text(value).strip() for value in raw)
+        completed = len(response_by_id)
+        empty_responses = sum(
+            not _response_text(value).strip() for value in response_by_id.values()
+        )
         batch_elapsed = time.monotonic() - started
         print(
             f"  [{completed:>3}/{len(rows)}] "
@@ -179,7 +282,7 @@ def evaluate(
             flush=True,
         )
     elapsed = time.monotonic() - started
-    responses = [_response_text(value) for value in raw]
+    responses = [_response_text(response_by_id[problem_id]) for problem_id in problem_ids]
     if len(responses) != len(rows):
         raise RuntimeError(f"Expected {len(rows)} responses, got {len(responses)}")
 
@@ -265,12 +368,25 @@ def evaluate(
         "domain_accuracy": domain_scores,
         "solver_input_tokens": input_tokens,
         "solver_output_tokens": output_tokens,
+        "migration_input_tokens": migration_input_tokens if reuse_result else None,
+        "migration_output_tokens": migration_output_tokens if reuse_result else None,
         "judge_input_tokens": judge_input_tokens,
         "judge_output_tokens": judge_output_tokens,
         "total_input_tokens": input_tokens + judge_input_tokens,
         "total_output_tokens": output_tokens + judge_output_tokens,
         "elapsed_seconds": round(elapsed, 1),
         "empty_responses": sum(not response.strip() for response in responses),
+        "reused_result": str(reuse_result.resolve()) if reuse_result else None,
+        "regenerated_problem_ids": sorted(regenerate_ids),
+        "candidate_source_sha256": hashlib.sha256(
+            candidate_path.read_bytes()
+        ).hexdigest(),
+        "evaluation_config": {
+            "experiment": config["experiment"],
+            "judge": config.get("judge", {}),
+            "memory": config.get("memory", {}),
+            "splits": config["splits"],
+        },
         "details": details,
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -287,8 +403,19 @@ def main() -> None:
     parser.add_argument("--split", choices=("search", "dev", "test"), required=True)
     parser.add_argument("--domain", choices=load_config()["domains"])
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--reuse-result", type=Path)
+    parser.add_argument("--regenerate-id", action="append", default=[])
+    parser.add_argument("--problem-limit", type=int)
     args = parser.parse_args()
-    result = evaluate(args.candidate, args.split, args.domain, args.output)
+    result = evaluate(
+        args.candidate,
+        args.split,
+        args.domain,
+        args.output,
+        reuse_result=args.reuse_result,
+        regenerate_ids=set(args.regenerate_id),
+        problem_limit=args.problem_limit,
+    )
     print(
         f"{result['candidate']} {result['domain']} {result['split']}: "
         f"accuracy={result['accuracy'] * 100:.1f}% "

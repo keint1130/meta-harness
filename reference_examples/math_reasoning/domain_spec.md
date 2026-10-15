@@ -22,13 +22,24 @@ optimization budget remains to be selected before a paid run.
 
 ## Harness and Search Plan
 
-Every candidate must expose a `Candidate` class with:
+Every new candidate must expose a `Candidate` class with:
 
 ```python
 class Candidate:
-    def __init__(self, test_problems=None): ...
+    def __init__(self, memory, task_context=None): ...
     def build_prompt(self, problem: str) -> str: ...
 ```
+
+`memory` is a lazy read-only external solved-problem corpus.  Its rows are
+allowlisted to `problem`, `solution`, `answer`, and `source`; benchmark rows,
+labels, and answers are never included.  `task_context` contains the top-level
+domain only in task-specific runs and is empty in global runs.  The prediction
+method always sees only the current problem statement. Legacy candidates using
+`test_problems` remain runnable, but receive only problem text.
+
+The proposer also runs in a controlled view. It receives pooled search traces
+and aggregate history without problem IDs or subcategory labels. Global runs
+additionally omit top-level domains, task boundaries, and per-domain scores.
 
 The initial baselines are no retrieval, random few-shot retrieval, BM25
 retrieval, and the published `evo_geo_solution_indexed` retriever.  Candidate
@@ -49,8 +60,10 @@ domain.  The twelve problems used by the earlier pilot are forced into search,
 so none can enter the final test.
 
 - Search: proposer-visible problem traces and iterative candidate evaluation.
-- Development holdout: candidate selection and experiment-level decisions;
-  no problem-level traces should be shown to the proposer.
+- Development validation: evaluated after every candidate and used for the
+  outer-loop objective and Pareto frontier. Only aggregate candidate metrics
+  are shown to the proposer; no dev problem text, response, answer, ID,
+  category, subcategory, or per-problem correctness is exposed.
 - Final test: one evaluation after optimization is finalized.
 
 Primary metrics are per-domain accuracy and four-domain macro-average accuracy.
@@ -79,7 +92,7 @@ candidate source snapshots, and proposer-session metadata.
   three candidates, then estimate cost from measured token use.
 - Number of random seeds for final results: unknown.  Proposed minimum: three
   solver seeds or samples per problem if budget permits.
-- Whether category routing is oracle or predicted: use oracle category labels
-  for the primary controlled comparison and add predicted routing as a
-  secondary deployment-style experiment.
+- Category routing is part of the treatment: task-specific harnesses receive
+  one run-level oracle domain, while the global harness must infer any useful
+  routing from problem text. Subcategory labels are hidden in both conditions.
 

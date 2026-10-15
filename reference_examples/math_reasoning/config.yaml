@@ -3,12 +3,19 @@ experiment:
   model: openai/gpt-6-luna
   reasoning_effort: medium
   max_tokens: 16384
-  concurrency: 2
-  progress_batch_size: 2
+  concurrency: 4
+  progress_batch_size: 4
   cache: false
 
 paths:
   math_eval_repo: ../../../math-frontier-eval
+
+# External solved examples available to candidate retrieval/memory systems.
+# The wrapper strips metadata fields and never mixes in benchmark answers.
+memory:
+  repository: yoonholee/math-corpus-combined
+  split: train
+  revision: 4cae5859f8a257ae1a7c8d02459da457228a74a0
 
 splits:
   search: 30
@@ -21,6 +28,17 @@ domains:
   - geometry
   - number_theory
 
+# Frozen no-memory search results shared by task-specific and global runs.
+# Global runs combine these four files; they do not regenerate the baseline.
+baseline:
+  candidate: agents/no_memory.py
+  allow_legacy_without_evaluation_config: true
+  search_results:
+    algebra: logs/baseline-medium-16384-judge-v2/algebra/no_memory/search.json
+    combinatorics: logs/baseline-medium-16384-judge-v2/combinatorics/no_memory/search.json
+    geometry: logs/baseline-medium-16384-judge-v2/geometry/no_memory/search.json
+    number_theory: logs/baseline-medium-16384-judge-v2/number_theory/no_memory/search.json
+
 proposer:
   model: gpt-6-luna
   reasoning_effort: high
@@ -30,8 +48,8 @@ judge:
   enabled: true
   model: openai/gpt-6-luna
   reasoning_effort: low
-  max_tokens: 1024
-  concurrency: 2
-  batch_size: 2
+  max_tokens: 2048
+  concurrency: 4
+  batch_size: 4
   cache: false
 

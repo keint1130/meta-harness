@@ -1,4 +1,4 @@
-from splits import build_splits, load_config, validate_splits
+from splits import build_splits, load_config, load_problem_rows, validate_splits
 
 
 def test_balanced_sizes_and_no_overlap():
@@ -20,4 +20,15 @@ def test_prior_pilot_is_search_only():
 
 def test_split_is_deterministic():
     assert build_splits() == build_splits()
+
+
+def test_answerbench_multiline_row_is_not_shifted_or_leaked():
+    row = next(
+        item
+        for item in load_problem_rows()
+        if item["problem_id"] == "imo-bench-algebra-036"
+    )
+    assert row["groundtruth"] == r"$Y(x)=A+\frac{B}{x}-x$"
+    assert row["domain"] == "algebra"
+    assert row["groundtruth"] not in row["problem"]
 
